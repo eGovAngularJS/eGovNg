@@ -1,0 +1,15 @@
+{
+  "name": "egovAngularJS",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jQuery": "~2.0.3",
+    "bootstrap": "~3.0.0",
+    "slickgrid": "~2.0.2",
+    "angular": "1.0.8"
+  }
+}
