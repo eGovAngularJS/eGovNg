@@ -8,6 +8,9 @@ eGov AngularJS Project
 ### 프레임워크 소스 빌드
 
 ```sh
+sudo npm install -g grunt-cli karma bower //window사용자 sudo 필요없음
+npm install
+bower install
 grunt build
 ```
 

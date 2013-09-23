@@ -10,6 +10,8 @@
     "jQuery": "~2.0.3",
     "bootstrap": "~3.0.0",
     "slickgrid": "~2.0.2",
-    "angular": "1.0.8"
+    "angular": "1.0.8",
+    "angular-mocks": "1.0.8",
+    "jquery-ui": "~1.10.3"
   }
 }
