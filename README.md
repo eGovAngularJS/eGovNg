@@ -23,8 +23,9 @@ grunt build
 ### 가이드 사이트 오픈
 
 ```sh
-grunt doc
+grunt webserver
 ```
+브라우저에서 localhost:8001/doc 으로 접속 할 수 있다.
 
 ## 변경 이력
 
