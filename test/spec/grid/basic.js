@@ -6,14 +6,30 @@ describe('Directive: GRID', function() {
 	var element, scope, timeout;
  
 	beforeEach(inject(function($rootScope, $compile, $timeout) {
-		element = angular.element('<div egov-grid style="width:600px;height:500px;" dataset="userList"></div>');
+		element = angular.element('<table egov-grid="demoGrid" dataset="userList" \
+       style="height:500px;"> \
+      <thead> \
+        <tr> \
+          <th>이름</th> \
+          <th>이메일</th> \
+          <th>등록일</th> \
+        </tr> \
+      </thead> \
+      <tbody> \
+        <tr ng-repeat="user in userList"> \
+          <td>{{name}}</td> \
+          <td>{{email}}</td> \
+          <td>{{regDate}}</td> \
+        </tr> \
+      </tbody> \
+    </table>');
  
 		scope = $rootScope;
 
 		timeout = $timeout;
  
 		scope.userList = [];
-		for (var i = 0; i < 30; i++) {
+		for (var i = 0; i < 10; i++) {
 			scope.userList.push({
 				id : i,
 				name : "jeado"+i,
@@ -28,22 +44,34 @@ describe('Directive: GRID', function() {
  
 	it("30개의 그리드의 로우가 그려져야 된다.", function() {
 		var list = $(element).find('.slick-viewport .ui-widget-content.slick-row');
-		expect(list.length).toBe(30);
+		expect(list.length).toBe(10);
 	});
 
-	// iit("2개를 추가하면 추가된 로우가 그려져야 된다.", function() {
-	// 	for (var i = 30; i < 32; i++) {
-	// 		scope.userList.push({
-	// 			id : i,
-	// 			name : "jeado"+i,
-	// 			email : "haibane"+i+"@gmail.com",
-	// 			regdate : "20130910"
-	// 		});
-	// 	};
+	it("테이블 정보를 가지고 Column 정보를 만들어 낸다.",function() {
+		var _gridDomParser,
+				trElement = angular.element('<table><thead> \
+		        <tr> \
+		          <th>이름</th> \
+		          <th>이메일</th> \
+		          <th>등록일</th> \
+		        </tr> \
+		      </thead> \
+		      <tbody> \
+		        <tr> \
+		          <td>{{name}}</td> \
+		          <td>{{email}}</td> \
+		          <td>{{regDate}}</td> \
+		        </tr> \
+		      </tbody></table>'),
+				expectedObj = [{name: '이름', id: 'name', field: 'name', headerCssClass: 'name', width: 100, resizable: false, sortable: false},
+				 {name: '이메일', id: 'email', field: 'email', headerCssClass: 'email', width: 100, resizable: false, sortable: false}, 
+				 {name: '등록일', id: 'regDate', field: 'regDate', headerCssClass: 'regDate', width: 100, resizable: false, sortable: false}];
 		
-	// 	scope.$apply();
+		inject(function(gridDomParser) {
+			_gridDomParser = gridDomParser
+		});
 
-	// 	var list = $(element).find('.slick-viewport .ui-widget-content.slick-row');
-	// 	expect(list.length).toBe(32);
-	// });
+		expect(_gridDomParser.buildColumn(trElement)).toEqual(expectedObj);
+	});
+
 });
