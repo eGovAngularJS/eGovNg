@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="kr" xml:lang="kr"  data-ng-app="nvd3TestApp" data-ng-controller="AppController" class="no-js ng-scope">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1;text/html; charset=utf-8;" />
+    <meta name="viewport" content="width=device-width">
+        <!-- <meta name="fragment" content="!"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <title>eGovNg-Sample</title>
+
+    <!-- 기본CSS -->
+    <!--<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/dist/css/bootstrap.css" />-->
+    
+    <!-- CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+
+    <script src="../vendor/d3/d3.js"></script>
+    <script src="../vendor/nvd3/nv.d3.js"></script>
+    <script src="../vendor/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
+
+    <script src="../vendor/jquery.easy-pie-chart/dist/angular.easypiechart.js"></script>
+
+    <!--<link rel="stylesheet" type="text/css" href="css/app.css" />-->
+    <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../vendor/angularjs-nvd3-directives/examples/stylesheets/nv.d3.css"/>
+
+
+    <!--<script src="js/mainApp.js"></script> -->
+    
+
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="assets/js/external/flotChart/excanvas.min.js"></script><![endif]-->
+    <style type="text/css" media="screen">
+        .easyPieChart {
+            position: relative;
+            text-align: center;
+        }
+
+        .easyPieChart canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .percentage,
+        .label {
+            text-align: center;
+            color: #333;
+            font-weight: 100;
+            font-size: 1.2em;
+            margin-bottom: 0.3em;
+        }
+    </style>
+</head>
+
+<body class="container">
+    <div class="row">
+        <!-- header Server Statictics -->
+        <div class="col-md-12">
+            <h3>Server Statictics</h3>
+            <div class="row" height="150px">
+                <div class="col-md-2">
+                    <nvd3-pie-chart
+                            data="s1"
+                            id="s1"
+                            width="180"
+                            height="130"
+                            x="xFunction()"
+                            y="yFunction()"
+                            margin="{left:0,top:0,bottom:0,right:0}"
+                            showLabels="true"
+                            labelType="percent"
+                            donut="true"
+                            donutRatio=".5"
+                            donutLabelsOutside="true"
+                            >
+                                <svg height="130"></svg>
+                        </nvd3-pie-chart>
+                </div>
+                <div class="col-md-2">
+                    <div class="percentage easyPieChart" 
+                        easypiechart="scaleColor:false;
+                              lineWidth:16;
+                              lineCap:square;
+                              size:110;
+                              trackColor:#e5e5e5;
+                              barColor:#3da0ea" 
+                        ng-percent="percent" 
+                        style="width: 110px; height: 110px; line-height: 110px;">
+                    </div>
+                    
+                    <!-- <input type="range" min="0" max="100" step="1" ng-model="percent" /> -->
+                </div>
+                <div class="col-md-2">
+                    3
+                </div>
+                <div class="col-md-2">
+                    4
+                </div>
+                <div class="col-md-2">
+                    5
+                </div>
+                <div class="col-md-2">
+                    6
+                </div>
+            </div>
+        </div>
+
+        <!-- visits -->
+        <div class="col-md-12">
+            <h3>visits</h3>
+            <div class="col-md-12">
+                2013년 > 2월 > 10일
+            </div>
+            <div class="col-md-12">
+                <nvd3-stacked-area-chart
+                    data="v1"
+                    id="v1"
+                    width="800"
+                    height="250"
+                    margin="{left:50,top:0,bottom:0,right:0}"
+                    showLegend="true"
+                    interactive="true"
+                    tooltips="true">
+                        <svg height="250"></svg>
+                </nvd3-stacked-area-chart>
+            </div>
+        </div>
+
+        <!-- age /sex -->
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <h3>age</h3>
+                <nvd3-pie-chart
+                    data="dAge"
+                    id="dAge"
+                    width="200"
+                    height="200"
+                    x="xFunction()"
+                    y="yFunction()"
+                    margin="{left:0,top:0,bottom:0,right:0}"
+                    showLabels="true"
+                    labelType="percent"
+                    showLegend="true"
+                    donut="true"
+                    donutRatio=".5"
+                    donutLabelsOutside="true"
+                    tooltips="true"
+                    tooltipcontent="toolTipContentFunction()"
+                    >
+                        <svg height="200"></svg>
+                </nvd3-pie-chart>
+            </div>
+            <div class="col-md-6">
+                <h3>sex</h3>
+                <nvd3-pie-chart
+                    data="dSex"
+                    id="dSex"
+                    width="300"
+                    height="200"
+                    x="xFunction()"
+                    y="yFunction()"
+                    margin="{left:0,top:0,bottom:0,right:0}"
+                    showLabels="true"
+                    labelType="percent"
+                    showLegend="true"
+                    donut="true"
+                    donutRatio=".5"
+                    donutLabelsOutside="true"
+                    tooltips="true"
+                    tooltipcontent="toolTipContentFunction()"
+                    >
+                        <svg height="200"></svg>
+                </nvd3-pie-chart>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript">
+
+var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives', 'easypiechart']);
+
+function AppController($scope){
+
+    // chart data 생성
+    function getData(){
+        $scope.v1 = [
+            {"key": "Series 1", "values":  [ [1, 5], [2, 7], [3, 10], [4, 8], [5, 15], [6, 4] ] },
+            {"key": "Series 2", "values":  [ [1, 15], [2, 10], [3, 12], [4, 18], [5, 5], [6, 14] ] }
+        ];
+        $scope.s1 = [
+            {key: "One", y: 58},
+            {key: "Two", y: 42 }
+        ];
+
+        $scope.percent = "33";
+
+        $scope.dAge = [
+            {key: "10이하", y: 62},
+            {key: "10대", y: 1522},
+            {key: "20대", y: 3540},
+            {key: "30대", y: 2813},
+            {key: "40대", y: 988},
+            {key: "50대", y: 120 },
+            {key: "50이상", y: 30 }
+        ];
+
+        $scope.dSex = [
+            {key: "남자", y: 152},
+            {key: "여자", y: 58}
+        ];
+        
+    };
+
+    $scope.xFunction = function(){
+        return function(d){
+            return d.key ;
+        }
+    }
+    $scope.yFunction = function(){
+        return function(d){
+            return d.y;
+        }
+    }
+
+
+    $scope.toolTipContentFunction = function(){
+        return function(key, x, y, e, graph) {
+            console.log(key, x, y, e, graph);
+            return  'Super New Tooltip' +
+                '<h1>' + key + '</h1>' +
+                '<p>' +  y + ' at ' + x + '</p>';
+        }
+    }
+    
+    getData();
+}
+
+</script>
+</html>

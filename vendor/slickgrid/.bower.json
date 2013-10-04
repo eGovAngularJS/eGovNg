@@ -1,0 +1,14 @@
+{
+  "name": "slickgrid",
+  "homepage": "https://github.com/mleibman/SlickGrid",
+  "version": "2.0.2",
+  "_release": "2.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.0.2",
+    "commit": "5b42d6bda060d72ec0c10d1ecdd10d87d6f92f4b"
+  },
+  "_source": "git://github.com/mleibman/SlickGrid.git",
+  "_target": "~2.0.2",
+  "_originalSource": "slickgrid"
+}

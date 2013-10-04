@@ -12,6 +12,9 @@
     "slickgrid": "~2.0.2",
     "angular": "1.0.8",
     "angular-mocks": "1.0.8",
-    "jquery-ui": "~1.10.3"
+    "jquery-ui": "~1.10.3",
+    "d3": "~3.3.6",
+    "nvd3": "1.1.12-beta",
+    " jquery.easy-pie-chart": "~2.0.3"
   }
 }
