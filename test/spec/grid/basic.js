@@ -6,7 +6,7 @@ describe('Directive: GRID', function() {
 	var element, scope, timeout;
  
 	beforeEach(inject(function($rootScope, $compile, $timeout) {
-		element = angular.element('<table egov-grid="demoGrid" dataset="userList" \
+		element = angular.element('<table egov-grid name="demoGrid" dataset="userList" \
        style="height:500px;"> \
       <thead> \
         <tr> \
