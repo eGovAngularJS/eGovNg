@@ -57,7 +57,6 @@ angular.module('egov.ui.tab', ['egov.ui.service'])
     // templateUrl: 'template/tabs/tabset.html',
     compile: function(elm, attrs, transclude) {
       return function(scope, element, attrs, tabCtrl) {
-        console.log("이게 먼저?");
         scope.vertical = angular.isDefined(attrs.vertical) ? scope.$parent.$eval(attrs.vertical) : false;
         scope.type = angular.isDefined(attrs.type) ? scope.$parent.$eval(attrs.type) : 'tabs';
         scope.direction = angular.isDefined(attrs.direction) ? scope.$parent.$eval(attrs.direction) : 'top';
