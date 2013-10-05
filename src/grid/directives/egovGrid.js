@@ -23,7 +23,11 @@ angular.module('egov.ui.grid', ['egov.ui.service']).
 				var columns = gridDomParser.buildColumn(tElement.find("table")),
 						gridInstance,
 						options = {
+							explicitInitialization:true,
+							rowHeight: 36,
+							headerRowHeight: 36,
 							forceFitColumns: true,
+							fullWidthRows:true,
 						  enableCellNavigation: true,
 						  enableColumnReorder: false
 						};
@@ -34,7 +38,7 @@ angular.module('egov.ui.grid', ['egov.ui.service']).
 				gridInstance = egovGrid.$new(tAttrs.name,tElement, [], columns, options);
 
 				return function linking($scope, iElm, iAttrs, controller){
-
+					gridInstance.init();
 					var data = [];
 					$scope.$watch('dataset', function(newScopeData, oldScopeData) {
 						gridInstance.setData(newScopeData,false);

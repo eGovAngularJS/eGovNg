@@ -5,7 +5,9 @@
  */
 angular.module('egov.ui', [
 	'egov.ui.service',
-	'egov.ui.grid']);
+	'egov.ui.grid',
+	'egov.ui.tab',
+	'egov.ui.chart']);
 
 angular.module('egov.ui.filter',[
 	]);

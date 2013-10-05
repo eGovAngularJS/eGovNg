@@ -26,7 +26,10 @@ module.exports = function(grunt) {
         multistr: true,
         smarttabs: true
       },
-      files: ['src/**/*.js']
+      src: ['src/**/*.js'],
+      exclude: [
+        'src/chart/directives/chart.js'
+      ]
     },
     watch: {
       files: ['src/**/*.js','less/**/*.less'],
@@ -72,16 +75,7 @@ module.exports = function(grunt) {
           banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
         },
         files: {
-          'build/<%= pkg.name %>.js' : ['src/module.js','src/filters/*.js','src/services/*.js','src/directives/**/*.js']
-        }
-      },
-      concat : {
-        options: {
-          wrap : 'eGovNg',
-          banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-        },
-        files: {
-          'build/<%= pkg.name %>.min.js' : ['src/module.js','src/filters/*.js','src/services/*.js','src/directives/**/*.js']
+          'build/<%= pkg.name %>.js' : ['src/module.js','src/**/directives/**/*.js','src/**/services/*.js','src/**/filters/**/*.js']
         }
       }
     }

@@ -20,9 +20,9 @@ module.exports = function(config) {
       'vendor/jquery.threedubmedia/event.drag/jquery.event.drag.js',
       'vendor/slickgrid/slick.core.js',
       'vendor/slickgrid/slick.grid.js',
-      'src/services/**/*.js',
-      'src/filters/**/*.js',
-      'src/directives/**/*.js',
+      'src/**/directives/**/*.js',
+      'src/**/services/*.js',
+      'src/**/filters/**/*.js',
       'src/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
