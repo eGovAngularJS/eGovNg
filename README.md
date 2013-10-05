@@ -8,11 +8,19 @@ eGov AngularJS Project
 ### 프레임워크 소스 빌드
 
 ```sh
-sudo npm install -g grunt-cli karma bower //window사용자 sudo 필요없음
+sudo npm install -g grunt-cli karma //window사용자 sudo 필요없음
 npm install
-bower install
 grunt build
 ```
+### 필수 자바스크립트 라이브러리
+1. jQuery
+2. jQuery-ui
+3. slickGrid
+4. jquery-drag plugin (threedubmedia)
+5. d3
+6. nvd3
+
+(vender폴더 참고)
 
 ### 프레임워크 적용
 
@@ -29,5 +37,7 @@ grunt webserver
 
 ## 변경 이력
 
+- 0.0.2
+  - 텝, 그리드, 차트 컴포넌트 추가
 - 0.0.1
 	- 프로젝트 셋업

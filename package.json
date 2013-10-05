@@ -1,6 +1,6 @@
 {
   "name": "eGovNg",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "eGov AngularJS Project",
   "main": "eGovNg.js",
   "scripts": {
