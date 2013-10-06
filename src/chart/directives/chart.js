@@ -75,7 +75,7 @@ var configureXaxis = function (chart, scope, attrs){
     if(attrs.xaxisstaggerlabels){
         chart.xAxis.staggerLabels((attrs.xaxisstaggerlabels === "true"));
     }
-}
+};
 
 var configureYaxis = function (chart, scope, attrs){
     if(attrs.yaxisorient){
@@ -136,7 +136,7 @@ var configureYaxis = function (chart, scope, attrs){
     if(attrs.yaxisstaggerlabels){
         chart.yAxis.staggerLabels((attrs.yaxisstaggerlabels === "true"));
     }
-}
+};
 
 
 var configureY1axis = function (chart, scope, attrs){
@@ -191,7 +191,7 @@ var configureY1axis = function (chart, scope, attrs){
     if(attrs.y1axisstaggerlabels){
         chart.y1Axis.staggerlabels((attrs.y1axisstaggerlabels === "true"));
     }
-}
+};
 
 
 var configureY2axis = function (chart, scope, attrs){
@@ -246,7 +246,7 @@ var configureY2axis = function (chart, scope, attrs){
     if(attrs.y2axisstaggerlabels){
         chart.y2Axis.staggerlabels((attrs.y2axisstaggerlabels === "true"));
     }
-}
+};
 
 // egov-ui-chart
 var eGovChart = angular.module('egov.ui.chart', ['egov.ui.common']);
@@ -2472,9 +2472,9 @@ var CanvasRenderer = function(el, options) {
     var drawScale = function() {
         var offset;
         var length;
-        var i = 24;
+        //var i = 24;
 
-        ctx.lineWidth = 1
+        ctx.lineWidth = 1;
         ctx.fillStyle = options.scaleColor;
 
         ctx.save();
@@ -2483,7 +2483,7 @@ var CanvasRenderer = function(el, options) {
                 length = options.scaleLength;
                 offset = 0;
             } else {
-                length = options.scaleLength * .6;
+                length = options.scaleLength * 0.6;
                 offset = options.scaleLength - length;
             }
             ctx.fillRect(-options.size/2 + offset, 0, length, 1);
@@ -2509,8 +2509,14 @@ var CanvasRenderer = function(el, options) {
      * Draw the background of the plugin including the scale and the track
      */
     var drawBackground = function() {
-        options.scaleColor && drawScale();
-        options.trackColor && drawCircle(options.trackColor, options.lineWidth);
+        if(options.scaleColor) {
+            drawScale();
+        }
+        if(options.trackColor){
+            drawCircle(options.trackColor, options.lineWidth);
+        }
+        //options.scaleColor && drawScale();
+        //options.trackColor && drawCircle(options.trackColor, options.lineWidth);
     };
 
     /**
@@ -2600,7 +2606,10 @@ var EasyPieChart = function(el, opts) {
         rotate: 0,
         animate: 1000,
         easing: function (x, t, b, c, d) { // more can be found here: http://gsgd.co.uk/sandbox/jquery/easing/
-            if ((t/=d/2) < 1) return c/2*t*t + b;
+            var _t = (t /= d/2);
+            if (_t < 1) {
+                return c/2*t*t + b;
+            }
             return -c/2 * ((--t)*(t-2) - 1) + b;
         },
         onStart: function(from, to) {
