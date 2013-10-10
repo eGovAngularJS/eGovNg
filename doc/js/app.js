@@ -23,7 +23,7 @@ define([
 		var app = angular.module('myApp', ['bootstrapPrettify', 'ui.bootstrap', 'jcf.dv']);
 			
 		//기본 경로
-		app.value('defaultPath', '/');
+		app.value('defaultPath', '/doc/');
 		
 		//최상위 트리
 		app.value('rootNodeId', 'root');
@@ -202,7 +202,7 @@ define([
 						//사이드바 고정
 						$('#accordion').affix({
 							offset: {
-								top: 50,
+								top: 60,
 								bottom: 0
 							}
 						});
@@ -272,7 +272,7 @@ define([
 						//사이드바 고정
 						$('#accordion').affix({
 							offset: {
-								top: 50,
+								top: 60,
 								bottom: 0
 							}
 						});
@@ -495,7 +495,7 @@ define([
 		
 		
 			//메뉴 리소스들 AJAX로 가져오기
-			$scope.accessData('GET', defaultPath + 'doc/docMenu.js', {},
+			$scope.accessData('GET', defaultPath + 'docMenu.js', {},
 			function(data) {
 				if( angular.isArray(data.menuTree) ) {
 			

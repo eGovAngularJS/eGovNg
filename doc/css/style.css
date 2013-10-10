@@ -2368,10 +2368,10 @@ section#subintro{
 /* Base class */
 .bs-docs-example {
   position: relative;
-  margin: 30px 0 10px 0;
+  margin-bottom: 20px;
   padding: 50px 20px 10px 20px;
   background-color: #fff;
-  border: 1px dashed #ddd;
+  border: 1px solid #ddd;
 }
 
 /* Echo out a label for the example */
@@ -2384,7 +2384,7 @@ section#subintro{
   font-size: 12px;
   font-weight: bold;
   background-color: #f5f5f5;
-  border: 1px dashed #ddd;
+  border: 1px solid #ddd;
   color: #9da0a4;
 }
 

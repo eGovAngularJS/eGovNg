@@ -1935,5 +1935,14 @@ a.thumbnail:hover {
 
 .affix {
   position: fixed;
-margin-top: -50px;
+margin-top: -60px;
+}
+
+.dl-horizontal dt {
+  width: 100px;
+}
+
+.dl-horizontal dd {
+  margin-left: 120px;
+  margin-bottom: 10px;
 }
