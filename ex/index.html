@@ -21,6 +21,7 @@
     <script src="../vendor/d3/d3.js"></script>
     <script src="../vendor/nvd3/nv.d3.js"></script>
     <script src="../src/chart/directives/chart.js"></script>
+    <!-- <script src="../src/chart/directives/nv.test.js"></script> -->
     <!-- <script src="../vendor/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script> -->
 
     <!-- <script src="../vendor/jquery.easy-pie-chart/dist/angular.easypiechart.js"></script> -->
@@ -162,18 +163,15 @@
                 </select>
             </div>
             <div class="col-md-12">
-                <egov-stacked-area-chart
+                <!-- <egov-stacked-area-chart -->
+                <egov-line2 
                     data="v1"
                     id="v1"
-                    width="800"
+                    margin="{left:50,top:0,bottom:50,right:50}"
                     height="250"
-                    margin="{left:50,top:0,bottom:0,right:0}"
-                    xformat="xFunctionType()"
-                    showLegend="true"
-                    interactive="true"
-                    tooltips="true">
-                        <svg height="250"></svg>
-                </egov-stacked-area-chart>
+                    xformat="xFunctionType()">
+                        <svg></svg>
+                </egov-line2>
             </div>
         </div>
 
@@ -241,7 +239,7 @@ function AppController($scope){
     // chart data 생성
     function getData(){
         $scope.v1 = [
-            {"key": "Series 1", "values":  [ [1, 115], [2, 117], [3, 110], [4, 118], [5, 115], [6, 14] ] },
+            {"key": "Series 1", "values":  [ [1, 51], [2, 71], [3, 101], [4, 81], [5, 151], [6, 14] ], area: true },
             {"key": "Series 2", "values":  [ [1, 115], [2, 110], [3, 112], [4, 118], [5, 115], [6, 114] ] }
         ];
         $scope.s1 = [
@@ -276,10 +274,10 @@ function AppController($scope){
         if($scope.selectType == '1') {
             // 년 조회 -> 해당 연도 12 개월 정보 조회 
             $scope.v1 = [
-                {"key": "Series 1", "values":  [ [1, 115], [2, 117], [3, 110], [4, 118], [5, 115], [6, 14] ] },
+                {"key": "Series 1", "values":  [ [1, 51], [2, 71], [3, 101], [4, 81], [5, 151], [6, 14] ] },
                 {"key": "Series 2", "values":  [ [1, 115], [2, 110], [3, 112], [4, 118], [5, 115], [6, 114] ] }
             ];
-        }else if($scope.selectType == '2'){
+        }else if($scope.selectType == '2'){ 
             // 월 조회 -> 해당 월 일 정보 조회
             $scope.v1 = [
                 {"key": "Series 1", "values":  [ [1, 51], [2, 71], [3, 101], [4, 81], [5, 151], [6, 41] ] },

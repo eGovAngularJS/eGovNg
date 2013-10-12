@@ -2322,6 +2322,186 @@ eGovChart
                 }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
         };
+    }]).
+    directive('egovLine2', ['$window', '$timeout', function($window, $timeout){
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=',
+                width: '@',
+                height: '@',
+                id: '@',
+                showlegend: '@',
+                tooltips: '@',
+                showxaxis: '@',
+                showyaxis: '@',
+                rightalignyaxis: '@',
+                defaultstate: '@',
+                nodata: '@',
+                margin: '&',
+                tooltipcontent: '&',
+                color: '&',
+                x: '&',
+                y: '&',
+                forcex: '@',
+                forcey: '@',
+                isArea: '@',
+                interactive: '@',
+                clipedge: '@',
+                clipvoronoi: '@',
+                interpolate: '@',
+
+                //xaxis
+                xaxisorient: '&',
+                xaxisticks: '@',
+                xaxistickvalues: '&xaxistickvalues',
+                xaxisticksubdivide: '&',
+                xaxisticksize: '&',
+                xaxistickpadding: '&',
+                xaxistickformat: '&',
+                xaxislabel: '&',
+                xaxisscale: '&',
+                xaxisdomain: '&',
+                xaxisrange: '&',
+                xaxisrangeband: '&',
+                xaxisrangebands: '&',
+                xaxisshowmaxmin: '@',
+                xaxishighlightzero: '@',
+                xaxisrotatelables: '@',
+                xaxisrotateylabel: '@',
+                xaxisstaggerlabels: '@',
+
+                //yaxis
+                yaxisorient: '&',
+                yaxisticks: '&',
+                yaxistickvalues: '&yaxistickvalues',
+                yaxisticksubdivide: '&',
+                yaxisticksize: '&',
+                yaxistickpadding: '&',
+                yaxistickformat: '&',
+                yaxislabel: '&',
+                yaxisscale: '&',
+                yaxisdomain: '&',
+                yaxisrange: '&',
+                yaxisrangeband: '&',
+                yaxisrangebands: '&',
+                yaxisshowmaxmin: '@',
+                yaxishighlightzero: '@',
+                yaxisrotatelables: '@',
+                yaxisrotateylabel: '@',
+                yaxisstaggerlabels: '@',
+
+                //angularjs specific
+                objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
+
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        //.attr('width', $scope.width)    
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
+            }],
+            link: function(scope, element, attrs){
+                scope.$watch('data', function(data){
+                    if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return scope.d3Call(data, scope.chart);
+                        }
+                        nv.addGraph({
+                            generate: function(){
+                                var margin = (scope.$eval(attrs.margin) || {top: 0, bottom: 0, left: 0, right: 0});
+                                //scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                //scope.width = 800;
+                                scope.height = 300;
+
+                                var chart = nv.models.lineChart()
+                                    //.width(scope.width)
+                                    .height(scope.height)
+                                    .margin(margin)
+                                    .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
+                                    .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
+                                    .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
+                                    .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
+                                    .showLegend(attrs.showlegend === undefined ? true : (attrs.showlegend === "true"))
+                                    .tooltips(attrs.tooltips === undefined ? true : (attrs.tooltips  === "true"))
+                                    .showXAxis(attrs.showxaxis === undefined ? true : (attrs.showxaxis  === "true"))
+                                    .showYAxis(attrs.showyaxis === undefined ? true : (attrs.showyaxis  === "true"))
+                                    .rightAlignYAxis(attrs.rightalignyaxis === undefined ? false : (attrs.rightalignyaxis  === "true"))
+                                    .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
+                                    .interactive(attrs.interactive === undefined ? true : (attrs.interactive === "true"))
+                                    .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
+                                    .clipVoronoi(attrs.clipvoronoi === undefined ? false : (attrs.clipvoronoi === "true"))
+                                    .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
+                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
+                                    .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); });
+
+                                chart.legend.margin({top: 3});
+
+                                if (chart.useInteractiveGuideline) {
+                                    chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                }
+
+                                if(attrs.tooltipcontent){
+                                    chart.tooltipContent(scope.tooltipcontent());
+                                }   
+
+                                configureXaxis(chart, scope, attrs);
+                                configureYaxis(chart, scope, attrs);
+
+                                scope.d3Call(data, chart);
+
+                                var chartResize = function() {
+                                    chart.update();
+                                    return;
+
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'), 10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'), 10),
+                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
+                                    if(newHeight < 0){
+                                        newHeight = 0;
+                                    }
+
+                                    if(newWidth === currentWidth && newHeight === currentHeight) {
+                                        return; //Nothing to do, the size is fixed or not changing.
+                                    }
+
+                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
+                                    nv.log('newWidth',newWidth, 'newHeight', newHeight );
+                                    chart.width(newWidth).height(newHeight); //Update the dims
+                                    d3.select(element[0]).append("svg")
+                                        .attr('id', attrs.id)
+                                        //.attr('width', newWidth)
+                                        //.attr('height', newHeight)
+                                        .datum(data)
+                                        .transition()
+                                        .duration(500)
+                                        .call(chart);
+                                };
+
+                                var timeoutPromise;
+                                var windowResize = function() {
+                                    $timeout.cancel(timeoutPromise);
+                                    timeoutPromise = $timeout(chartResize, 100);
+                                };
+                                $window.addEventListener('resize', windowResize);
+                                scope.chart = chart;
+                                return chart;
+                            }
+                        });
+                    }
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+            }
+        }  
     }]);
 // end angularjs-nvd3-directives
 
