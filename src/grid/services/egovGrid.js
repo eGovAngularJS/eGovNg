@@ -1,8 +1,10 @@
 angular.module('egov.ui.grid').provider('egovGrid', [function () {
-	var options = {},
-			columns = {},
-			grids = {},
-			dataViewType = {};
+	var grids = {},
+			defaultOption;
+
+	this.setOptions = function(op) {
+		defaultOption = op;
+	};
 
 	//eGogGrid 선언
 	function egoVGrid(container, data, columns, options) {
@@ -13,20 +15,7 @@ angular.module('egov.ui.grid').provider('egovGrid', [function () {
 	jQuery.extend(true, egoVGrid.prototype, Slick.Grid.prototype);
 	egoVGrid.prototype.constructor = egoVGrid;
 
-
-	this.setOptions = function(name, op) {
-		options[name] = op;
-	};
-
-	this.setCoulmns = function(name, column) {
-		columns[name] = column;
-	};
-
-	this.setDataViewType = function(name, dataView) {
-		dataViewType[name] = dataView;
-	};
-
-	this.$get = ['$log',function($log) {
+	this.$get = ['$log','egovGridFormatter',function($log,egovGridFormatter) {
 		function _new (name, container, data, columns, options) {
 			if(name === undefined) {
 				throw new Error("grid name is undefined");
@@ -35,15 +24,16 @@ angular.module('egov.ui.grid').provider('egovGrid', [function () {
 			grids[name] = new egoVGrid(container, data, columns, options);
 			return grids[name];
 		}
+		
 		function _get (name) {
 			var returnV = grids[name];
 			if(returnV === undefined) $log.error('can`t find '+name);
 			return returnV;
 		}
+
 		return {
 			$new : _new,
 			$get : _get
-
 		};
 	}];
 }]);

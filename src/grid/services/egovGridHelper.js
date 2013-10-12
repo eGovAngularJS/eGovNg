@@ -1,13 +1,15 @@
-angular.module('egov.ui.grid').factory('gridDomParser',function() {
-	function buildColumn (tableEl) {
+angular.module('egov.ui.grid')
+.factory('egovGridHelper',['egovGridFormatter',function(egovGridFormatter) {
+	function _buildColumn (tableEl, $scope) {
 		var columns=[];
+
 		angular.forEach(tableEl.find('th'), function(elm){
 			var thEl = angular.element(elm),
 					title = thEl.text();
 
 			columns.push({
-					name: title
-				});
+				name: title
+			});
 		});
 
 		angular.forEach(tableEl.find('td'), function(elm,idx){
@@ -23,14 +25,19 @@ angular.module('egov.ui.grid').factory('gridDomParser',function() {
 					editorType = tdEl.attr('editorType') || null,
 					doEditOnly = tdEl.attr('doEditOnly') || null,
 					doNotEdit = tdEl.attr('doNotEdit') || null,
-					comboBoxData = tdEl.attr('comboBoxData') || null;
+					comboBoxData = tdEl.attr('comboBoxData') || null,
+					cssClass = tdEl.attr('class') || null,
+					asyncPostRender = tdEl.attr('async-post-render') || null;
 
-					column.id = exp;
-					column.field = exp;
-					column.headerCssClass = exp;
-					column.width =  width;
-					column.resizable = resizable;
-					column.sortable  = sortable;
+			column.id = exp;
+			column.field = exp;
+			column.headerCssClass = exp;
+			column.cssClass = cssClass;
+			column.width =  width;
+			column.resizable = resizable;
+			column.sortable  = sortable;
+			column.asyncPostRender = asyncPostRender;
+			column.formatter = (formatter) ? egovGridFormatter.getFormatter(formatter) : null;
 
 					// comboBoxData : comboBoxData,
 					// formatter : formatter,
@@ -46,7 +53,15 @@ angular.module('egov.ui.grid').factory('gridDomParser',function() {
 		return columns;
 	}
 
+	function _rebuildColumnWidhScope(columns,$scope) {
+		angular.forEach(columns, function(value, key){
+			if(value.asyncPostRender){
+				value.asyncPostRender = $scope.$parent[value.asyncPostRender];
+			}
+		});
+	}
 	return {
-		buildColumn : buildColumn
+		buildColumn : _buildColumn,
+		rebuildColumnWidhScope : _rebuildColumnWidhScope
 	};
-});
+}]);

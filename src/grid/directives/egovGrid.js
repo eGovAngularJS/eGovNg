@@ -4,40 +4,36 @@
 * Description
 */
 angular.module('egov.ui.grid', ['egov.ui.service']).
-	directive('egovGrid', ['$log','gridDomParser','egovGrid', function($log,gridDomParser,egovGrid){
-		// Runs during compile
+	directive('egovGrid', ['$log','egovGridHelper','egovGrid', function($log,egovGridHelper,egovGrid){
 		return {
-			// name: '',
-			// priority: 1,
-			// terminal: true,
 			scope: {
 				dataset : "="
-			}, // {} = isolate, true = child, false/undefined = no change
+			},
 			restrict: 'EA', // E = Element, A = Attribute, C = Class, M = Comment
-			// template: '<div class="eGovGrid-container" ng-transclude></div>',
-			// templateUrl: '',
 			replace: true,
-			// transclude: 'element',
 			compile: function(tElement, tAttrs){
-				// console.log(tElement);
-				var columns = gridDomParser.buildColumn(tElement.find("table")),
+				var columns = egovGridHelper.buildColumn(tElement.find("table")),
 						gridInstance,
 						options = {
 							explicitInitialization:true,
-							rowHeight: 36,
-							headerRowHeight: 36,
-							forceFitColumns: true,
+							rowHeight: (tElement.attr("row-height") !== undefined) ? Number(tElement.attr("row-height")) : 25, //36
+							headerRowHeight: (tElement.attr("header-row-height") !== undefined) ? Number(tElement.attr("header-row-height")) : 25, //36
+							forceFitColumns: (tElement.attr("row-height") === "false") ? false : true,
 							fullWidthRows:true,
 						  enableCellNavigation: true,
-						  enableColumnReorder: false
+						  enableColumnReorder: (tElement.attr("enable-column-reorder") === "true") ? true : false,
+						  enableAsyncPostRender: (tElement.attr("enable-async-post-render") === "true") ? true : false
 						};
-				
+
 				tElement.addClass('eGovGrid-container');
 				tElement.remove("table");
 
 				gridInstance = egovGrid.$new(tAttrs.name,tElement, [], columns, options);
 
 				return function linking($scope, iElm, iAttrs, controller){
+					
+					egovGridHelper.rebuildColumnWidhScope(columns,$scope);
+
 					gridInstance.init();
 					var data = [];
 					$scope.$watch('dataset', function(newScopeData, oldScopeData) {
