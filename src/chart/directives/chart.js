@@ -2325,7 +2325,7 @@ eGovChart
     }]).
     directive('egovLine2', ['$window', '$timeout', function($window, $timeout){
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -2400,6 +2400,7 @@ eGovChart
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
+                    console.log("data", data);
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
                         //.attr('width', $scope.width)    
@@ -2441,7 +2442,7 @@ eGovChart
                                     .clipVoronoi(attrs.clipvoronoi === undefined ? false : (attrs.clipvoronoi === "true"))
                                     .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                     .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                    .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); });
+                                    // .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); });
 
                                 chart.legend.margin({top: 3});
 
@@ -2462,7 +2463,7 @@ eGovChart
                                     chart.update();
                                     return;
 
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'), 10),
+                                    /*var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'), 10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'), 10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
@@ -2485,7 +2486,7 @@ eGovChart
                                         .datum(data)
                                         .transition()
                                         .duration(500)
-                                        .call(chart);
+                                        .call(chart);*/
                                 };
 
                                 var timeoutPromise;

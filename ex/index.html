@@ -164,14 +164,15 @@
             </div>
             <div class="col-md-12">
                 <!-- <egov-stacked-area-chart -->
-                <egov-line2 
+                <div egov-line2 
                     data="v1"
                     id="v1"
+                    color="visitsColor()"
                     margin="{left:50,top:0,bottom:50,right:50}"
                     height="250"
                     xformat="xFunctionType()">
                         <svg></svg>
-                </egov-line2>
+                </div>
             </div>
         </div>
 
@@ -274,7 +275,7 @@ function AppController($scope){
         if($scope.selectType == '1') {
             // 년 조회 -> 해당 연도 12 개월 정보 조회 
             $scope.v1 = [
-                {"key": "Series 1", "values":  [ [1, 51], [2, 71], [3, 101], [4, 81], [5, 151], [6, 14] ] },
+                {"key": "Series 1", "values":  [ [1, 51], [2, 71], [3, 101], [4, 81], [5, 151], [6, 14] ] , "area":true},
                 {"key": "Series 2", "values":  [ [1, 115], [2, 110], [3, 112], [4, 118], [5, 115], [6, 114] ] }
             ];
         }else if($scope.selectType == '2'){ 
@@ -320,11 +321,18 @@ function AppController($scope){
     // 차트 툴팁 생성
     $scope.toolTipContentFunction = function(){
         return function(key, x, y, e, graph) {
-            console.log(key, x, y, e, graph);
+            //console.log(key, x, y, e, graph);
             return  'Super New Tooltip' +
                 '<h1>' + key + '</h1>' +
                 '<p>' +  y + ' at ' + x + '</p>';
         }
+    }
+
+    // 차트 색상
+    $scope.visitsColor = function(){
+        return [
+            "#eac85e", "#cf6d51"
+        ];
     }
     
     // 초기화 - data 처리
