@@ -1,50 +1,32 @@
-<!-- 브레드크럼 -->
-<section id="broadcrumb">
-	<div class="container">
-		<ul class="inline">
-			<li data-ng-repeat="crumb in breadcrumb">
-				<a href="javascript:;">{{crumb.name}}</a>
-				<span class="divider" data-ng-show="!$last">　>　</span>
-			</li>
-		</ul>
-	</div>
-</section>
-
-
 <!-- 메인 컨텐츠 -->
-<section id="maincontent">
-	<div class="container">
-		<div class="row">
-			<div class="span3">
-				<!-- 여기 메뉴 -->
-				<div list-menu parent-node="download"></div>
-				
-			</div>
-			<div class="span9">
-				<!-- 여기 내용 -->
+<div class="container">
+	<div class="row">
+		<div class="span3">
+			<!-- 여기 메뉴 -->
+			<div list-menu parent-node="download"></div>
+			
+		</div>
+		<div class="span9">
+			<!-- 여기 내용 -->
 
 
-				<h2>개발용 버전 다운로드 <small>Uncompressed Version Download</small></h2>
-				<p class="grey">이 페이지에서 Uncompressed 버전을 다운로드 할 수 있습니다.</p>
+			<h2>개발용 버전 다운로드 <small>Uncompressed Version Download</small></h2>
+			<p class="grey">이 페이지에서 Uncompressed 버전을 다운로드 할 수 있습니다.</p>
 
-				
-			</div>
+			
 		</div>
 	</div>
-</section>
+</div>
 
 
 
 
 
-<script>
+<script data-controller>
+(function ($scope) {
+	
+	//CSS 업데이트
+	$scope.$emit('updateCSS', []);
 
-	angular.jcf$scope = {
-		scope : function ($scope) {
-		
-			//CSS 업데이트
-			$scope.$emit('updateCSS', [
-			]);
-		}
-	};
-</script>
+});
+</script data-controller>

@@ -1,76 +1,56 @@
-<!-- 브레드크럼 -->
-<section id="broadcrumb">
-	<div class="container">
-		<ul class="inline">
-			<li data-ng-repeat="crumb in breadcrumb">
-				<a href="javascript:;">{{crumb.name}}</a>
-				<span class="divider" data-ng-show="!$last">　>　</span>
-			</li>
-		</ul>
-	</div>
-</section>
-
 <!-- 메인 컨텐츠 -->
-<section id="maincontent">
-	<div class="container">
-		<div class="row">
-			<div class="span3">
-				<!-- 여기 메뉴 -->
-				<div list-menu parent-node="guide"></div>
-				
-			</div>
-			<div class="span9">
-				<!-- 여기 내용 -->
+
+<div class="container">
+	<div class="row">
+		<div class="span3">
+			<!-- 여기 메뉴 -->
+			<div list-menu parent-node="guide"></div>
+			
+		</div>
+		<div class="span9">
+			<!-- 여기 내용 -->
 
 
-				<h2>개요 <small>Outline</small></h2>
-				<p class="grey">eGov AngularJS는 Open Source Library가 갖는 다양한 이점에 검증된 구조 설계를 더해 안정적으로 프론트엔드를 구축할 수 있는 프론트엔드 프레임워크입니다.</p>
+			<h2>개요 <small>Outline</small></h2>
+			<p class="grey">eGov AngularJS는 Open Source Library가 갖는 다양한 이점에 검증된 구조 설계를 더해 안정적으로 프론트엔드를 구축할 수 있는 프론트엔드 프레임워크입니다.</p>
 
-				<br/><br/>
-				
-				<h3>특장점</h3>
-				<ul>
-					<li>eGov AngularJS는 검증된 Open Source Library를 기반으로 다양한 환경에 유연하게 적용될 수 있도록 설계되었습니다. eGov AngularJS를 활용한다면, Open Source Library가 갖는 다양한 이점에 검증된 구조 설계를 더해 안정적으로 프론트엔드를 구축할 수 있습니다.</li>
-					<li>eGov AngularJS를 활용하면 유연하고 효율성 높은 모듈구조로 UI 프레임워크를 구축할 수 있습니다. backend에서 흔히 강조되었던 MVC 패턴이 적용되어 Model과 View, Controller를 분리하여 대규모의 개발과 분업에 효과적입니다. 또한 각 페이지마다 필요한 라이브러리들을 비동기적으로 불러와 실행함으로써 보다 가볍고 빠른 웹 어플리케이션을 개발할 수 있습니다.</li>
-					<li>eGov AngularJS는 최근 그 중요성이 강조되고 있는 웹표준 준수를 위한 효과적인 대안이 될 수 있습니다. 단지 W3C 표준을 지키는 수준이 아닌 웹 접근성과 크로스 브라우징을 고려하여 설계되고 검증된 UI 프레임워크입니다.</li>
-				</ul>
-				
-				<br/><br/>
-				
-				<h3>동작환경</h3>
-				<p class="grey">eGov AngularJS는 다음 브라우저를 지원합니다.</p>
-				<dl class="dl-horizontal">
-					<dt>Desktop 브라우저</dt>
-					<dd>Google Chrome 14 이상<br/>Mozilla Firefox 5 이상<br/>Apple Safari 5 이상<br/>MS Internet Explorer 8 이상</dd>
-					<dt>Mobile 브라우저</dt>
-					<dd>iOS 5 이상의 기본 브라우저<br/>Android 4.0 (ICS) 이상의 기본 브라우저</dd>
-				</dl>
-				
-				<br/><br/>
-				
-				<h3>라이선스</h3>
-				<p class="grey">eGov AngularJS는 GPL License, Version 2.0을 따릅니다.</p>
-				
-			</div>
+			<br/><br/>
+			
+			<h3>특장점</h3>
+			<ul>
+				<li>eGov AngularJS는 검증된 Open Source Library를 기반으로 다양한 환경에 유연하게 적용될 수 있도록 설계되었습니다. eGov AngularJS를 활용한다면, Open Source Library가 갖는 다양한 이점에 검증된 구조 설계를 더해 안정적으로 프론트엔드를 구축할 수 있습니다.</li>
+				<li>eGov AngularJS를 활용하면 유연하고 효율성 높은 모듈구조로 UI 프레임워크를 구축할 수 있습니다. backend에서 흔히 강조되었던 MVC 패턴이 적용되어 Model과 View, Controller를 분리하여 대규모의 개발과 분업에 효과적입니다. 또한 각 페이지마다 필요한 라이브러리들을 비동기적으로 불러와 실행함으로써 보다 가볍고 빠른 웹 어플리케이션을 개발할 수 있습니다.</li>
+				<li>eGov AngularJS는 최근 그 중요성이 강조되고 있는 웹표준 준수를 위한 효과적인 대안이 될 수 있습니다. 단지 W3C 표준을 지키는 수준이 아닌 웹 접근성과 크로스 브라우징을 고려하여 설계되고 검증된 UI 프레임워크입니다.</li>
+			</ul>
+			
+			<br/><br/>
+			
+			<h3>동작환경</h3>
+			<p class="grey">eGov AngularJS는 다음 브라우저를 지원합니다.</p>
+			<dl class="dl-horizontal">
+				<dt>Desktop 브라우저</dt>
+				<dd>Google Chrome 14 이상<br/>Mozilla Firefox 5 이상<br/>Apple Safari 5 이상<br/>MS Internet Explorer 8 이상</dd>
+				<dt>Mobile 브라우저</dt>
+				<dd>iOS 5 이상의 기본 브라우저<br/>Android 4.0 (ICS) 이상의 기본 브라우저</dd>
+			</dl>
+			
+			<br/><br/>
+			
+			<h3>라이선스</h3>
+			<p class="grey">eGov AngularJS는 GPL License, Version 2.0을 따릅니다.</p>
+			
 		</div>
 	</div>
-</section>
+</div>
 
 
 
 
+<script data-controller>
+(function ($scope) {
+	
+	//CSS 업데이트
+	$scope.$emit('updateCSS', []);
 
-
-<script>
-
-	angular.jcf$scope = {
-		scope : function ($scope) {
-		
-			
-			//CSS 업데이트
-			$scope.$emit('updateCSS', [
-			]);
-
-		}
-	};
-</script>
+});
+</script data-controller>

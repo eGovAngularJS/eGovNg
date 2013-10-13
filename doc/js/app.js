@@ -1,26 +1,12 @@
-//requireJS 모듈 선언 - [myApp 앵귤러 모듈]
-define([
-		'angular', //앵귤러 모듈을 사용하기 위해 임포트
-		'library/jcf/dynamicView'
-	],
+
+define(['angular'], function (angular) {
 	
-/*
-	이 부분도 주의깊게 살펴봐야한다.
-	위의 디펜던시들이 모두 로드된 뒤에 아래의 콜백이 실행된다.
-	디펜던시들이 리턴하는 객체들을 콜백함수의 파라메터로 받게 되는데,
-	자세히보면 route-config와 같이 snake case로 된 파일명이,
-	파라메터로 받을 때는 routeConfig와 같이 camel case로 바뀌는 것을 볼 수 있다.
-*/
-	//디펜던시 로드뒤 콜백함수
-	function (angular) {
-	
-		//위의 디펜던시를 가져와서 콜백을 수행하게 되는데,
-		//리턴하는 내용이 실제 사용되는 부분이겠지?
-		//여기서는 myApp이라는 앵귤러 모듈을 리턴한다.
-		
-		
 		//모듈 선언
-		var app = angular.module('myApp', ['bootstrapPrettify', 'ui.bootstrap', 'jcf.dv']);
+		var app = angular.module('myApp', ['bootstrapPrettify'], function ( $controllerProvider ) {
+
+			//lazyController
+			angular.controllerProvider = $controllerProvider;
+		});
 			
 		//기본 경로
 		app.value('defaultPath', '/doc/');
@@ -31,11 +17,109 @@ define([
 
 		//로케이션 프로바이더 설정
 		app.config(function($locationProvider) {
-			//hashbang 사용 
-			//http://docs.angularjs.org/guide/dev_guide.services.$location
-			//HTML5 mode 는 HTML5 History API 를 사용함. hashbang을 쓰면 #도..
+
 			$locationProvider.html5Mode(false).hashPrefix('!');
 		});
+
+
+		//커스텀뷰 다이렉티브 등록
+		app.directive('compositeView', function($http, $templateCache, $compile, $controller) {
+			return {
+				restrict: 'A', //Attribute(속성)
+				terminal: true,
+				compile: function (element, attr) {
+
+					var srcExp = attr.src;
+					var onloadExp = attr.onload || '';
+					var autoScrollExp = attr.autoscroll;
+
+					//compile의 return은 link겠지?
+					return function(scope, element) {
+						
+						var changeCounter = 0;
+						var childScope;
+						var parsedTemplate;
+						var controller;
+
+						//컨텐츠 클리어
+						var clearContent = function() {
+							if (childScope) {
+								childScope.$destroy();
+								childScope = null;
+							}
+
+							element.html('');
+						};
+
+						//srcExp == src 속성값이 변하면,
+						scope.$watch(srcExp, function (src) {
+
+							//중복 방지를 위한 아이디 갱신
+							var thisChangeId = ++changeCounter;
+
+							if (src) {
+
+								$http.get(src, {cache: $templateCache}).success(function(response) {
+									
+									//연속 실행 방지
+									if (thisChangeId === changeCounter) {
+
+										//자식 스코프가 있었으면 초기화
+										if (childScope) childScope.$destroy();
+
+										//새로운 자식 스코프 생성
+										childScope = scope.$new();
+
+										//템플릿과 컨트롤러 분리
+										parsedTemplate = response.match(/^([\s\S]*)<script data-controller>([\s\S]*)<\/script data-controller>[\s\S]*/i);
+
+										//컨트롤러가 존재하면,
+										if( parsedTemplate && parsedTemplate.length ) {
+
+											//일단 내용을 넣고
+											element.html(parsedTemplate[1]);
+
+											//lazyController 등록 -> 'indirect call' 활용
+											angular.controllerProvider.register('compositeViewController', window.eval(parsedTemplate[2]));
+
+											//컨트롤러 생성
+											controller = $controller('compositeViewController', { $scope: childScope });
+
+											//컨트롤러 할당
+											element.contents().data('$ngControllerController', controller);
+
+										}
+
+										else {
+											element.html(response);
+										}
+
+										//해당 내용을 컴파일
+										$compile(element.contents())(childScope);
+
+										//childScope.$emit('$includeContentLoaded');
+										
+										//컨텐츠 로드 완료 콜백 실행
+										scope.$eval(onloadExp);
+
+									}
+
+
+								}).error(function() {
+									//컨텐츠 로드 과정 중 오류 발생시 초기화
+									if (thisChangeId === changeCounter) clearContent();
+								});
+
+							}
+
+							//주소가 없으면 초기화
+							else clearContent();
+						});
+					};
+				}
+			};
+		});
+
 
 	
 		//상단 메뉴 다이렉티브 등록
@@ -322,7 +406,7 @@ define([
 					else {
 					
 						//disqus 파라메터 설정
-						window.disqus_shortname = 'jcfuiframework';
+						window.disqus_shortname = '_____';
 						window.disqus_identifier = scope.currentNode.viewResourceId;
 						window.disqus_title = scope.currentNode.viewResourceName;
 						window.disqus_url = defaultPath + "#!/" + scope.currentNode.viewResourceId;
@@ -331,7 +415,7 @@ define([
 						var dsq = document.createElement('script');
 							dsq.type = 'text/javascript'; 
 							dsq.async = true;
-							dsq.src = 'http://jcfuiframework.disqus.com/embed.js';
+							dsq.src = 'http://_____.disqus.com/embed.js';
 						
 						//스크립트 추가
 						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
@@ -344,30 +428,7 @@ define([
 				
 		
 		//공통 컨트롤러 설정 - 모든 컨트롤러에서 공통적으로 사용하는 부분들 선언
-		app.controller('CommonController', function($scope, $route, $http, $location, $timeout, $rootScope, defaultPath, rootNodeId ) {
-
-			
-			//AJAX 통신 공용 메서드
-			$scope.accessData = function(_method, _url, _data, _success, _error) {
-				$http({
-					method: _method, //방식
-					url: _url, //통신할 URL
-					data: _data, //파라메터로 보낼 데이터
-					headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
-				}).success(function(data, status, headers, config) {
-					//서버와의 연결이 정상적일 때 처리
-					if( _success ) {
-						_success(data);
-					}
-				}).error(function(data, status, headers, config) {
-					//서버와의 연결이 정상적이지 않을 때 처리
-					if( _error ) {
-						_error(status);
-					}
-				});		
-			};
-
-
+		app.controller('CommonController', function($scope, $route, $http, $location, $timeout, defaultPath, rootNodeId ) {
 			
 			
 			//특정 노드 추출 함수
@@ -492,11 +553,12 @@ define([
 				return _menuTree;
 			}
 		
-		
+
+
 		
 			//메뉴 리소스들 AJAX로 가져오기
-			$scope.accessData('GET', defaultPath + 'docMenu.js', {},
-			function(data) {
+			$http.get( defaultPath +'/json/menu.json' ).success( function ( data ) {
+
 				if( angular.isArray(data.menuTree) ) {
 			
 					//메뉴 데이터 저장
@@ -504,20 +566,7 @@ define([
 				
 					//메뉴 트리를 스코프에 할당
 					$scope.menuTree = $scope.createResourceTree(data, rootNodeId);
-					
-					//경로 이동
-					//$route.reload();
 				}
-				else {
-					//통신한 URL에서 데이터가 넘어오지 않았을 때 처리
-					//console.log('[데이터 통신에는 성공했으나 값이 넘어오지 않음 : 메뉴 데이터]');
-				}
-				
-			},
-			function(status) {
-				//서버와의 연결이 정상적이지 않을 때 처리
-				//console.log('[데이터 통신 실패 : 리소스 트리 리스트]');
-				//console.log(status);
 			});
 			
 
@@ -532,6 +581,8 @@ define([
 
 			function() {
 				//아이디 추출
+
+
 				var hash = $.trim($location.path().split('/')[1]) || 'home';
 
 				var menuTreeCheck = function () {
@@ -539,20 +590,33 @@ define([
 					//트리가 생성된 경우에만,
 					if(angular.isArray( $scope.menuTree )){
 
-						//트리에서 노드 추출
-						var node = $scope.getTreeNode($scope.menuTree, hash);
-					
-						//추출한 노드를 저장
-						$scope.currentNode = node;
-						
-						//브레드크럼 업데이트
-						$scope.breadcrumb = node.breadcrumb;
+						switch ( hash ) {
 
-						//추출한 URL을 View에 출력
-						$scope.currentPage =  {
-							"url" : $scope.currentNode.viewResourceUrl
-						};
-					
+							//메인 페이지인 경우
+							case "home":
+
+								//메인 페이지 보이기
+								$scope.menuOpen = false;
+
+								//페이지 해제
+								$scope.compositeViewSrc = ""; 
+							break;
+
+
+							//일반 페이지인 경우
+							default:
+
+								//메인 페이지 감추기
+								$scope.menuOpen = true;
+
+								//트리에서 노드 추출
+								$scope.currentNode = $scope.getTreeNode($scope.menuTree, hash);
+
+								//추출한 URL을 View에 출력
+								$scope.compositeViewSrc = $scope.currentNode.viewResourceUrl;
+
+							break;
+						}					
 					}
 
 					else {
@@ -562,7 +626,7 @@ define([
 				}
 				
 				//타임 아웃 시작
-				$timeout(menuTreeCheck, 0);
+				$timeout(menuTreeCheck, 100);
 				
 			}, true);
 
