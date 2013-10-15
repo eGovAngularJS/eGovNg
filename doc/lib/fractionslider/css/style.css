@@ -38,12 +38,12 @@
 .slider-wrapper .responisve-container .slider .slide .claim{
 	padding:10px 15px;
 	text-align: left;
-	font-size:32px !important;
+	font-size:38px !important;
 	font-weight:700 !important;
 	line-height:100%;
 	letter-spacing: -1px;
 	text-shadow: #333 1px 1px 5px;
-	background: rgba(33,66,99,.1);
+	/*background: rgba(33,66,99,.1);*/
 	border-radius: 5px;
 /* 	
 	background: #3498db;
@@ -53,14 +53,14 @@
 }	
 
 .slider-wrapper .responisve-container .slider .slide .teaser{
-	font-size:22px !important;
+	font-size:28px !important;
 	font-weight:700 !important;
 	line-height:100%;
 	letter-spacing: -1px;
 	width:250px;
 	padding: 5px 10px;
 	text-shadow: #555 1px 1px 1px;
-	background: rgba(33,66,99,.1);
+	/*background: rgba(33,66,99,.1);*/
 	border-radius: 5px;
 /* 	
 	background: #464646;

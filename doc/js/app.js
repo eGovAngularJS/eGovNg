@@ -59,6 +59,10 @@ define(['angular'], function (angular) {
 
 							if (src) {
 
+								//갱신시 화면 깨짐 방지를 위해 화면 숨기기
+								element.hide();
+
+								//템플릿 가져오기
 								$http.get(src, {cache: $templateCache}).success(function(response) {
 									
 									//연속 실행 방지
@@ -90,18 +94,23 @@ define(['angular'], function (angular) {
 
 										}
 
+										//컨트롤러가 없으면,
 										else {
+											//그냥 내용만 넣기
 											element.html(response);
 										}
 
-										//해당 내용을 컴파일
+										//템플릿을 컴파일
 										$compile(element.contents())(childScope);
 
-										//childScope.$emit('$includeContentLoaded');
+										//로드 완료 콜백
+										childScope.$emit('$includeContentLoaded');
 										
 										//컨텐츠 로드 완료 콜백 실행
 										scope.$eval(onloadExp);
 
+										//화면 다시 보이기
+										element.show();
 									}
 
 
@@ -596,10 +605,7 @@ define(['angular'], function (angular) {
 							case "home":
 
 								//메인 페이지 보이기
-								$scope.menuOpen = false;
-
-								//페이지 해제
-								$scope.compositeViewSrc = ""; 
+								$scope.menuOpen = false; 
 							break;
 
 
@@ -608,15 +614,14 @@ define(['angular'], function (angular) {
 
 								//메인 페이지 감추기
 								$scope.menuOpen = true;
-
-								//트리에서 노드 추출
-								$scope.currentNode = $scope.getTreeNode($scope.menuTree, hash);
-
-								//추출한 URL을 View에 출력
-								$scope.compositeViewSrc = $scope.currentNode.viewResourceUrl;
-
 							break;
-						}					
+						}
+
+						//트리에서 노드 추출
+						$scope.currentNode = $scope.getTreeNode($scope.menuTree, hash);
+
+						//추출한 URL을 View에 출력
+						$scope.compositeViewSrc = $scope.currentNode.viewResourceUrl;
 					}
 
 					else {

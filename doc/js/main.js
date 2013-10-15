@@ -12,7 +12,7 @@ requirejs.config({
 		'angular': '../lib/angular/angular',
 		'angular-bootstrap-prettify': '../lib/angular/angular-bootstrap-prettify',
 		'bootstrap': '../lib/bootstrap/bootstrap',
-		'fractionslider': '../lib/fractionslider/jquery.fractionslider',
+		'fractionslider': '../lib/fractionslider/jquery.fractionslider.min',
 		'library': '../lib'
 	},
 	

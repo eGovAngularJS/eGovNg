@@ -265,14 +265,7 @@ section#maincontent {
 }
 
 /* intro */
-
-section#intro{
-
-	z-index:1000;
-	margin-top:80px;
-}
-
-section#intro .slider-wrapper {
+section#maincontent .slider-wrapper {
 	background: #C0C0C0  center top no-repeat;
 	background-image: url(../img/grid_masked_light.png), -webkit-gradient(linear, center top, center bottom, from(#346FA5), to(#67B4C7));
 	background-image: url(../img/grid_masked_light.png), -webkit-linear-gradient(top, #346FA5  , #67B4C7);
@@ -285,6 +278,7 @@ section#intro .slider-wrapper {
 	-moz-box-shadow: inset 0px 0px 25px rgba(0,0,0,.60);
 	box-shadow: inset 0px 0px 25px rgba(0, 0, 0, 0.6);
 
+	margin-top: 80px;
 	margin-bottom: 30px;
 }
 
