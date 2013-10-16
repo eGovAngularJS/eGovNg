@@ -21,17 +21,6 @@
        url(../font/NanumGothic-Regular.woff) format('woff'),
        url(../font/NanumGothic-Regular.ttf) format('truetype');
 }
-@font-face {
-  font-family: 'Nanum Gothic';
-  font-style: normal;
-  font-weight: 800;
-  src: url(../font/NanumGothic-ExtraBold.eot);
-  src: url(../font/NanumGothic-ExtraBold.eot?#iefix) format('embedded-opentype'),
-       url(../font/NanumGothic-ExtraBold.woff2) format('woff2'),
-       url(../font/NanumGothic-ExtraBold.woff) format('woff'),
-       url(../font/NanumGothic-ExtraBold.ttf) format('truetype');
-}
-
 
 
 html { overflow-y: scroll; }
