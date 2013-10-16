@@ -19,6 +19,7 @@ iframe {
 img.left {
 	float:left;
 	margin:0 10px 10px 0;
+	width: 80px;
 }
 
 a i:hover {
