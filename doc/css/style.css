@@ -1,29 +1,10 @@
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
 @import url('overwrite.css');
 
-@font-face {
-  font-family: 'Nanum Gothic';
-  font-style: normal;
-  font-weight: 700;
-  src: url(../font/NanumGothic-Bold.eot);
-  src: url(../font/NanumGothic-Bold.eot?#iefix) format('embedded-opentype'),
-       url(../font/NanumGothic-Bold.woff2) format('woff2'),
-       url(../font/NanumGothic-Bold.woff) format('woff'),
-       url(../font/NanumGothic-Bold.ttf) format('truetype');
+html {
+	overflow-y: scroll;
 }
-@font-face {
-  font-family: 'Nanum Gothic';
-  font-style: normal;
-  font-weight: 400;
-  src: url(../font/NanumGothic-Regular.eot);
-  src: url(../font/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),
-       url(../font/NanumGothic-Regular.woff2) format('woff2'),
-       url(../font/NanumGothic-Regular.woff) format('woff'),
-       url(../font/NanumGothic-Regular.ttf) format('truetype');
-}
-
-
-html { overflow-y: scroll; }
 
 iframe {
 	border:none;
