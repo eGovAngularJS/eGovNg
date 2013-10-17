@@ -2350,6 +2350,8 @@ eGovChart
                 clipedge: '@',
                 clipvoronoi: '@',
                 interpolate: '@',
+             // add xformat
+                xformat: '&',
 
                 //xaxis
                 xaxisorient: '&',
@@ -2453,6 +2455,11 @@ eGovChart
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
                                 }   
+                                
+                                // add xTickFormat
+                                if(attrs.xformat){
+                                    chart.xAxis.tickFormat(scope.xformat());
+                                }
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
