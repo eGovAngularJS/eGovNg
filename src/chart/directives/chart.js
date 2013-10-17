@@ -2441,7 +2441,7 @@ eGovChart
                                     .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
                                     .clipVoronoi(attrs.clipvoronoi === undefined ? false : (attrs.clipvoronoi === "true"))
                                     .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
-                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
+                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
                                     // .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); });
 
                                 chart.legend.margin({top: 3});
@@ -2502,7 +2502,7 @@ eGovChart
                     }
                 }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
-        }  
+        } ; 
     }]);
 // end angularjs-nvd3-directives
 
