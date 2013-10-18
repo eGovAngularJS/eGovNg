@@ -2526,13 +2526,14 @@ eGovChart
  **/
 
 eGovChart
-    .directive('egovEasyPieChart', function($parse) {
+    .directive('egovEasyPieChart', ['egovCommon', function(egovCommon) {
+_egovCommon = egovCommon;
         return {
             restrict: 'A',
-            require: '?ngModel',
-/*            scope: {
-                percent: '&'
-            },*/
+//            require: '?ngModel',
+//            scope: {
+//                percent: '@'
+//            },
             link: function (scope, element, attrs) {
                 var options = {};
                 var fx = attrs.egovEasyPieChart;
@@ -2568,7 +2569,7 @@ eGovChart
                 // if (scope.percent) {
                 //     pieChart.update(scope.percent);
                 // }
-                console.log(attrs.percent, scope);
+                console.log("easy-chart", attrs.percent, scope[attrs.percent], scope.percent);
                 if (attrs.percent) {
                     pieChart.update(scope[attrs.percent]);
                 }
@@ -2587,9 +2588,9 @@ eGovChart
                 });
             }
         };
-    });
+    }]);
 
-
+var _egovCommon;
 /**
  * Renderer to render the chart on a canvas object
  * @param {DOMElement} el      DOM element to host the canvas (root of the plugin)
@@ -2749,11 +2750,11 @@ var CanvasRenderer = function(el, options) {
 
         // draw bar
         if (percent > 0) {
-            drawCircle(color, options.lineWidth, percent / 100);
+            drawCircle(color, options.lineWidth, percent / options.maxValue);
         }
         // innerLabel add
         //console.log("percent=",innerLabel);
-        innerLabel.innerText = percent + "%";
+        innerLabel.innerText = _egovCommon.round(percent, options.precision) + options.addText;
 
 
     }.bind(this);
@@ -2791,6 +2792,10 @@ var EasyPieChart = function(el, opts) {
         lineCap: 'round',
         lineWidth: 3,
         size: 110,
+        // add
+        maxValue : 100,
+        addText : "",
+        precision : 0,
         rotate: 0,
         animate: 1000,
         easing: function (x, t, b, c, d) { // more can be found here: http://gsgd.co.uk/sandbox/jquery/easing/

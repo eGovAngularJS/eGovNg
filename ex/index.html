@@ -82,7 +82,19 @@
                         </nvd3-pie-chart>
                 </div>
                 <div class="col-md-2">
-                    <div class="percentage easyPieChart" 
+                    <div class="percentage easyPieChart"  egov-easy-pie-chart="scaleColor:false;
+                            lineWidth:16;
+                            lineCap:square;
+                            size:110;
+                            addText:MB;
+                            maxValue:400;
+                            trackColor:#e5e5e5;
+                            barColor:#3da0ea" 
+                      percent="s2" 
+                      style="width: 110px; height: 110px; line-height: 110px;">
+                  </div>
+
+                    <!-- <div class="percentage easyPieChart" 
                         egov-easy-pie-chart="scaleColor:false;
                               lineWidth:16;
                               lineCap:square;
@@ -91,7 +103,7 @@
                               barColor:#3da0ea" 
                         percent="percent1" 
                         style="width: 110px; height: 110px; line-height: 110px;">
-                    </div>
+                    </div> -->
                     
                     <!-- <input type="range" min="0" max="100" step="1" ng-model="percent" /> -->
                 </div>
@@ -248,7 +260,7 @@ function AppController($scope){
             {key: "Two", y: 42 }
         ];
 
-        $scope.percent1 = "58";
+        $scope.s2 = "0";
         $scope.percent2 = "43";
         $scope.percent3 = "91";
 
@@ -272,6 +284,7 @@ function AppController($scope){
 
     // 년도별 정보 조회
     $scope.searchData = function(){
+        $scope.s2 = "158";
         if($scope.selectType == '1') {
             // 년 조회 -> 해당 연도 12 개월 정보 조회 
             $scope.v1 = [
