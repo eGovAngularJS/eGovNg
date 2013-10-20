@@ -68,7 +68,7 @@ angular.module('egov.ui.tab', ['egov.ui.service'])
   };
 })
 
-.directive('egovPanel', ['$parse', function($parse) {
+.directive('egovPanel', ['$parse','$timeout', function($parse,$timeout) {
   return {
     require: '^egovTab',
     restrict: 'EA',
@@ -80,6 +80,7 @@ angular.module('egov.ui.tab', ['egov.ui.service'])
     transclude: true,
     scope: {
       heading: '@',
+      panelActive : '&',
       onSelect: '&select', //contentHeadingTransclude에서 호출 된다.
       onDeselect: '&deselect'
     },
@@ -127,6 +128,12 @@ angular.module('egov.ui.tab', ['egov.ui.service'])
         scope.select = function() {
           if ( ! scope.disabled ) {
             scope.active = true;
+            // resize 등을 위한 처리 추가
+            $timeout(function(){
+				if(attrs.panelActive){
+					scope.panelActive();
+				}
+            }, 5);
           }
         };
 

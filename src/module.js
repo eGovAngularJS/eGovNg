@@ -1,12 +1,13 @@
 /**
- * kt.ui Module
+ * egov.ui Module
  *
  * Description
  */
-angular.module('egov.ui', [
+ angular.module('egov.ui', [
 	'egov.ui.service',
 	'egov.ui.grid',
 	'egov.ui.tab',
+	'egov.ui.input',
 	'egov.ui.chart']);
 
 angular.module('egov.ui.filter',[

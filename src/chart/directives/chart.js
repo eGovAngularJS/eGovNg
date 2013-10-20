@@ -1560,9 +1560,9 @@ eGovChart
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
+//                                    if(newWidth === currentWidth && newHeight === currentHeight) {
+//                                        return; //Nothing to do, the size is fixed or not changing.
+//                                    }
 
                                     d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
 
@@ -1584,6 +1584,8 @@ eGovChart
                                 };
 
                                 $window.addEventListener('resize', windowResize);
+                                
+                                scope.$on("resize", chartResize);
 
                                 scope.chart = chart;
                                 return chart;
