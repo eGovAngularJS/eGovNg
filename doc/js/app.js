@@ -1,13 +1,16 @@
 
 define(['angular'], function (angular) {
+
+		//LazyLoading을 위한 컨트롤러 프로바이더
+		var controllerProvider = undefined;
 	
 		//모듈 선언
 		var app = angular.module('myApp', ['bootstrapPrettify'], function ( $controllerProvider ) {
 
-			//lazyController
-			angular.controllerProvider = $controllerProvider;
+			//컨트롤러 프로바이더 추출
+			controllerProvider = $controllerProvider;
 		});
-			
+
 		//기본 경로
 		app.value('defaultPath', '/doc/');
 		
@@ -23,7 +26,7 @@ define(['angular'], function (angular) {
 
 
 		//커스텀뷰 다이렉티브 등록
-		app.directive('compositeView', function($http, $templateCache, $compile, $controller) {
+		app.directive('compositeView', function($http, $templateCache, $compile, $controller, defaultPath) {
 			return {
 				restrict: 'A', //Attribute(속성)
 				terminal: true,
@@ -63,7 +66,7 @@ define(['angular'], function (angular) {
 								element.hide();
 
 								//템플릿 가져오기
-								$http.get(src, {cache: $templateCache}).success(function(response) {
+								$http.get( defaultPath + src, {cache: $templateCache}).success(function(response) {
 									
 									//연속 실행 방지
 									if (thisChangeId === changeCounter) {
@@ -84,7 +87,7 @@ define(['angular'], function (angular) {
 											element.html(parsedTemplate[1]);
 
 											//lazyController 등록 -> 'indirect call' 활용
-											angular.controllerProvider.register('compositeViewController', window.eval(parsedTemplate[2]));
+											controllerProvider.register('compositeViewController', window.eval(parsedTemplate[2]));
 
 											//컨트롤러 생성
 											controller = $controller('compositeViewController', { $scope: childScope });
@@ -132,7 +135,8 @@ define(['angular'], function (angular) {
 
 	
 		//상단 메뉴 다이렉티브 등록
-		app.directive('navbarMenu', function($compile) {
+		app.directive( 'navbarMenu', function($compile) {
+
 			return {
 				restrict: 'A', //Attribute(속성)
 				link: function (scope, element, attrs) {
@@ -141,23 +145,6 @@ define(['angular'], function (angular) {
 						var elementData = '<ul class="dropdown-menu">';
 						
 						for(var i=0; i<children.length; i++) {
-						
-	/* 					
-							//하부 요소가 존재하면,
-							if(children[i].children.length)
-							{
-								elementData +=
-									'<li class="dropdown-submenu">' +
-										'<a href="' +  children[i].viewResourceHurl + '">' + children[i].viewResourceName + '</a>' +
-										menuElement(children[i].children) +
-									'</li>';
-							}
-							else
-							{
-								elementData +=
-									'<li><a href="' +  children[i].viewResourceHurl + '">' + children[i].viewResourceName + '</a></li>';
-							}
-	*/
 							elementData +=
 								'<li><a href="' +  children[i].viewResourceHurl + '">' + children[i].viewResourceName + '</a></li>';	
 						}
@@ -167,10 +154,9 @@ define(['angular'], function (angular) {
 						return elementData;
 					}
 					
-					
 					//메뉴 데이터가 변경되면,
 					scope.$watch('menuTree', function(val) {
-						var elementData = '<ul class="nav topnav">';
+						var elementData = '<div class="collapse navbar-collapse grove-nav"><ul class="nav navbar-nav">';
 						
 						if(angular.isArray(scope.menuTree)) {
 							for(var i=0; i<scope.menuTree.length; i++) {
@@ -190,19 +176,10 @@ define(['angular'], function (angular) {
 								}
 							}
 							
-							elementData += '</ul>';
-			 
-							//1단계 : 임의의 HTML 내용을 적용시키기 위해 먼저 HTML을 DOM 요소로 파싱한다.
-							var template = angular.element(elementData);
-			 
-							//2단계: 템플릿을 컴파일한다.
-							var linkFunction = $compile(template);
-							  
-							//3단계: 스코프를 컴파일한 템플릿과 연결한다.
-							linkFunction(scope);
-			 
-							//4단계: HTML 요소를 반영한다.
-							element.html('').append( template );
+							elementData += '</ul></div>';
+
+							//템플릿을 렌더링해서 뿌려준다.
+							element.html('').append( $compile( elementData )( scope ) );
 						}
 					}, true ); //true - 실제 값의 변화를 추적 | false - 주소값의 변화를 추적
 				}
@@ -259,7 +236,7 @@ define(['angular'], function (angular) {
 						
 						//출력할 HTML 포맷
 						var elementData = 
-							'<div class="accordion affix-top" id="accordion">' +
+							'<div class="accordion">' +
 								'<div class="accordion-group" ng-repeat="menu in menuList" >' +
 									'<div class="accordion-heading">' +
 										'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{menu.viewResourceId}}" ng-class="_collapsed(menu)">' +
@@ -271,7 +248,7 @@ define(['angular'], function (angular) {
 											'<div class="nav nav-list bs-docs-sidenav">' +
 												'<li ng-repeat="child in menu.children" ng-class="_activated(child)">' +
 													'<a href="./{{child.viewResourceHurl}}">' +
-														'<i class="icon-chevron-right"></i>{{child.viewResourceName}}' +
+														'<span class="glyphicon glyphicon-chevron-right"></span>　{{child.viewResourceName}}' +
 													'</a>' +
 												'</li>' +
 											'</div>' +
@@ -280,26 +257,7 @@ define(['angular'], function (angular) {
 								'</div>' +
 							'</div>';	
 
-						//1단계 : 임의의 HTML 내용을 적용시키기 위해 먼저 HTML을 DOM 요소로 파싱한다.
-						var template = angular.element(elementData);
-		 
-						//2단계: 템플릿을 컴파일한다.
-						var linkFunction = $compile(template);
-						  
-						//3단계: 스코프를 컴파일한 템플릿과 연결한다.
-						linkFunction(scope);
-		 
-						//4단계: HTML 요소를 반영한다.
-						element.html('').append( template );
-						
-						//사이드바 고정
-						$('#accordion').affix({
-							offset: {
-								top: 60,
-								bottom: 0
-							}
-						});
-						
+						element.html('').append( $compile( elementData )( scope ) );
 					}
 				}
 			};
@@ -328,8 +286,9 @@ define(['angular'], function (angular) {
 								"active": (menu.viewResourceId == scope.currentNode.viewResourceId)
 							};
 						};
+						
 						var elementData = 
-							'<div class="accordion affix-top" id="accordion">' +
+							'<div class="accordion">' +
 								'<div class="accordion-group">' +
 									'<div class="accordion-heading">' +
 										'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#' + sectionNode.viewResourceId + '">' +
@@ -341,7 +300,7 @@ define(['angular'], function (angular) {
 											'<div class="nav nav-list bs-docs-sidenav">' +
 												'<li ng-repeat="menu in menuList" ng-class="_activated(menu)">' +
 													'<a href="./{{menu.viewResourceHurl}}">' +
-														'<i class="icon-chevron-right"></i>{{menu.viewResourceName}}' +
+														'<span class="glyphicon glyphicon-chevron-right"></span>　{{menu.viewResourceName}}' +
 													'</a>' +
 												'</li>' +
 											'</div>' +
@@ -350,26 +309,7 @@ define(['angular'], function (angular) {
 								'</div>' +
 							'</div>';	
 							
-						//1단계 : 임의의 HTML 내용을 적용시키기 위해 먼저 HTML을 DOM 요소로 파싱한다.
-						var template = angular.element(elementData);
-		 
-						//2단계: 템플릿을 컴파일한다.
-						var linkFunction = $compile(template);
-						  
-						//3단계: 스코프를 컴파일한 템플릿과 연결한다.
-						linkFunction(scope);
-		 
-						//4단계: HTML 요소를 반영한다.
-						element.html('').append( template );
-						
-						//사이드바 고정
-						$('#accordion').affix({
-							offset: {
-								top: 60,
-								bottom: 0
-							}
-						});
-						
+						element.html('').append( $compile( elementData )( scope ) );
 					}
 				}
 			};
@@ -566,7 +506,7 @@ define(['angular'], function (angular) {
 
 		
 			//메뉴 리소스들 AJAX로 가져오기
-			$http.get( defaultPath +'/json/menu.json' ).success( function ( data ) {
+			$http.get( defaultPath +'json/menu.json' ).success( function ( data ) {
 
 				if( angular.isArray(data.menuTree) ) {
 			

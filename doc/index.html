@@ -13,12 +13,14 @@
 				<script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.5/json3.min.js"></script>
 		<![endif]-->
 		
-		<!-- styles -->
-		<link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
-		<link href="lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+		<!-- Bootstrap styles -->
+		<link rel="stylesheet" href="css/vendor/bootstrap/bootstrap.css">
 
-		<link href="css/style.css" rel="stylesheet">
-		<link href="css/default.css" rel="stylesheet">
+		<!-- Glyphicons -->
+		<link rel="stylesheet" href="css/vendor/glyphicons/glyphicons.css">
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="css/styles-blue.css">
 
 		<!--
 			꼭 필요한 필수 CSS는 위와 같이 고정해서 붙이고, 
@@ -28,72 +30,79 @@
 		<link data-ng-repeat="stylesheet in stylesheets" data-ng-href="{{stylesheet}}" type="text/css" rel="stylesheet" />
 	</head>
 
-	<body>
-		<div id="wrapper">
-			<header>
-			
-				<!-- 상단 네비게이션 시작 -->
-				<div class="navbar navbar-fixed-top">
-					<div class="navbar-inner">
-						<div class="container">
-
-							<!-- 로고 시작 -->
-							<a class="brand logo" href="#!/home">
-								<h1>eGov <small>UI Framework</small></h1>
-							</a>
-							<!-- 로고 끝 -->
-							
-							<!-- 상단 메뉴 시작 -->
-							<div class="navigation">
-								<div data-navbar-menu></div>
-							</div>
-							<!-- 상단 메뉴 종료 -->
-
-						</div>
-					</div>
+<body>
+	<header>
+		<nav class="navbar navbar-default grove-navbar" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="#" class="grove-toggle" data-toggle="collapse" data-target=".grove-nav">   <i class="glyphicons show_lines"><i></i></i>  </a>
+					<a href="#!/home" class="site-title"><b>eGov</b> AngularJS</a>
 				</div>
-				<!-- 상단 네비게이션 끝 -->
+				
+				<div data-navbar-menu></div>
+				
+			</div>
+		</nav>
+	</header>
 
-			</header>
-
-			<!-- 브레드크럼 -->
-			<section id="broadcrumb" data-ng-show="menuOpen" style="display: none;">
-				<div class="container">
-					<ul class="inline">
-						<li>
-							<a href="#!/home"><i class="icon-home icon-white"></i></a>　>
-						</li>
-						<li data-ng-repeat="crumb in currentNode.breadcrumb">
-							<a href="{{crumb.url}}">{{crumb.name}}</a>
-							<span class="divider" data-ng-show="!$last">　>　</span>
-						</li>
-					</ul>
-				</div>
-			</section>
-
-			<section id="maincontent" data-composite-view data-src="compositeViewSrc">
-			</section>
-			
-
-			<!-- 
-			<footer class="footer">
-				<div class="container">
-					<div class="row">
-						
-						
-
-					</div>
-				</div>
-			</footer>
-			-->
-
+	<section class="widewrapper pagetitle breadcrumb" data-ng-show="menuOpen" style="display: none;">
+		<div class="container">
+			<ul class="inline">
+				<li>
+					<a href="#!/home"><span class="glyphicon glyphicon-home"></span></a>　>　
+				</li>
+				<li data-ng-repeat="crumb in currentNode.breadcrumb">
+					<a href="{{crumb.url}}">{{crumb.name}}</a>
+					<span data-ng-show="!$last">　>　</span>
+				</li>
+			</ul>
 		</div>
+	</section>
+	
+	<section id="maincontent" data-composite-view data-src="compositeViewSrc">
+	</section>
+	
+<!-- 	
+	<footer class="widewrapper footer">
+		<div class="container">
+			<div class="row footer">
+				<div class="col-sm-3">
+					<h4>About Grove</h4>
+					<p>내용</p>
+				</div>
+				<div class="col-sm-3">
+					<div class="indent30">
+					<h4>Recent News</h4>
+					<ul class="grove-list">
+						<li><a href="#">Hello World Shatana</a></li>
+						<li><a href="#">Foobar in the sky flying so high</a></li>
+						<li><a href="#">Wild things happening, all around</a></li>
+						<li><a href="#">No time for that, no time for that</a></li>
+					</ul>
+					</div>
+				</div>
+				
+				<div class="col-sm-3">
+					<h4>About Grove</h4>
+					<p>내용</p>
+				</div>
 
+				<div class="col-sm-3">
+					<h4>Connect</h4>
+					<a href="#" class="glyphicons facebook"><i></i></a>
+					<a href="#" class="glyphicons twitter"><i></i></a>
+					<a href="#" class="glyphicons google_plus"><i></i></a>
+					<a href="#" class="glyphicons linked_in"><i></i></a>
+				</div>			
+			</div>
+		</div>
+	</footer>
+ -->
+	<!--
+		이 data-main 속성에서 requireJS가 처음 로드해야할 JS를 설정한다. 아래와 같이 쓰면, js 폴더 아래에 main.js 파일을 열게 된다.
+	 -->
+	<script data-main="js/main" src="js/vendor/require/require.js"></script>
 
+</body>
 
-		<!--
-			이 data-main 속성에서 requireJS가 처음 로드해야할 JS를 설정한다. 아래와 같이 쓰면, js 폴더 아래에 main.js 파일을 열게 된다.
-		 -->
-		<script data-main="js/main" src="lib/require/require.js"></script>
-	</body>
 </html>
