@@ -18,29 +18,35 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
 	margin-top: 10px;
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 	font-weight: 600;
 	font-family: 'Open Sans', 'Nanum Gothic';
 }
 
 h1 {
-	font-size: 34px;
-	line-height: 32px;
+  font-size: 30px;
 }
 
 h2 {
-	font-size: 26px;
-	line-height: 26px;
+  font-size: 26px;
 }
 
 h3 {
-	font-size: 18px;
-	line-height: 23px;
+  font-size: 22px;
 }
 
-h4, h5, h6 {
-	font-size: 14px;
+h4 {
+  font-size: 16px;
 }
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 12px;
+}
+
 
 hr {
 	border-top-color: #e0e3e6;
@@ -2050,6 +2056,7 @@ ul.paging li.active a {
 	line-height: 35px;
 	letter-spacing: -2px;
 	color: #555;
+	padding: 0 0 0 5px;
 }
 
 

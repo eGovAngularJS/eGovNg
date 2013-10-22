@@ -1,0 +1,32 @@
+<!-- 메인 컨텐츠 -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<!-- 여기 메뉴 -->
+			<div accordion-menu parent-node="example"></div>
+			
+		</div>
+		<div class="col-md-9">
+			<!-- 여기 내용 -->
+
+
+			<h2>제목 <small>Title</small></h2>
+			<p class="grey">설명</p>
+
+			<iframe width="100%" height="500" src="http://jsfiddle.net/eu81273/VeMmb/2/embedded/result,html,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<script data-controller>
+(function ($scope) {
+	
+	//CSS 업데이트
+	$scope.$emit('updateCSS', []);
+
+});
+</script data-controller>
