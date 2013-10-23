@@ -5,6 +5,7 @@ body {
 	font-family: 'Open Sans', 'Nanum Gothic';
 	color: #6f6f6f;
 	background-color: #ffffff;
+	overflow-y: scroll;
 }
 
 a {
@@ -562,7 +563,9 @@ footer .indent30 {
 	border-top: #e0e3e6 1px solid;
 	border-bottom: #e0e3e6 1px solid;
 	text-align: center;
-	font-size: 24px;
+	font-size: 28px;
+	font-weight: 800;
+	color: #9C9C9C;
 }
 
 .headline.top {
@@ -2056,7 +2059,7 @@ ul.paging li.active a {
 	line-height: 35px;
 	letter-spacing: -2px;
 	color: #555;
-	padding: 0 0 0 5px;
+	padding: 0 0 0 15px;
 }
 
 
