@@ -1,58 +1,58 @@
 {
 	"menuTree" : [
-		{ "viewResource" : {"viewResourceId":"home", "parentViewId":"root", "viewResourceName":"Home", "viewResourceSeq":0, "viewResourceUrl":"contents/home.html", "viewResourceHurl":"#!/home" } },
-		{ "viewResource" : {"viewResourceId":"develop", "parentViewId":"root", "viewResourceName":"Developer", "viewResourceSeq":1, "viewResourceUrl":"" , "viewResourceHurl":"#!/guide1" } },
+		{"id": "home", "parentId": "root", "label": "Home", "sequence": 0, "template": "contents/home.html", "hash": "#!/home" },
+		{"id": "develop", "parentId": "root", "label": "Developer", "sequence": 1, "template": "" , "hash": "#!/guide1" },
 			
-			{ "viewResource" : {"viewResourceId":"guide", "parentViewId":"develop", "viewResourceName":"Developer Guide", "viewResourceSeq":0, "viewResourceUrl":"", "viewResourceHurl":"#!/guide1" } },
+			{"id": "guide", "parentId": "develop", "label": "Developer Guide", "sequence": 0, "template": "", "hash": "#!/guide1" },
 
-				{ "viewResource" : {"viewResourceId":"guide1", "parentViewId":"guide", "viewResourceName":"개요", "viewResourceSeq":0, "viewResourceUrl":"contents/developer/guide/guide1.html", "viewResourceHurl":"#!/guide1" } },
-				{ "viewResource" : {"viewResourceId":"guide2", "parentViewId":"guide", "viewResourceName":"디렉토리 구조", "viewResourceSeq":1, "viewResourceUrl":"contents/developer/guide/guide2.html", "viewResourceHurl":"#!/guide2" } },
-				{ "viewResource" : {"viewResourceId":"guide3", "parentViewId":"guide", "viewResourceName":"모듈 관리", "viewResourceSeq":2, "viewResourceUrl":"contents/developer/guide/guide3.html", "viewResourceHurl":"#!/guide3" } },
-				{ "viewResource" : {"viewResourceId":"guide4", "parentViewId":"guide", "viewResourceName":"MVC 패턴", "viewResourceSeq":3, "viewResourceUrl":"contents/developer/guide/guide4.html", "viewResourceHurl":"#!/guide4" } },
-				{ "viewResource" : {"viewResourceId":"guide5", "parentViewId":"guide", "viewResourceName":"스타일 동적로딩", "viewResourceSeq":4, "viewResourceUrl":"contents/developer/guide/guide5.html", "viewResourceHurl":"#!/guide5" } },
-				{ "viewResource" : {"viewResourceId":"guide6", "parentViewId":"guide", "viewResourceName":"라우팅", "viewResourceSeq":5, "viewResourceUrl":"contents/developer/guide/guide6.html", "viewResourceHurl":"#!/guide6" } },				
+				{"id": "guide1", "parentId": "guide", "label": "개요", "sequence": 0, "template": "contents/developer/guide/guide1.html", "hash": "#!/guide1" },
+				{"id": "guide2", "parentId": "guide", "label": "디렉토리 구조", "sequence": 1, "template": "contents/developer/guide/guide2.html", "hash": "#!/guide2" },
+				{"id": "guide3", "parentId": "guide", "label": "모듈 관리", "sequence": 2, "template": "contents/developer/guide/guide3.html", "hash": "#!/guide3" },
+				{"id": "guide4", "parentId": "guide", "label": "MVC 패턴", "sequence": 3, "template": "contents/developer/guide/guide4.html", "hash": "#!/guide4" },
+				{"id": "guide5", "parentId": "guide", "label": "스타일 동적로딩", "sequence": 4, "template": "contents/developer/guide/guide5.html", "hash": "#!/guide5" },
+				{"id": "guide6", "parentId": "guide", "label": "라우팅", "sequence": 5, "template": "contents/developer/guide/guide6.html", "hash": "#!/guide6" },				
 			
 			
-			{ "viewResource" : {"viewResourceId":"api", "parentViewId":"develop", "viewResourceName":"API Reference", "viewResourceSeq":1, "viewResourceUrl":"", "viewResourceHurl":"#!/directive1" } },
+			{"id": "api", "parentId": "develop", "label": "API Reference", "sequence": 1, "template": "", "hash": "#!/directive1" },
 				
-				{ "viewResource" : {"viewResourceId":"directive", "parentViewId":"api", "viewResourceName":"Directive", "viewResourceSeq":0, "viewResourceUrl":"", "viewResourceHurl":"#!/directive1" } },
+				{"id": "directive", "parentId": "api", "label": "Directive", "sequence": 0, "template": "", "hash": "#!/directive1" },
 					
-					{ "viewResource" : {"viewResourceId":"directive1", "parentViewId":"directive", "viewResourceName":"그리드", "viewResourceSeq":0, "viewResourceUrl":"contents/developer/api/directive/directive1.html", "viewResourceHurl":"#!/directive1" } },
-					{ "viewResource" : {"viewResourceId":"directive2", "parentViewId":"directive", "viewResourceName":"차트", "viewResourceSeq":1, "viewResourceUrl":"contents/developer/api/directive/directive2.html", "viewResourceHurl":"#!/directive2" } },
-					{ "viewResource" : {"viewResourceId":"directive3", "parentViewId":"directive", "viewResourceName":"탭", "viewResourceSeq":2, "viewResourceUrl":"contents/developer/api/directive/directive3.html", "viewResourceHurl":"#!/directive3" } },
+					{"id": "directive1", "parentId": "directive", "label": "그리드", "sequence": 0, "template": "contents/developer/api/directive/directive1.html", "hash": "#!/directive1" },
+					{"id": "directive2", "parentId": "directive", "label": "차트", "sequence": 1, "template": "contents/developer/api/directive/directive2.html", "hash": "#!/directive2" },
+					{"id": "directive3", "parentId": "directive", "label": "탭", "sequence": 2, "template": "contents/developer/api/directive/directive3.html", "hash": "#!/directive3" },
 
-				{ "viewResource" : {"viewResourceId":"service", "parentViewId":"api", "viewResourceName":"Service", "viewResourceSeq":1, "viewResourceUrl":"", "viewResourceHurl":"#!/service1" } },
+				{"id": "service", "parentId": "api", "label": "Service", "sequence": 1, "template": "", "hash": "#!/service1" },
 					
-					{ "viewResource" : {"viewResourceId":"service1", "parentViewId":"service", "viewResourceName":"그리드", "viewResourceSeq":0, "viewResourceUrl":"contents/developer/api/service/service1.html", "viewResourceHurl":"#!/service1" } },
-					{ "viewResource" : {"viewResourceId":"service2", "parentViewId":"service", "viewResourceName":"차트", "viewResourceSeq":1, "viewResourceUrl":"contents/developer/api/service/service2.html", "viewResourceHurl":"#!/service2" } },
-					{ "viewResource" : {"viewResourceId":"service3", "parentViewId":"service", "viewResourceName":"탭", "viewResourceSeq":2, "viewResourceUrl":"contents/developer/api/service/service3.html", "viewResourceHurl":"#!/service3" } },
+					{"id": "service1", "parentId": "service", "label": "그리드", "sequence": 0, "template": "contents/developer/api/service/service1.html", "hash": "#!/service1" },
+					{"id": "service2", "parentId": "service", "label": "차트", "sequence": 1, "template": "contents/developer/api/service/service2.html", "hash": "#!/service2" },
+					{"id": "service3", "parentId": "service", "label": "탭", "sequence": 2, "template": "contents/developer/api/service/service3.html", "hash": "#!/service3" },
 					
-			{ "viewResource" : {"viewResourceId":"example", "parentViewId":"develop", "viewResourceName":"Examples", "viewResourceSeq":2, "viewResourceUrl":"", "viewResourceHurl":"#!/grid1" } },
+			{"id": "example", "parentId": "develop", "label": "Examples", "sequence": 2, "template": "", "hash": "#!/grid1" },
 				
-				{ "viewResource" : {"viewResourceId":"grid", "parentViewId":"example", "viewResourceName":"그리드", "viewResourceSeq":0, "viewResourceUrl":"", "viewResourceHurl":"#!/grid1" } },
+				{"id": "grid", "parentId": "example", "label": "그리드", "sequence": 0, "template": "", "hash": "#!/grid1" },
 					
-					{ "viewResource" : {"viewResourceId":"grid1", "parentViewId":"grid", "viewResourceName":"그리드 기본", "viewResourceSeq":0, "viewResourceUrl":"contents/developer/example/grid/grid1.html", "viewResourceHurl":"#!/grid1" } },
-					{ "viewResource" : {"viewResourceId":"grid2", "parentViewId":"grid", "viewResourceName":"행/열 고정", "viewResourceSeq":1, "viewResourceUrl":"contents/developer/example/grid/grid2.html", "viewResourceHurl":"#!/grid2" } },
-					{ "viewResource" : {"viewResourceId":"grid3", "parentViewId":"grid", "viewResourceName":"데이터 10만건 테스트", "viewResourceSeq":2, "viewResourceUrl":"contents/developer/example/grid/grid3.html", "viewResourceHurl":"#!/grid3" } },
+					{"id": "grid1", "parentId": "grid", "label": "그리드 기본", "sequence": 0, "template": "contents/developer/example/grid/grid1.html", "hash": "#!/grid1" },
+					{"id": "grid2", "parentId": "grid", "label": "행/열 고정", "sequence": 1, "template": "contents/developer/example/grid/grid2.html", "hash": "#!/grid2" },
+					{"id": "grid3", "parentId": "grid", "label": "데이터 10만건 테스트", "sequence": 2, "template": "contents/developer/example/grid/grid3.html", "hash": "#!/grid3" },
 
-				{ "viewResource" : {"viewResourceId":"chart", "parentViewId":"example", "viewResourceName":"차트", "viewResourceSeq":1, "viewResourceUrl":"", "viewResourceHurl":"#!/chart1" } },
+				{"id": "chart", "parentId": "example", "label": "차트", "sequence": 1, "template": "", "hash": "#!/chart1" },
 					
-					{ "viewResource" : {"viewResourceId":"chart1", "parentViewId":"chart", "viewResourceName":"차트 기본", "viewResourceSeq":0, "viewResourceUrl":"contents/developer/example/chart/chart1.html", "viewResourceHurl":"#!/chart1" } },
-					{ "viewResource" : {"viewResourceId":"chart2", "parentViewId":"chart", "viewResourceName":"차트 애니메이션", "viewResourceSeq":1, "viewResourceUrl":"contents/developer/example/chart/chart2.html", "viewResourceHurl":"#!/chart2" } },
-					{ "viewResource" : {"viewResourceId":"chart3", "parentViewId":"chart", "viewResourceName":"차트 이벤트", "viewResourceSeq":2, "viewResourceUrl":"contents/developer/example/chart/chart3.html", "viewResourceHurl":"#!/chart3" } },
+					{"id": "chart1", "parentId": "chart", "label": "차트 기본", "sequence": 0, "template": "contents/developer/example/chart/chart1.html", "hash": "#!/chart1" },
+					{"id": "chart2", "parentId": "chart", "label": "차트 애니메이션", "sequence": 1, "template": "contents/developer/example/chart/chart2.html", "hash": "#!/chart2" },
+					{"id": "chart3", "parentId": "chart", "label": "차트 이벤트", "sequence": 2, "template": "contents/developer/example/chart/chart3.html", "hash": "#!/chart3" },
 
 
-				{ "viewResource" : {"viewResourceId":"tab", "parentViewId":"example", "viewResourceName":"탭", "viewResourceSeq":2, "viewResourceUrl":"", "viewResourceHurl":"#!/tab1" } },
+				{"id": "tab", "parentId": "example", "label": "탭", "sequence": 2, "template": "", "hash": "#!/tab1" },
 					
-					{ "viewResource" : {"viewResourceId":"tab1", "parentViewId":"tab", "viewResourceName":"탭 기본", "viewResourceSeq":0, "viewResourceUrl":"contents/developer/example/tab/tab1.html", "viewResourceHurl":"#!/tab1" } },
+					{"id": "tab1", "parentId": "tab", "label": "탭 기본", "sequence": 0, "template": "contents/developer/example/tab/tab1.html", "hash": "#!/tab1" },
 
-		{ "viewResource" : {"viewResourceId":"download", "parentViewId":"root", "viewResourceName":"Download", "viewResourceSeq":2, "viewResourceUrl":"" , "viewResourceHurl":"#!/minified" } },
-			{ "viewResource" : {"viewResourceId":"minified", "parentViewId":"download", "viewResourceName":"Minified Source", "viewResourceSeq":0, "viewResourceUrl":"contents/download/minified.html", "viewResourceHurl":"#!/minified" } },
-			{ "viewResource" : {"viewResourceId":"github", "parentViewId":"download", "viewResourceName":"GitHub", "viewResourceSeq":1, "viewResourceUrl":"contents/download/github.html", "viewResourceHurl":"#!/github" } },
+		{"id": "download", "parentId": "root", "label": "Download", "sequence": 2, "template": "" , "hash": "#!/minified" },
+			{"id": "minified", "parentId": "download", "label": "Minified Source", "sequence": 0, "template": "contents/download/minified.html", "hash": "#!/minified" },
+			{"id": "github", "parentId": "download", "label": "GitHub", "sequence": 1, "template": "contents/download/github.html", "hash": "#!/github" },
 
 
-		{ "viewResource" : {"viewResourceId":"qna", "parentViewId":"root", "viewResourceName":"QnA", "viewResourceSeq":3, "viewResourceUrl":"contents/qna.html" , "viewResourceHurl":"#!/qna" } },
+		{"id": "qna", "parentId": "root", "label": "QnA", "sequence": 3, "template": "contents/qna.html" , "hash": "#!/qna" },
 			
-		{ "viewResource" : {"viewResourceId":"contact", "parentViewId":"root", "viewResourceName":"Contact", "viewResourceSeq":4, "viewResourceUrl":"contents/contact.html" , "viewResourceHurl":"#!/contact" } }		
+		{"id": "contact", "parentId": "root", "label": "Contact", "sequence": 4, "template": "contents/contact.html" , "hash": "#!/contact" }		
 	]
 }

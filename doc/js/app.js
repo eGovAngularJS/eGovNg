@@ -36,7 +36,6 @@ define(['angular'], function (angular) {
 					var onloadExp = attr.onload || '';
 					var autoScrollExp = attr.autoscroll;
 
-					//compile의 return은 link겠지?
 					return function(scope, element) {
 						
 						var changeCounter = 0;
@@ -146,7 +145,7 @@ define(['angular'], function (angular) {
 						
 						for(var i=0; i<children.length; i++) {
 							elementData +=
-								'<li><a href="' +  children[i].viewResourceHurl + '">' + children[i].viewResourceName + '</a></li>';	
+								'<li><a href="' +  children[i].hash + '">' + children[i].label + '</a></li>';	
 						}
 						
 						elementData += '</ul>';
@@ -165,14 +164,14 @@ define(['angular'], function (angular) {
 									elementData +=
 										'<li class="dropdown">' +
 											'<a href="#" data-toggle="dropdown" class="dropdown-toggle top-level-menu">' +
-												scope.menuTree[i].viewResourceName + '　<b class="caret"></b>' +
+												scope.menuTree[i].label + '　<b class="caret"></b>' +
 											'</a>' +
 											menuElement(scope.menuTree[i].children) +
 										'</li>';
 								}
 								else {
 									elementData +=
-										'<li><a href="' + scope.menuTree[i].viewResourceHurl + '" class="top-level-menu">' + scope.menuTree[i].viewResourceName + '</a></li>';
+										'<li><a href="' + scope.menuTree[i].hash + '" class="top-level-menu">' + scope.menuTree[i].label + '</a></li>';
 								}
 							}
 							
@@ -202,35 +201,11 @@ define(['angular'], function (angular) {
 						//서브메뉴 데이터 설정
 						scope.menuList = sectionNode.children;
 						
-						//현재 활성화시킬 메뉴 설정
-						if(attrs.parentNode == scope.currentNode.viewResourceId) {
-							scope.expandedMenuId = scope.menuList[0].viewResourceId;
-						}
-						else {
-							scope.expandedMenuId = scope.currentNode.parentViewId;
-						}
-						
-						//collapsed 클래스 설정
-						scope._collapsed = function(menu) {
-
-							return {
-								"collapsed": (menu.viewResourceId != scope.expandedMenuId)
-							};
-						};
-						
-						//in 클래스 설정
-						scope._in = function(menu) {
-							
-							return {
-								"in": (menu.viewResourceId == scope.expandedMenuId)
-							};
-						};
-						
 						//active 클래스 설정
 						scope._activated = function(menu) {
 						
 							return {
-								"active": (menu.viewResourceId == scope.currentNode.viewResourceId)
+								"active": (menu.id == scope.currentNode.id)
 							};
 						};
 						
@@ -239,16 +214,16 @@ define(['angular'], function (angular) {
 							'<div class="accordion">' +
 								'<div class="accordion-group" ng-repeat="menu in menuList" >' +
 									'<div class="accordion-heading">' +
-										'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{menu.viewResourceId}}" ng-class="_collapsed(menu)">' +
-											'{{menu.viewResourceName}}' +
+										'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{menu.id}}">' +
+											'{{menu.label}}' +
 										'</a>' +
 									'</div>' +
-									'<div id="{{menu.viewResourceId}}" class="accordion-body collapse" ng-class="_in(menu)">' +
+									'<div id="{{menu.id}}" class="accordion-body collapse in"">' +
 										'<div class="accordion-inner">' +
 											'<div class="nav nav-list bs-docs-sidenav">' +
 												'<li ng-repeat="child in menu.children" ng-class="_activated(child)">' +
-													'<a href="./{{child.viewResourceHurl}}">' +
-														'<span class="glyphicon glyphicon-chevron-right"></span>　{{child.viewResourceName}}' +
+													'<a href="./{{child.hash}}">' +
+														'{{child.label}}' +
 													'</a>' +
 												'</li>' +
 											'</div>' +
@@ -283,7 +258,7 @@ define(['angular'], function (angular) {
 						scope._activated = function(menu) {
 						
 							return {
-								"active": (menu.viewResourceId == scope.currentNode.viewResourceId)
+								"active": (menu.id == scope.currentNode.id)
 							};
 						};
 						
@@ -291,16 +266,16 @@ define(['angular'], function (angular) {
 							'<div class="accordion">' +
 								'<div class="accordion-group">' +
 									'<div class="accordion-heading">' +
-										'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#' + sectionNode.viewResourceId + '">' +
-											sectionNode.viewResourceName +
+										'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#' + sectionNode.id + '">' +
+											sectionNode.label +
 										'</a>' +
 									'</div>' +
-									'<div id="' + sectionNode.viewResourceId + '" class="accordion-body in collapse">' +
+									'<div id="' + sectionNode.id + '" class="accordion-body in collapse">' +
 										'<div class="accordion-inner">' +
 											'<div class="nav nav-list bs-docs-sidenav">' +
 												'<li ng-repeat="menu in menuList" ng-class="_activated(menu)">' +
-													'<a href="./{{menu.viewResourceHurl}}">' +
-														'<span class="glyphicon glyphicon-chevron-right"></span>　{{menu.viewResourceName}}' +
+													'<a href="./{{menu.hash}}">' +
+														'{{menu.label}}' +
 													'</a>' +
 												'</li>' +
 											'</div>' +
@@ -344,9 +319,9 @@ define(['angular'], function (angular) {
 						DISQUS.reset({
 							reload: true,
 							config: function () {
-								this.page.identifier = scope.currentNode.viewResourceId;
-								this.page.title = scope.currentNode.viewResourceName;
-								this.page.url = defaultPath + "#!/" + scope.currentNode.viewResourceId;
+								this.page.identifier = scope.currentNode.id;
+								this.page.title = scope.currentNode.label;
+								this.page.url = defaultPath + "#!/" + scope.currentNode.id;
 							}
 						});
 					}
@@ -356,9 +331,9 @@ define(['angular'], function (angular) {
 					
 						//disqus 파라메터 설정
 						window.disqus_shortname = '_____';
-						window.disqus_identifier = scope.currentNode.viewResourceId;
-						window.disqus_title = scope.currentNode.viewResourceName;
-						window.disqus_url = defaultPath + "#!/" + scope.currentNode.viewResourceId;
+						window.disqus_identifier = scope.currentNode.id;
+						window.disqus_title = scope.currentNode.label;
+						window.disqus_url = defaultPath + "#!/" + scope.currentNode.id;
 
 						//스크립트 엘리먼트 준비
 						var dsq = document.createElement('script');
@@ -387,7 +362,7 @@ define(['angular'], function (angular) {
 			    for ( var i=0, child; child = _children[i]; i++ ) {
 			 
 			        //노드를 찾았으면,
-			        if ( child.viewResourceId === _id ) {
+			        if ( child.id === _id ) {
 			 
 			            //결과값 리턴
 			            return child;
@@ -423,18 +398,18 @@ define(['angular'], function (angular) {
 				//재귀 호출
 				function checkChildNode(list, obj, i) {
 					for(var j=0; j<list.length; j++) {
-						if(list[j].viewResourceId == obj.viewResource.parentViewId) {
+						if(list[j].id == obj.parentId) {
 							//경로 업데이트
 							var breadcrumb = angular.copy(list[j].breadcrumb);
-								breadcrumb.push({ name: obj.viewResource.viewResourceName, url: obj.viewResource.viewResourceHurl });
+								breadcrumb.push({ name: obj.label, url: obj.hash });
 							
 							var view = {
-								viewResourceId : obj.viewResource.viewResourceId,
-								viewResourceName : obj.viewResource.viewResourceName,
-								viewResourceSeq : obj.viewResource.viewResourceSeq,
-								viewResourceUrl : obj.viewResource.viewResourceUrl,
-								viewResourceHurl :obj.viewResource.viewResourceHurl,
-								parentViewId : obj.viewResource.parentViewId,
+								id : obj.id,
+								label : obj.label,
+								sequence : obj.sequence,
+								template : obj.template,
+								hash :obj.hash,
+								parentId : obj.parentId,
 								breadcrumb : breadcrumb,
 								children : []
 							};
@@ -447,7 +422,7 @@ define(['angular'], function (angular) {
 							
 							//현재 트리 계층을 정렬
 							list[j].children.sort(function(a, b) { 
-								return a.viewResourceSeq < b.viewResourceSeq ? -1 : a.viewResourceSeq > b.viewResourceSeq ? 1 : 0;  
+								return a.sequence < b.sequence ? -1 : a.sequence > b.sequence ? 1 : 0;  
 							});
 							
 							break;
@@ -464,17 +439,17 @@ define(['angular'], function (angular) {
 				while(data.menuTree.length) {
 					for(var i=0; i<data.menuTree.length; i++) {
 						//부모ID가 rootNodeId 이면 최상위
-						if( data.menuTree[i].viewResource.parentViewId == root ) {
+						if( data.menuTree[i].parentId == root ) {
 							//최상위 객체면,
-							var breadcrumb = [{ name: data.menuTree[i].viewResource.viewResourceName }];
+							var breadcrumb = [{ name: data.menuTree[i].label }];
 							
 							var view = {
-								viewResourceId : data.menuTree[i].viewResource.viewResourceId,
-								viewResourceName : data.menuTree[i].viewResource.viewResourceName,
-								viewResourceSeq : data.menuTree[i].viewResource.viewResourceSeq,
-								viewResourceUrl : data.menuTree[i].viewResource.viewResourceUrl,
-								viewResourceHurl : data.menuTree[i].viewResource.viewResourceHurl,
-								parentViewId : data.menuTree[i].viewResource.parentViewId,
+								id : data.menuTree[i].id,
+								label : data.menuTree[i].label,
+								sequence : data.menuTree[i].sequence,
+								template : data.menuTree[i].template,
+								hash : data.menuTree[i].hash,
+								parentId : data.menuTree[i].parentId,
 								breadcrumb : breadcrumb,
 								children : []
 							};
@@ -487,7 +462,7 @@ define(['angular'], function (angular) {
 							
 							//현재 트리 계층을 정렬
 							_menuTree.sort(function(a, b) { 
-								return a.viewResourceSeq < b.viewResourceSeq ? -1 : a.viewResourceSeq > b.viewResourceSeq ? 1 : 0;  
+								return a.sequence < b.sequence ? -1 : a.sequence > b.sequence ? 1 : 0;  
 							});
 													
 							break;
@@ -510,9 +485,6 @@ define(['angular'], function (angular) {
 
 				if( angular.isArray(data.menuTree) ) {
 			
-					//메뉴 데이터 저장
-					$scope.menuData = data.menuTree.slice();
-				
 					//메뉴 트리를 스코프에 할당
 					$scope.menuTree = $scope.createResourceTree(data, rootNodeId);
 				}
@@ -561,7 +533,7 @@ define(['angular'], function (angular) {
 						$scope.currentNode = $scope.getTreeNode($scope.menuTree, hash);
 
 						//추출한 URL을 View에 출력
-						$scope.compositeViewSrc = $scope.currentNode.viewResourceUrl;
+						$scope.compositeViewSrc = $scope.currentNode.template;
 					}
 
 					else {

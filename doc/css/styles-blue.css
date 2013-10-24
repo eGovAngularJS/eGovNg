@@ -564,7 +564,6 @@ footer .indent30 {
 	border-bottom: #e0e3e6 1px solid;
 	text-align: center;
 	font-size: 28px;
-	font-weight: 800;
 	color: #9C9C9C;
 }
 
@@ -2174,4 +2173,12 @@ ul.nav-tabs { margin: 0 !important; }
 
 p.grey {
 	margin: 0 0 25px;
+}
+
+ol.linenums {
+	margin:0!important;
+}
+
+.nav > li.active {
+	font-weight: 800;
 }
