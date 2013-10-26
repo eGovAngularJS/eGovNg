@@ -2404,7 +2404,7 @@ eGovChart
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    console.log("data", data);
+                    //console.log("data", data);
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
                         //.attr('width', $scope.width)    
@@ -2571,7 +2571,7 @@ _egovCommon = egovCommon;
                 // if (scope.percent) {
                 //     pieChart.update(scope.percent);
                 // }
-                console.log("easy-chart", attrs.percent, scope[attrs.percent], scope.percent);
+                //console.log("easy-chart", attrs.percent, scope[attrs.percent], scope.percent);
                 if (attrs.percent) {
                     pieChart.update(scope[attrs.percent]);
                 }
@@ -2888,7 +2888,7 @@ var EasyPieChart = function(el, opts) {
 
 } else{
     // angualr가 없는 경우     
-    console.log('Angular not detected.');
+    alert('Angular not detected.');
 }
 
 }()); // end
