@@ -6,31 +6,153 @@
 			<div list-menu parent-node="guide"></div>
 			
 		</div>
-		<div class="col-md-9 ng-non-bindable">
+		<div class="col-md-9">
 			<!-- 여기 내용 -->
 
-			<h2>MVC 패턴 <small>MVC Pattern</small></h2>
-			<p class="grey">MVC는 model, view, controller로 잘 알려진 패턴입니다. 하지만 MVW라는 패턴은 어쩌면 처음 들어 보았을 수 도 있을 것입니다. 최근 1년간 MVC, MVVM, MVP 등 많은 MV* JavaScript 프레임워크들이 등장했는데, 미묘한 차이점이 있지만 대부분 data와 presentation 그리고 logic에 대한 기능을 분리하여 구조적인 개발을 하게끔 도와준다는 공통점을 발견할 수 있습니다.</p>
+			<h2>AngularJS 모듈 <small>AngularJS Module</small></h2>
+			<p class="grey">AngularJS에서는 컨트롤러, 서비스, 지시자와 필터를 서로 관련된 것끼리 묶는 모듈화를 할 수 있는 기능을 제공합니다. 모듈 기능을 사용하게 되면 관련된 기능별로 혹은 레이어별로 패키징하여 재사용할 수 있고 각 모듈별로 참조 또한 가능합니다. </p>
 
-			<p class="grey">AngularJS 팀에서는 패턴 논쟁에 휘둘리지 않기 위해 AngularJS를 Model View 그리고 Whatever, 즉 MVW JavaScript 프레임워크라고 칭했습니다. 하지만 ng-controller가 보여주듯이 분명 controller가 존재하며 model과 view도 존재합니다. 그런 까닭에 여기에서는 MVC 기준으로 설명하도록 하겠습니다. 아래 그림은 AngularJS에서의 MVC가 무엇인지 그리고 어떠한 관계를 가지고 있는지를 보여줍니다.</p>
+			<h3>AngularJS 웹 어플리케이션 모듈화</h3>
+			<p class="grey">Web Application을 angular 기반으로 작동하게 하기 위해서 우리는 ng-app 지시자를 사용합니다. 여기서 우리는 해당 어플리케이션이 사용하는 모듈을 선언할 수 는데, 아래의 코드를 보면 ng-app 속성에 값으로 사용하는 모듈명을 선언한 것을 볼 수 있습니다.</p>
 
-			<img src="/doc/img/developer/guide/mvc01.png">
+			<!-- 템플릿 시작 -->
+			<pre class="prettyprint linenums" ng-set-text="example01"></pre>
+<script type="text/ng-template" id="example01">
+<html lang="ko" ng-app="todoApp">
+</script>
+			<!-- 템플릿 종료 -->
 
-			<h3>Model</h3>
-			<p class="grey">대부분의 자바스크립트 MVC 프레임워크에서는 자체 Model Class를 상속받는 구조이지만 위의 그림에서 보는 것처럼 AngularJS에서는 순수 자바스크립트 객체들이 모델 역할을 합니다. 그리고 이러한 모델들은 모두 접근 가능한 $scope의 속성값(properties)입니다. AngularJS에서는 array혹은 primitives 모두 model이 될 수 있습니다. 아래의 그림은 Scope과 Model의 관계를 보여주고 있습니다.</p>
+			<p class="grey">위 코드의 의미는 todoApp이라는 모듈을 사용하는 angular 웹 어플리케이션"이 html 태그 레벨에서 구동된다는 의미입니다. angular에서 angular.module()을 제공하여 module을 정의할 수 있는데, todoApp이라는 모듈을 아래와 같이 정의할 수 있습니다.</p>
 
-			<img src="/doc/img/developer/guide/mvc02.png">
+			<!-- 템플릿 시작 -->
+			<pre class="prettyprint linenums" ng-set-text="example02"></pre>
+<script type="text/ng-template" id="example02">
+var todoApp = angular.module('todoApp', []);
+</script>
+			<!-- 템플릿 종료 -->
 
-			<h3>View</h3>
-			<p class="grey">AngularJS에서는 브라우저에서 보여지는 DOM 그 자체가 View입니다. 그리고 DOM그 자체가 Template이기도 합니다. AngularJS에서는 {{표현식}}과 ng-repeat과 같은 함께 새로운 태그나 속성들을 이용하여 template을 작성하게 됩니다. 그리고 이러한 template들은 일반적으로 HTML을 작성하는 것과 동일하게 브라우저가 인식할 수 있는 형태로 작성되었습니다. AngularJS에서의 View는 {{표현식}} 혹은 ng-model을 통하여 Model을 인식하고 ng-controller를 통하여 Controller를 인식하게 됩니다. 그리고 이 둘 사이에서 model이 바뀌면 view도 동적으로 바뀌고 view에서 사용자의 input을 통하여 model 도 바뀌는 양방향 데이터 바인딩을 지원하고 있습니다.</p>
+			<p class="grey">단순하게 첫 번째 인자로 모듈명을 문자열로 전달하면 되며, 두 번째 인자로는 보는 바와 같이 Array를 전달하는데 todoApp이 사용하는 다른 모듈명들을 넣을 수 있습니다. 가령 todoApp이 브라우저 쿠키를 관리하는 서비스를 제공하는 ngCookies 모듈을 사용한다 하면 아래와 같이 작성할 수 있을 것입니다.</p>
 
-			<h3>Controller</h3>
-			<p class="grey">위의 그림을 통해 알 수 있듯이 Controller는 JavaScript 함수입니다. 하지만 일반적인 함수와 다른 점은 $scope을 argument로 가지고 있는 함수라는 점입니다. 그래서 Controller의 주요 기능은 이 $scope 객체의 초기상태를 셋업하거나 행위를 추가하는 것입니다. 아래 그림을 보면 View, Controller, Model, Scope간의 관계를 확인할 수 있습니다. 즉 View에서 어떠한 Controller와 Model의 특정 행위를 선언하고 Controller는 Scope을 통하여 Model의 설정하고 Scope은 View와 Controller의 연결고리 역할을 하는 것입니다. 그럼 이제 Scope에 대하여 더 자세히 알아보도록 하겠습니다.</p>
+			<!-- 템플릿 시작 -->
+			<pre class="prettyprint linenums" ng-set-text="example03"></pre>
+<script type="text/ng-template" id="example03">
+var todoApp = angular.module(‘todoApp’, [‘ngCookies’]) ;
+</script>
+			<!-- 템플릿 종료 -->
 
-			<img src="/doc/img/developer/guide/mvc03.png">
+			<p class="grey">그런데 ngCookies 모듈 외에도 구글의 angular팀에서 제공하지 않는 다른 오픈소스 커뮤니티에서 제공하는 모듈을 사용하고 싶을 수도 있습니다. 그러면 우리는 해당 모듈을 다운로드 받아 html에 포함시키고 아래와 같이 작성할 수 있을 것입니다.</p>
 
-			<h3>Scope</h3>
-			<p class="grey">앞에서 MVC를 설명하면서 계속 $scope을 언급하였지만 특별한 설명이 없었습니다. 그리고 scope앞에 $사인은 왜 붙은 건지 의아해 할 수 도 있습니다. 이 $사인은 AngularJS에서만 사용하겠다는 하나의 약속어라고 할 수 있지 그 외엔 별다른 의미가 없습니다. AngularJS가 제공하는 모든 서비스에는 기본적으로 $가 붙습니다. Scope은 JavaScript의 관점에서 보면 객체에 불과하지만 이 Scope에는 중요한 책임이 있는데 모델의 변화를 감지하고 {{표현식}}을 해석하여 실행한다는 점입니다. 또한 이러한 Scope은 계층적 구조를 가지고 있고 서로 연결되었을 수도 있고 서로 분리되어 있을 수도 있습니다. </p>
+			<!-- 템플릿 시작 -->
+			<pre class="prettyprint linenums" ng-set-text="example04"></pre>
+<script type="text/ng-template" id="example04">
+var todoApp = angular.module(‘todoApp’,[‘ngCookies’,’ ui.bootstrap’]);
+</script>
+			<!-- 템플릿 종료 -->
+
+			<p class="grey">이제 todoApp이라는 모듈을 만들었는데, 이 모듈을 가지고 무얼 할수 있을까요? angular에서 모듈은 하나의 타입이며 아래와 같은 메서드를 제공하고 있습니다.</p>
+
+			<dl>
+				<dt>Module.config(configFunction)</dt>
+				<dd>모듈이 로딩될 때 불러지게 되며 config 함수에 해당 익명함수로 서비스들을 설정할 수 있다.</dd>
+
+				<dt>Module.constant(name, object)</dt>
+				<dd>모듈에서 사용되는 상수를 등록한다.</dd>
+				
+				<dt>Module.controller(name, constructor)</dt>
+				<dd>모듈에서 사용되는 컨트롤러를 등록한다.</dd>
+				
+				<dt>Module.direcetive(name, directiveFactory)</dt>
+				<dd>모듈에서 사용되는 지시자를 등록한다.</dd>
+				
+				<dt>Module.factory(name, providerFunction)</dt>
+				<dd>모듈에서 사용되는 서비스를 펙토리 형태로 등록한다.</dd>
+				
+				<dt>Module.filter(name, filterFactory)</dt>
+				<dd>모듈에서 사용되는 필터를 등록한다.</dd>
+				
+				<dt>Module.provider(name, providerType)</dt>
+				<dd>모듈에서 사용되는 서비스를 제공하는 프로바이더를 등록한다.</dd>
+				
+				<dt>Module.run(initializationFn)</dt>
+				<dd>어플리케이션 초기화 함수를 등록한다. 모든 모듈의 등록이 완료되었을 때 초기화 함수가 실행 된다.</dd>
+				
+				<dt>Module.service(name, constructor)</dt>
+				<dd>모듈에서 사용되는 서비스를 등록한다.</dd>
+				
+				<dt>Module.value(name, object)</dt>
+				<dd>모듈에서 사용되는 객체를 등록한다.</dd>
+			</dl>
+
+			<p class="grey">메서드를 쭉 살펴보면 모듈의 기능을 알 수가 있습니다. controller메서드를 통하여 해당 모듈에서 사용하는 컨트롤러를 등록하고 directive 메소드를 통하여 새로운 지시자를 등록하고 또 factory, service, provider, value를 이용하여 서비스를 등록합니다. 아래 그림과 같이 모듈은 관련된 지시자, 서비스, 필터, 등을 담고 있는 상자와 같다고 생각할 수도 있습니다. 모듈에 대한 보다 자세한 설명은 <a href="http://docs.angularjs.org/api/angular.Module">http://docs.angularjs.org/api/angular.Module</a> 에서 확인할 수 있습니다.</p>	
+	
+			<img src="/doc/img/developer/guide/module01.png">
+
+
+			<h3>모듈에 Controller 등록</h3>
+
+			<p class="grey">통상적으로 전역 네임스페이스 오염이 된다고 하여 네임스페이스 패턴이나 즉각 호출 패턴 등을 이용하여 이러한 전역 네임스페이스 오염을 방지하곤 합니다. AngularJS에서는 module을 제공하여 이러한 전역 네임스페이스 오염을 방지하는데 도움을 주기도 합니다.  AngularJS에서 컨트롤러 등록은 아래와 같이 할 수 있습니다.</p>
+
+			<!-- 템플릿 시작 -->
+			<pre class="prettyprint linenums" ng-set-text="example05"></pre>
+<script type="text/ng-template" id="example05">
+var todoApp = angular.module('todoApp', []);
+
+todoApp.controller("main",function($scope) {
+$scope.name = "재도";
+
+$scope.todoList = todoList;
+
+$scope.addNewTodo = function(newTitle) {
+.....
+};
+.....
+});
+</script>
+			<!-- 템플릿 종료 -->
+
+			<p class="grey">위의 코드를 보면 todoApp이라는 모듈에 controller 메소드를 통하여 main이라는 이름을 가진 컨트롤러를 등록하고 있습니다. </p>
+
+			<p class="grey">AngularJS의 Module을 이용하여 모듈화를 할 때 다양한 방식이 가능합니다. 가령 여러 컨트롤러들을 하나의 컨트롤러 모듈에 등록하고 여러 서비스들을 서비스 모듈로 등록하여 레이어별로 모듈화를 할 수 있고 사용자 관리기능, 게시판 기능 등으로 하여 모듈화를 할 수도 있습니다. 아래는 각 모듈화 방법에 대한 예시들입니다.</p>
+
+			<!-- 템플릿 시작 -->
+			<pre class="prettyprint linenums" ng-set-text="example06"></pre>
+<script type="text/ng-template" id="example06">
+/*
+	레이어별로 분리
+*/
+
+//CtrlsMod.js
+angular.module('Ctrls', ["Services"]).
+controller("bbsCtrl",function(bbsService) {}).
+controller("userCtrl", function(userService) {});
+
+//ServiceMod.js
+angular.module('Services', []).
+service("bbsService",function("userService") {}).
+service("userService",function() {});
+
+//app.js
+angular.module('App', ['Ctrls','Services']);
+
+
+/*
+	기능별로 분리
+*/
+
+//User.js
+angular.module('user', []).
+controller("userCtrl",function("userService") {}).
+service("userService", function() {});
+
+//bbs.js
+angular.module('bbs', [‘user’]).
+controller("bbsCtrl",function("bbsService") {}).
+service("bbsService",function("userSerivce") {});
+
+//app.js
+angular.module('App', ['user','bbs']);
+</script>
+
 
 		</div>
 	</div>

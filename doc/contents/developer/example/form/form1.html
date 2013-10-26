@@ -1,0 +1,85 @@
+<!-- 메인 컨텐츠 -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<!-- 여기 메뉴 -->
+			<div accordion-menu parent-node="example"></div>
+			
+		</div>
+		<div class="col-md-9">
+			<!-- 여기 내용 -->
+
+			<h2>입력폼 유효성 체크 <small>Form Validation</small></h2>
+			<p class="grey">eGov AngularJS를 활용하면 간단하게 입력폼의 유효성을 체크할 수 있습니다.</p>
+
+			<div>
+				<ul class="nav nav-tabs" id="myTab">
+					<li class="active"><a href="#result">Result</a></li>
+					<li><a href="#html">HTML</a></li>
+					<li><a href="#script">Script</a></li>
+				</ul>
+
+				<div class="tab-content">
+
+					<div class="tab-pane active" id="result">
+						<div class="bs-docs-example doc-example-live" ng-embed-app="" ng-set-html="index.html" ng-eval-javascript="script.js"></div>
+					</div>
+					<div class="tab-pane" id="html">
+
+						<!-- 템플릿 시작 -->
+						<pre class="prettyprint linenums" ng-set-text="index.html" ng-html-wrap="angular.js script.js"></pre>
+
+<script type="text/ng-template" id="index.html">
+<!-- HTML 템플릿은 탭보다는 더블스페이스를 권장 -->
+  <div data-ng-controller="Ctrl">
+    <input type="text" data-ng-model="test" />
+    <div>{{test}}</div>
+  </div>
+</script>
+						<!-- 템플릿 종료 -->
+
+					</div>	
+					<div class="tab-pane" id="script">
+
+						<!-- 스크립트 시작 -->
+						<pre class="prettyprint linenums" ng-set-text="script.js"></pre>
+
+<script type="text/ng-template" id="script.js">
+function Ctrl($scope) {
+  //초기화
+  $scope.test = "아무거나 입력하세요";
+}
+</script>
+						<!-- 스크립트 종료 -->
+
+					</div>
+				
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<script data-controller>
+(function ($scope) {
+	
+	//CSS 업데이트
+	$scope.$emit('updateCSS', []);
+
+	/*
+	부트스트랩 탭 기능
+	*/
+	$('.nav-tabs a').unbind('click').bind('click', function(e) {
+		//이벤트 전파 방지
+		e.preventDefault();
+
+		//탭 전환
+		$(this).tab('show');
+	});
+
+});
+</script data-controller>

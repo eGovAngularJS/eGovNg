@@ -26,7 +26,7 @@ define(['angular'], function (angular) {
 
 
 		//커스텀뷰 다이렉티브 등록
-		app.directive('compositeView', function($http, $templateCache, $compile, $controller, defaultPath) {
+		app.directive('compositeView', function($window, $http, $templateCache, $compile, $controller, defaultPath) {
 			return {
 				restrict: 'A', //Attribute(속성)
 				terminal: true,
@@ -86,7 +86,7 @@ define(['angular'], function (angular) {
 											element.html(parsedTemplate[1]);
 
 											//lazyController 등록 -> 'indirect call' 활용
-											controllerProvider.register('compositeViewController', window.eval(parsedTemplate[2]));
+											controllerProvider.register('compositeViewController', $window.eval(parsedTemplate[2]));
 
 											//컨트롤러 생성
 											controller = $controller('compositeViewController', { $scope: childScope });

@@ -6,12 +6,31 @@
 			<div list-menu parent-node="guide"></div>
 			
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-9 ng-non-bindable">
 			<!-- 여기 내용 -->
 
+			<h2>MVC 패턴 <small>MVC Pattern</small></h2>
+			<p class="grey">MVC는 model, view, controller로 잘 알려진 패턴입니다. 하지만 MVW라는 패턴은 어쩌면 처음 들어 보았을 수 도 있을 것입니다. 최근 1년간 MVC, MVVM, MVP 등 많은 MV* JavaScript 프레임워크들이 등장했는데, 미묘한 차이점이 있지만 대부분 data와 presentation 그리고 logic에 대한 기능을 분리하여 구조적인 개발을 하게끔 도와준다는 공통점을 발견할 수 있습니다.</p>
 
-			<h2>제목 <small>Title</small></h2>
-			<p class="grey">설명</p>
+			<p class="grey">AngularJS 팀에서는 패턴 논쟁에 휘둘리지 않기 위해 AngularJS를 Model View 그리고 Whatever, 즉 MVW JavaScript 프레임워크라고 칭했습니다. 하지만 ng-controller가 보여주듯이 분명 controller가 존재하며 model과 view도 존재합니다. 그런 까닭에 여기에서는 MVC 기준으로 설명하도록 하겠습니다. 아래 그림은 AngularJS에서의 MVC가 무엇인지 그리고 어떠한 관계를 가지고 있는지를 보여줍니다.</p>
+
+			<img src="/doc/img/developer/guide/mvc01.png">
+
+			<h3>Model</h3>
+			<p class="grey">대부분의 자바스크립트 MVC 프레임워크에서는 자체 Model Class를 상속받는 구조이지만 위의 그림에서 보는 것처럼 AngularJS에서는 순수 자바스크립트 객체들이 모델 역할을 합니다. 그리고 이러한 모델들은 모두 접근 가능한 $scope의 속성값(properties)입니다. AngularJS에서는 array혹은 primitives 모두 model이 될 수 있습니다. 아래의 그림은 Scope과 Model의 관계를 보여주고 있습니다.</p>
+
+			<img src="/doc/img/developer/guide/mvc02.png">
+
+			<h3>View</h3>
+			<p class="grey">AngularJS에서는 브라우저에서 보여지는 DOM 그 자체가 View입니다. 그리고 DOM그 자체가 Template이기도 합니다. AngularJS에서는 {{표현식}}과 ng-repeat과 같은 함께 새로운 태그나 속성들을 이용하여 template을 작성하게 됩니다. 그리고 이러한 template들은 일반적으로 HTML을 작성하는 것과 동일하게 브라우저가 인식할 수 있는 형태로 작성되었습니다. AngularJS에서의 View는 {{표현식}} 혹은 ng-model을 통하여 Model을 인식하고 ng-controller를 통하여 Controller를 인식하게 됩니다. 그리고 이 둘 사이에서 model이 바뀌면 view도 동적으로 바뀌고 view에서 사용자의 input을 통하여 model 도 바뀌는 양방향 데이터 바인딩을 지원하고 있습니다.</p>
+
+			<h3>Controller</h3>
+			<p class="grey">위의 그림을 통해 알 수 있듯이 Controller는 JavaScript 함수입니다. 하지만 일반적인 함수와 다른 점은 $scope을 argument로 가지고 있는 함수라는 점입니다. 그래서 Controller의 주요 기능은 이 $scope 객체의 초기상태를 셋업하거나 행위를 추가하는 것입니다. 아래 그림을 보면 View, Controller, Model, Scope간의 관계를 확인할 수 있습니다. 즉 View에서 어떠한 Controller와 Model의 특정 행위를 선언하고 Controller는 Scope을 통하여 Model의 설정하고 Scope은 View와 Controller의 연결고리 역할을 하는 것입니다. 그럼 이제 Scope에 대하여 더 자세히 알아보도록 하겠습니다.</p>
+
+			<img src="/doc/img/developer/guide/mvc03.png">
+
+			<h3>Scope</h3>
+			<p class="grey">앞에서 MVC를 설명하면서 계속 $scope을 언급하였지만 특별한 설명이 없었습니다. 그리고 scope앞에 $사인은 왜 붙은 건지 의아해 할 수 도 있습니다. 이 $사인은 AngularJS에서만 사용하겠다는 하나의 약속어라고 할 수 있지 그 외엔 별다른 의미가 없습니다. AngularJS가 제공하는 모든 서비스에는 기본적으로 $가 붙습니다. Scope은 JavaScript의 관점에서 보면 객체에 불과하지만 이 Scope에는 중요한 책임이 있는데 모델의 변화를 감지하고 {{표현식}}을 해석하여 실행한다는 점입니다. 또한 이러한 Scope은 계층적 구조를 가지고 있고 서로 연결되었을 수도 있고 서로 분리되어 있을 수도 있습니다. </p>
 
 		</div>
 	</div>

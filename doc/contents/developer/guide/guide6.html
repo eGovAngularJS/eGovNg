@@ -9,10 +9,159 @@
 		<div class="col-md-9">
 			<!-- 여기 내용 -->
 
+			<h2>라우팅 <small>Routing</small></h2>
+			<p class="grey">SPA 에서 라우팅 이란 URL의 변화를 감지하여 사용자의 요청을 감지 하는 것을 뜻합니다. 여기서 사용자의 요청이란 특정 기존 방식의 페이지 변경과 같은 화면의 갱신, 화면의 위치 이동 등을 말합니다. </p>
 
-			<h2>제목 <small>Title</small></h2>
-			<p class="grey">설명</p>
+			<p class="grey">브라우저는 URL이 변경 되면 해당 URL을 서버에 요청하여 페이지를 갱신하게 되는데, 이렇게 화면 전환이 일어나면 SPA 를 구현 할 수 없습니다. 그래서 SPA에서 라우팅은 URL이 아닌 해시만 변경하고 서버에 요청을 하지 않는 방법을 사용하게 됩니다. 예를 들어 http://localhost/index.html 페이지를 보다가 다른 페이지를 보려는 경우 http: localhost/index.html/#/testPage 와 같이 해쉬값만 변경하게 됩니다. </p>
 
+			<p class="grey">이와 같이 해쉬 기호의 특성을 사용하여 라우팅을 처리 할 수 있습니다. 물론 URL이 변경 되었기 때문에 브라우저의 히스토리(History) 기능과 북마크(Bookmark) 기능도 사용 가능합니다. 이런 라우팅을 처리하기 위해 JQuery 진영에서는 ba-hashchange를 사용하기도 하고 SammyJS를 사용하기도 합니다.</p>
+
+			<h3>$route , $routeParam, ng-view</h3>
+			<p class="grey">AngularJS에서 라우팅 기능을 사용 할 때 $route 서비스를 이용합니다. 이 $route 서비스를 사용할 땐 보통 ngView 다이렉티브(directive)와 $routeParams 서비스를 같이 사용하고, $routeProvider 서비스를 이용하여 URL 변경에 대한 처리를 지정 할 수 있습니다. </p>
+
+			<p class="grey">ngView 다이렉티브는 URL변경이 일어나면 변경된 URL을 감지하여 $routeProvider 서비스에 지정된 템플릿과 컨트롤러를 로딩하고 ngView 하위의 자식으로 등록합니다. 이때 AngularJS의 기본 컴파일 단계를 거처 $scope 서비스 생성과 등록을 동시에 진행합니다.</p>
+
+			<p class="grey">$routeParams 서비스는 $routeProvider 서비스에 등록된 URL 패턴에 의한 파라메터를 추출 하는 역할을 합니다. 가령 템플릿 URL을 ‘/page/:pageId’ 라고 지정하고 실제 URL이 ‘/page/testPage’ 라고 입력된다면 $routeParam 서비스는 {‘pageId’ : ‘testPage’} 라는 값을 가지게 됩니다.</p>
+
+			<p class="grey">보다 더 자세한 이해를 돕기 위해 소스 코드를 보며 설명하겠습니다. 이 소스 코드는 이해를 돕기 위해 AngularJS 홈페이지의 예제를 사용합니다. http://docs.angularjs.org/api/ng.$route  에 들어가면 API와 예제와 데모 모두 볼 수 있습니다</p>
+
+			<!-- 템플릿 시작 -->
+			<b>[예제 1] $route 예제 - index.html</b>
+			<pre class="prettyprint linenums" ng-set-text="example01"></pre>
+<script type="text/ng-template" id="example01">
+  <body>
+    <div ng-controller="MainCntl">
+      Choose:
+      <a href="Book/Moby">Moby</a> |
+      <a href="Book/Moby/ch/1">Moby: Ch1</a> |
+      <a href="Book/Gatsby">Gatsby</a> |
+      <a href="Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
+      <a href="Book/Scarlet">Scarlet Letter</a><br/>
+    
+      <div ng-view></div>
+      <hr />
+    
+      <pre>$location.path() = {{$location.path()}}</pre>
+      <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+      <pre>$route.current.params = {{$route.current.params}}</pre>
+      <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
+      <pre>$routeParams = {{$routeParams}}</pre>
+    </div>
+  </body>
+</script>
+			<!-- 템플릿 종료 -->
+
+			<p class="grey">위의 예제는 기본 index 페이지로 URL을 변경하기 위해 MainCntl 컨트롤러 안의 a 태그를 선언 하였습니다. 총 5개의 링크가 존재합니다. 그리고 ngView 다이렉티브가 선언 되어 있어 URL이 변경되면 이 ngView 다이렉티브 하위에 URL에 해당되는 템플릿이 불려올 것입니다. 아래에는 변경되는 URL 정보들을 확인하기 위해 각각의 값들을 찍어 봅니다. $location.path()는 현재 URL을 나타내고 $route.current.templateUrl 은 $routeProvider 서비스에 등록된 현재 URL의 templateUrl을 나타냅니다. $route.current.params 는 $routeProvider 서비스에 등록된 templateUrl 패턴에 의한 현재 URL의 파라메터 정보를 나타냅니다. $route.current.scope.name 은 $routeProvider 서비스에 등록된 controller 명을 나타내고, 마지막으로 $routeParams 는 $route.current.params 와 동일한 값을 나타냅니다.</p>
+
+			<!-- 템플릿 시작 -->
+			<b>[예제 2] $route 예제 - book.html</b>
+			<pre class="prettyprint linenums" ng-set-text="example02"></pre>
+<script type="text/ng-template" id="example02">
+controller: {{name}}<br />
+Book Id: {{params.bookId}}<br />
+</script>
+			<!-- 템플릿 종료 -->
+
+			<!-- 템플릿 시작 -->
+			<b>[예제 3] $route 예제 - chapter.html</b>
+			<pre class="prettyprint linenums" ng-set-text="example03"></pre>
+<script type="text/ng-template" id="example03">
+controller: {{name}}<br />
+Book Id: {{params.bookId}}<br />
+Chapter Id: {{params.chapterId}}
+</script>
+			<!-- 템플릿 종료 -->
+
+			<p class="grey">[예제 2] 와 [예제 3] 은 각기 book에 대한 템플릿, chapter에 대한 템플릿을 나타내며 템플릿의 스코프에 지정된 name과 params 값에 양방향 바인딩이 걸려있습니다. </p>
+
+			<!-- 템플릿 시작 -->
+			<b>[예제 4] $route 예제 script.js</b>
+			<pre class="prettyprint linenums" ng-set-text="example04"></pre>
+<script type="text/ng-template" id="example04">
+angular.module('ngView', [], function($routeProvider, $locationProvider) {
+  $routeProvider.when('/Book/:bookId', {
+    templateUrl: 'book.html',
+    controller: BookCntl,
+    resolve: {
+      // I will cause a 1 second delay
+      delay: function($q, $timeout) {
+        var delay = $q.defer();
+        $timeout(delay.resolve, 1000);
+        return delay.promise;
+      }
+    }
+  });
+  $routeProvider.when('/Book/:bookId/ch/:chapterId', {
+    templateUrl: 'chapter.html',
+    controller: ChapterCntl
+  });
+ 
+  // configure html5 to get links working on jsfiddle
+  $locationProvider.html5Mode(true);
+});
+ 
+function MainCntl($scope, $route, $routeParams, $location) {
+  $scope.$route = $route;
+  $scope.$location = $location;
+  $scope.$routeParams = $routeParams;
+}
+ 
+function BookCntl($scope, $routeParams) {
+  $scope.name = "BookCntl";
+  $scope.params = $routeParams;
+}
+ 
+function ChapterCntl($scope, $routeParams) {
+  $scope.name = "ChapterCntl";
+  $scope.params = $routeParams;
+}
+</script>
+			<!-- 템플릿 종료 -->
+
+			<p class="grey">[예제 4]를 보면 전체적인 동작 방식이 이해 갈 것입니다. $routeProvider 서비스를 통하여 URL이 ‘/Book/bookId 값’ 유형으로 들어오면 템플릿은 [예제 2]를 사용하고, 이 템플릿의 컨트롤러로 BookCntl 을 등록합니다. 그리고 ‘/Book/bookId 값/ch/chaptered 값’ 과 같은 유형의 URL이 들어오면 템플릿은 [예제 3]을 사용하고, 이 템플릿의 컨트롤러로 ChapterCntl 을 등록합니다. MainCntl, BookCntl, ChapterCntl 의 각 컨트롤러들은 각각의 스코프에 값들을 할당합니다. 여기서 특이하게 볼 부분은 URL이 ‘/Book/bookId 값’ 유형으로 오는 경우 resolve 값에 delay에 함수를 선언하는데 이는 강제로 1초를 지연 시킨다. 보통 resolve 값에는 의존성 처리를 위한 추가적인 로직을 넣습니다. 그리고 추가적으로 $locationProvider.html5Mode(true); 로 선언되어 있는데 이는 URL 분석을 html5 형으로 해석 한다는 뜻입니다. 이 부분에 대한 자세한 설명은 아래에서 하도록 하겠습니다. </p>
+
+			<p class="grey">실제로 각 a 태그를 클릭해 보면 $routeProvider 서비스에 지정된 템플릿과 컨트롤러를 불러서 ngView 다이렉티브 하위의 자식으로 등록하고 컴파일 하여 컨트롤러의 $scope에 등록된 값들이 잘 나오는 것을 확인 할 수 있습니다. AngularJS에서 라우터는 이와 같이 동작을 하게 됩니다. 만약 템플릿을 스트링 문자열로 등록 하려면 $routeProvider 서비스에 templateUrl이 아닌 template으로 등록 하면 됩니다.</p>
+
+			<h3>Hashbang and HTML5 Modes</h3>
+			<p class="grey">위의 예제에서 $locationProvider.html5Mode(true); 라고 선언되어 있는 소스 코드가 있었습니다. 이 코드는 URL을 HTML5 모드로 인지하겠다는 뜻입니다. AngularJS에서는 URL을 해석하는 기준을 지정 할 수 있는데 $locationProvider 서비스를 이용하여 html5Mode 함수에 값을 ‘true’ 로 주면 HTML5 모드가 되고, ‘false’ 값을 주면 Hashbang 모드가 됩니다. 기본값은 ‘false’ 이고 $locationProvider.hashPrefix(접두사 문자열); 과 같이 URL의 접두사를 지정 할 수 있습니다.</p>
+
+			<img src="/doc/img/developer/guide/route01.png">
+
+			<p class="grey">HTML5 모드의 경우 우리가 흔히 볼 수 있는 URL과 같습니다. 하지만 Hashbang 모드의 경우 도메인 네임(foo.com) 뒤에 ‘#!’ 가 붙어 있는걸 알 수 있습니다. 기본적으로 Hashbang 를 사용하게 되면 해쉬 기호와 같이 ‘#’ 문자열만 붙지만 hashPrefix 함수를 사용하여 접두사를 ‘!’ 로 지정하게 되면 지금과 같이 ‘#!’ 로 사용이 되며 이를 Hashbang 이라고 부릅니다. 이 Hashbang 뒤에 나오는 URI 정보 (bar/?baz=23#baz) 의 변경이 있어도 서버 측에 페이지 요청을 하지 않고 브라우저만 인지 시키게 됩니다. 즉 이를 활용하여 사용자로 하여금 페이지를 변경 한 것과 같은 효과를 줄 수 있고 우리는 이를 사용 함으로써 SPA기반의 개발을 할 수 있는 것입니다.</p>
+
+			<p class="grey">기본적으로 AngularJS의 URL 변경을 관리하는 $location 서비스에서는 실제 도메인 네임이 변경 되지 않는 이상 페이지를 새로 변경하지 않습니다. 만약 URI 정보만 변경 되었을 때 페이지 변경을 발생 시키려면 $window.location.href 를 이용하여 변경 할 수 있습니다. 그럼 AngularJS에서 HTML5 모드는 무슨 차이가 있을까요? 두 가지 방식의 차이점은 다음과 같습니다.</p>
+
+			<b>Hashbang mode</b>
+			<dl class="dl-horizontal">
+				<dt>설정</dt>
+				<dd>기본 값(Html5Mode : false)</dd>
+
+				<dt>URL format</dt>
+				<dd>모든 브라우저에서 사용 가능</dd>
+
+				<dt>href에 의한 재요청 </dt>
+				<dd>불가능</dd>
+
+				<dt>서버 설정 필요 여부</dt>
+				<dd>불필요</dd>
+			</dl>
+
+			<b>HTML5  mode</b>
+			<dl class="dl-horizontal">
+				<dt>설정</dt>
+				<dd>Html5Mode : true</dd>
+
+				<dt>URL format</dt>
+				<dd>최신 브라우저 사용 가능</dd>
+
+				<dt>href에 의한 재요청 </dt>
+				<dd>가능</dd>
+
+				<dt>서버 설정 필요 여부</dt>
+				<dd>필요</dd>
+			</dl>
+
+			<p class="grey">웹앱의 경우 검색 엔진의 검색 대상에 올라야 할 경우가 있습니다. Crawling 이라고 하는데 이럴 경우 애플리케이션 내에 head 영역에 <meta name=”fragment” content=”!” /> 라고 선언해 주면 검색 엔진에 노출 되며 HTML 스냅샷이 제공 됩니다. Crawling 은 HTML5 모드와 Hashbang 모드 둘 다 적용 가능합니다.</p>
 		</div>
 	</div>
 </div>
