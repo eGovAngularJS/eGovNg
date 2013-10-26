@@ -353,7 +353,16 @@ define(['angular'], function (angular) {
 		
 		//공통 컨트롤러 설정 - 모든 컨트롤러에서 공통적으로 사용하는 부분들 선언
 		app.controller('CommonController', function($scope, $route, $http, $location, $timeout, defaultPath, rootNodeId ) {
+		
 			
+			//스타일시트 업데이트
+			 $scope.$on('updateCSS', function(event, args) {
+			 
+				//파라메터로 받아온 스타일 시트 반영
+				$scope.stylesheets = args;
+			});  			
+			
+
 			
 			//특정 노드 추출 함수
 			$scope.getTreeNode = function ( _children, _id, _result ) {
@@ -381,15 +390,6 @@ define(['angular'], function (angular) {
 
 
 			
-			//스타일시트 업데이트
-			 $scope.$on('updateCSS', function(event, args) {
-			 
-				//파라메터로 받아온 스타일 시트 반영
-				$scope.stylesheets = args;
-			});  			
-			
-
-			
 			//트리 생성 함수
 			$scope.createResourceTree = function(data, root) {
 				//최종적인 트리 데이터
@@ -408,7 +408,7 @@ define(['angular'], function (angular) {
 								label : obj.label,
 								sequence : obj.sequence,
 								template : obj.template,
-								hash :obj.hash,
+								hash : obj.hash,
 								parentId : obj.parentId,
 								breadcrumb : breadcrumb,
 								children : []
@@ -441,7 +441,7 @@ define(['angular'], function (angular) {
 						//부모ID가 rootNodeId 이면 최상위
 						if( data.menuTree[i].parentId == root ) {
 							//최상위 객체면,
-							var breadcrumb = [{ name: data.menuTree[i].label }];
+							var breadcrumb = [{ name: data.menuTree[i].label, url: data.menuTree[i].hash }];
 							
 							var view = {
 								id : data.menuTree[i].id,

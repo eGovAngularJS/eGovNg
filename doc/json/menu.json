@@ -1,9 +1,10 @@
 {
 	"menuTree" : [
 		{"id": "home", "parentId": "root", "label": "Home", "sequence": 0, "template": "contents/home.html", "hash": "#!/home" },
-		{"id": "develop", "parentId": "root", "label": "Developer", "sequence": 1, "template": "" , "hash": "#!/guide1" },
+
+		{"id": "developer", "parentId": "root", "label": "Developer", "sequence": 1, "template": "" , "hash": "#!/guide1" },
 			
-			{"id": "guide", "parentId": "develop", "label": "Developer Guide", "sequence": 0, "template": "", "hash": "#!/guide1" },
+			{"id": "guide", "parentId": "developer", "label": "Developer Guide", "sequence": 0, "template": "", "hash": "#!/guide1" },
 
 				{"id": "guide1", "parentId": "guide", "label": "개요", "sequence": 0, "template": "contents/developer/guide/guide1.html", "hash": "#!/guide1" },
 				{"id": "guide2", "parentId": "guide", "label": "디렉토리 구조", "sequence": 1, "template": "contents/developer/guide/guide2.html", "hash": "#!/guide2" },
@@ -13,7 +14,7 @@
 				{"id": "guide6", "parentId": "guide", "label": "라우팅", "sequence": 5, "template": "contents/developer/guide/guide6.html", "hash": "#!/guide6" },				
 			
 			
-			{"id": "api", "parentId": "develop", "label": "API Reference", "sequence": 1, "template": "", "hash": "#!/directive1" },
+			{"id": "api", "parentId": "developer", "label": "API Reference", "sequence": 1, "template": "", "hash": "#!/directive1" },
 				
 				{"id": "directive", "parentId": "api", "label": "Directive", "sequence": 0, "template": "", "hash": "#!/directive1" },
 					
@@ -27,7 +28,7 @@
 					{"id": "service2", "parentId": "service", "label": "차트", "sequence": 1, "template": "contents/developer/api/service/service2.html", "hash": "#!/service2" },
 					{"id": "service3", "parentId": "service", "label": "탭", "sequence": 2, "template": "contents/developer/api/service/service3.html", "hash": "#!/service3" },
 					
-			{"id": "example", "parentId": "develop", "label": "Examples", "sequence": 2, "template": "", "hash": "#!/grid1" },
+			{"id": "example", "parentId": "developer", "label": "Examples", "sequence": 2, "template": "", "hash": "#!/grid1" },
 				
 				{"id": "grid", "parentId": "example", "label": "그리드", "sequence": 0, "template": "", "hash": "#!/grid1" },
 					

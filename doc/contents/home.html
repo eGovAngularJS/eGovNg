@@ -34,7 +34,7 @@
 				<div><p>오픈소스 기반의 유연하고</p></div>
 				<div><p>확장성 높은 UI 프레임워크입니다.</p></div>
 			</div>
-
+       
 		</div>   
 
 		 <div class="ls-layer" style="transition2d:5;">
@@ -102,7 +102,7 @@
 					<div class="col-sm-6 col-sm-push-6 image"> <img src="img/features-phone.png" class="img-responsive" alt="Feature"> </div>
 					<div class="col-sm-6 col-sm-pull-6 description special-margin">
 						<h3 class="with-icon"><i class="glyphicons iphone"><i></i></i>제목</h3>
-						<p> 내용</p>                
+						<p> 내용</p>     
 					</div>
 				</div>
 			</div>
@@ -114,7 +114,7 @@
 						<p> 내용 </p>
 					</div>
 				</div>
-			</div>            
+			</div>  
 		</div>
 	</div>
 </div>  
@@ -146,55 +146,55 @@
 		$(document).ready(function(){
 		
 			$("#layerslider").layerSlider({
-				autoStart               : true,
-				responsive              : true,
-				responsiveUnder         : 1170,
-				sublayerContainer       : 1170,
-				firstLayer              : 1,
-				twoWaySlideshow         : true,
-				randomSlideshow         : false,
-				keybNav                 : true,
-				touchNav                : true,
-				imgPreload              : true,
-				navPrevNext             : true,
-				navStartStop            : false,
-				navButtons              : false,
-				thumbnailNavigation     : 'disable',
-				tnWidth                 : 100,
-				tnHeight                : 60,
-				tnContainerWidth        : '60%',
-				tnActiveOpacity         : 35,
-				tnInactiveOpacity       : 100,
-				hoverPrevNext           : true,
-				hoverBottomNav          : false,
-				skin                    : '',
-				skinsPath               : '',
-				pauseOnHover            : true,
-				globalBGColor           : 'transparent',
-				globalBGImage           : false,
-				animateFirstLayer       : false,
-				yourLogo                : false,
-				yourLogoStyle           : 'position: absolute; z-index: 1001; left: 10px; top: 10px;',
-				yourLogoLink            : false,
-				yourLogoTarget          : '_blank',
-				loops                   : 0,
-				forceLoopNum            : true,
-				autoPlayVideos          : true,
-				autoPauseSlideshow      : 'auto',
-				youtubePreview          : 'maxresdefault.jpg',
-				showBarTimer        : false,
-				showCircleTimer     : false,
+				autoStart: true,
+				responsive: true,
+				responsiveUnder: 1170,
+				sublayerContainer: 1170,
+				firstLayer: 1,
+				twoWaySlideshow: true,
+				randomSlideshow: false,
+				keybNav  : false,
+				touchNav : false,
+				imgPreload: true,
+				navPrevNext  : false,
+				navStartStop: false,
+				navButtons: false,
+				thumbnailNavigation   : 'disable',
+				tnWidth  : 100,
+				tnHeight : 60,
+				tnContainerWidth: '60%',
+				tnActiveOpacity: 35,
+				tnInactiveOpacity: 100,
+				hoverPrevNext: false,
+				hoverBottomNav: false,
+				skin: '',
+				skinsPath: '',
+				pauseOnHover: false,
+				globalBGColor: 'transparent',
+				globalBGImage: false,
+				animateFirstLayer: false,
+				yourLogo : false,
+				yourLogoStyle: '',
+				yourLogoLink: false,
+				yourLogoTarget: '_blank',
+				loops: 0,
+				forceLoopNum: true,
+				autoPlayVideos: false,
+				autoPauseSlideshow : 'auto',
+				youtubePreview: 'maxresdefault.jpg',
+				showBarTimer: false,
+				showCircleTimer: false,
 			 
 				// you can change this settings separately by layers or sublayers with using html style attribute
 			 
-				slideDirection          : 'right',
-				slideDelay              : 4000,
-				durationIn              : 1000,
-				durationOut             : 1000,
-				easingIn                : 'easeInOutQuint',
-				easingOut               : 'easeInOutQuint',
-				delayIn                 : 1,
-				delayOut                : 1
+				slideDirection: 'right',
+				slideDelay: 4000,
+				durationIn: 1000,
+				durationOut: 1000,
+				easingIn : 'easeInOutQuint',
+				easingOut: 'easeInOutQuint',
+				delayIn  : 1,
+				delayOut : 1
 			});
 
 			$scope.$apply();
