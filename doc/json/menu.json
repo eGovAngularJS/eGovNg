@@ -38,9 +38,9 @@
 
 				{"id": "chart", "parentId": "example", "label": "차트", "sequence": 1, "template": "", "hash": "#!/chart1" },
 					
-					{"id": "chart1", "parentId": "chart", "label": "차트 기본", "sequence": 0, "template": "contents/developer/example/chart/chart1.html", "hash": "#!/chart1" },
-					{"id": "chart2", "parentId": "chart", "label": "차트 애니메이션", "sequence": 1, "template": "contents/developer/example/chart/chart2.html", "hash": "#!/chart2" },
-					{"id": "chart3", "parentId": "chart", "label": "차트 이벤트", "sequence": 2, "template": "contents/developer/example/chart/chart3.html", "hash": "#!/chart3" },
+					{"id": "chart1", "parentId": "chart", "label": "Line Chart", "sequence": 0, "template": "contents/developer/example/chart/chart1.html", "hash": "#!/chart1" },
+					{"id": "chart2", "parentId": "chart", "label": "Stacked Area Chart", "sequence": 1, "template": "contents/developer/example/chart/chart2.html", "hash": "#!/chart2" },
+					{"id": "chart3", "parentId": "chart", "label": "Multi Bar Chart", "sequence": 2, "template": "contents/developer/example/chart/chart3.html", "hash": "#!/chart3" },
 
 
 				{"id": "tab", "parentId": "example", "label": "탭", "sequence": 2, "template": "", "hash": "#!/tab1" },

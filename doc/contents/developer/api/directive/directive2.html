@@ -4,20 +4,69 @@
 		<div class="col-md-3">
 			<!-- 여기 메뉴 -->
 			<div accordion-menu parent-node="api"></div>
-			
 		</div>
 		<div class="col-md-9">
 			<!-- 여기 내용 -->
+			
+			<h2>차트 <small>Chart</small></h2>
+			<p class="grey"> 정보의 시각화 도구로 차트는 많이 사용 되고 있습니다. 주로 사용되는 차트들을 사용하기 쉽게 개발하였습니다. </p>
 
 
-			<h2>제목 <small>Title</small></h2>
-			<p class="grey">설명</p>
+			<h4>Usage</h4>
+			<p class="grey">차트 컴포넌트는 기본적으로 아래와 같이 태그를 입력하여 적용합니다.</p>
+				<!-- 템플릿 시작 -->
+				<pre class="prettyprint linenums" ng-set-text="example01"></pre>
+
+<script type="text/ng-template" id="example01">
+<차트이름
+            id="차트 ID"
+            data="차트 데이터"
+            width="차트 넓이"
+            height="차트 높이"
+            margin="차트 여백"
+            >
+                <svg></svg>
+</차트이름>
+</script>
+				<!-- 템플릿 종료 -->
+
+			<p class="grey">사용할 수 있는 차트의 종류는 egovLineChart, egovCumulativeLineChart, egovStackedAreaChart, egovMultiBarChart, egovDiscreteBarChart, egovHistoricalBarChart, egovMultiBarHorizontalChart, egovPieChart, egovScatterChart, egovLinePlusBarChart, egovLineWithFocusChart, egovBulletChart, egovSparkline 등이 있습니다. 
+			</p>
 
 
+			<h4>parameter</h4>
+			<p class="grey">차트 컴포넌트의 주요 파라메터는 아래와 같습니다.</p>
+			<dl class="dl-horizontal">
+				<dt>id(string)</dt>
+				<dd>차트의 실별자 입니다. 차트를 만들고 업데이트 할 때 사용되며, 한페이지에 여러 차트가 존재할 경우 모든 차트는 고유 ID가 있어야 합니다.</dd>
+				
+				<dt>data(string)</dt>
+				<dd>Angular 표현식의 형태로 데이터 바인딩(data-bind) 합니다. 차트로 표현될 정보는 다음과 같습니다. [{"key" : "데이터 명", "values" : [[x축 data, y축 data], [x축 data, y축 data],[x축 data, y축 data], ... ]}</dd>
+
+				<dt>width(number)</dt>
+				<dd>차트의 넓이입니다.</dd>
+
+				<dt>height(number)</dt>
+				<dd>차트의 높이입니다.</dd>
+
+				<dt>margin(object)</dt>
+				<dd>차트 내부의 여백 크기 입니다. 실제 차트 그래프 외의 정보(축정보, 레전드 등)의 공간 크기를 결정합니다. 다음과 같이 값을 지정할 수 있습니다. "{left:50,top:20,bottom:50,right:50}"</dd>
+			</dl>
+
+			<h4>Source</h4>
+
+			<!-- 여기에 우리가 만든탭을 써야될거 같은데.. -->
+			<iframe width="100%" height="500" src="http://jsfiddle.net/jh2as/N3rWy/1/embedded/result,html,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 		</div>
 	</div>
 </div>
+
+
+
+
+
+
 
 
 
@@ -27,6 +76,18 @@
 	
 	//CSS 업데이트
 	$scope.$emit('updateCSS', []);
+
+
+	/*
+	부트스트랩 탭 기능
+	*/
+	$('.nav-tabs a').unbind('click').bind('click', function(e) {
+		//이벤트 전파 방지
+		e.preventDefault();
+
+		//탭 전환
+		$(this).tab('show');
+	});
 
 });
 </script data-controller>
