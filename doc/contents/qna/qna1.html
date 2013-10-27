@@ -1,0 +1,48 @@
+<!-- 메인 컨텐츠 -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<!-- 여기 메뉴 -->
+			<div list-menu parent-node="qna"></div>
+			
+		</div>
+		<div class="col-md-9">
+			<!-- 여기 내용 -->
+
+			<h2>자주 묻는 질문 <small>Frequently asked questions</small></h2>
+
+			<div class="input-group">
+				<span class="input-group-addon">FAQ 검색</span>
+				<input type="text" class="form-control input-sm" placeholder="검색할 내용을 입력해주세요." data-ng-model="keyword">
+			</div>
+
+			<br/>
+
+			<dl  data-ng-repeat="faq in faqs | filter:keyword">
+				<dt><span class="label label-default">질문</span> <b>{{faq.question}}</b></dt>
+				<dd><p style="padding-left: 35px;">{{faq.answer}}</p></dd>
+			</dl>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<script data-controller>
+(function ($scope) {
+	
+	//CSS 업데이트
+	$scope.$emit('updateCSS', []);
+
+	//FAQ 리스트
+	$scope.faqs = [
+		{ question: "eGov AngularJS는 무엇인가요?", answer: "eGov AngularJS는 Open Source Library가 갖는 다양한 이점에 검증된 구조 설계를 더해 안정적으로 프론트엔드를 구축할 수 있는 프론트엔드 프레임워크입니다.전자정부 표준프레임워크가 Spring 기반에 공통 컴포넌트들을 제공하는 것과 같이 전자정부 표준프레임워크 UI에서도 AngularJS 기반의 UI 컴포넌트를 제공함으로써 Back-End와 Front-End를 모두 갖춘 전자정부 표준프레임워크로 한단계 발전시키는 것을 목표로 개발되고 있습니다." },
+		{ question: "eGov AngularJS는 모든 브라우저를 지원하나요?", answer: "eGov AngularJS는 MS Internet Explorer 8 이상, Google Chrome 14 이상, Mozilla Firefox 5 이상, Apple Safari 5 이상을 지원하고 있으며, 표준웹 기술에 기반하여 최대한의 호환성을 보장하도록 설계되었습니다." },
+		{ question: "eGov AngularJS 사용시 비용을 지불 하나요?", answer: "eGov AngularJS는 전자정부 프레임워크와 마찬가지로 무료로 제공되고 있습니다." },
+		{ question: "AngularJS 가 무엇인가요?", answer: "AngularJS는 구글에서 개발한 자바스크립트 프레임워크입니다. 양방향 데이터 바인딩을 제공해 줌으로써 웹 어플리케이션에 단 하나의 소스인 Model을 통하여 개발하게 해주었고 반복적인 DOM 조작으로부터 벗어나 보다 빠른 개발을 도모할 수 있습니다. 많은 코드량을 줄여줄 뿐만 아니라 개발 생상성과 유지성을 향상시켜주며, MVW 구조를 제공함으로써 스파게티 코드로부터 해방시켜 주고 코드의 재사용이 가능하며 코드의 역할이 분리된 구조적인 웹 어플리케이션을 가능케 해줍니다. " }
+	];
+
+});
+</script data-controller>

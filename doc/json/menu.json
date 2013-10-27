@@ -55,9 +55,10 @@
 			{"id": "minified", "parentId": "download", "label": "Minified Source", "sequence": 0, "template": "contents/download/minified.html", "hash": "#!/minified" },
 			{"id": "github", "parentId": "download", "label": "GitHub", "sequence": 1, "template": "contents/download/github.html", "hash": "#!/github" },
 
-
-		{"id": "qna", "parentId": "root", "label": "QnA", "sequence": 3, "template": "contents/qna.html" , "hash": "#!/qna" },
+		{"id": "qna", "parentId": "root", "label": "QnA", "sequence": 3, "template": "" , "hash": "#!/qna1" },
+			{"id": "qna1", "parentId": "qna", "label": "자주 묻는 질문", "sequence": 0, "template": "contents/qna/qna1.html" , "hash": "#!/qna1" },
+			{"id": "qna2", "parentId": "qna", "label": "질문/제안하기", "sequence": 1, "template": "contents/qna/qna2.html" , "hash": "#!/qna2" },
 			
-		{"id": "contact", "parentId": "root", "label": "Contact", "sequence": 4, "template": "contents/contact.html" , "hash": "#!/contact" }		
+		{"id": "contact", "parentId": "root", "label": "Contact", "sequence": 4, "template": "contents/contact.html" , "hash": "#!/contact" }
 	]
 }

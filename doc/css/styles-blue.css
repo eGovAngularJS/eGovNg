@@ -1639,7 +1639,7 @@ ul.paging li.active a {
 
 .large-features .feature {
 	border-bottom: 1px #e0e3e6 solid;
-	margin: 30px 0 30px 0;
+	margin: 60px 0;
 }
 
 .large-features .feature h3 {
@@ -2172,7 +2172,7 @@ ul.nav-tabs { margin: 0 !important; }
 .tabs-left .tab-content { padding: 18px 33px 20px; }
 
 p.grey {
-	margin: 0 0 25px;
+	margin: 5px 0 30px 0;
 }
 
 ol.linenums {
@@ -2181,4 +2181,8 @@ ol.linenums {
 
 .nav > li.active {
 	font-weight: 800;
+}
+
+dt, dd {
+	line-height: 170%;
 }
