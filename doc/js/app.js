@@ -532,8 +532,17 @@ define(['angular'], function (angular) {
 						//트리에서 노드 추출
 						$scope.currentNode = $scope.getTreeNode($scope.menuTree, hash);
 
-						//추출한 URL을 View에 출력
-						$scope.compositeViewSrc = $scope.currentNode.template;
+						//정상적인 경로인 경우,
+						if($scope.currentNode){
+							//추출한 URL을 View에 출력
+							$scope.compositeViewSrc = $scope.currentNode.template;							
+						}
+
+						//그렇지 않으면,에러 페이지 출력
+						else {
+							$scope.compositeViewSrc = "";
+						}
+
 					}
 
 					else {
