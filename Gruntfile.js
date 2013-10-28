@@ -24,7 +24,9 @@ module.exports = function(grunt) {
     jshint: {
       options: {
         multistr: true,
-        smarttabs: true
+        smarttabs: true,
+        bitwise: false,
+        sub: true
       },
       src: ['src/**/*.js'],
       exclude: [
