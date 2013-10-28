@@ -12,6 +12,7 @@
 				{"id": "guide4", "parentId": "guide", "label": "모듈 관리", "sequence": 3, "template": "contents/developer/guide/guide4.html", "hash": "#!/guide4" },
 				{"id": "guide5", "parentId": "guide", "label": "MVC 패턴", "sequence": 4, "template": "contents/developer/guide/guide5.html", "hash": "#!/guide5" },
 				{"id": "guide6", "parentId": "guide", "label": "라우팅", "sequence": 5, "template": "contents/developer/guide/guide6.html", "hash": "#!/guide6" },
+				{"id": "guide7", "parentId": "guide", "label": "SafeApply", "sequence": 5, "template": "contents/developer/guide/guide7.html", "hash": "#!/guide7" },
 			
 			
 			{"id": "api", "parentId": "developer", "label": "API Reference", "sequence": 1, "template": "", "hash": "#!/directive1" },
@@ -21,6 +22,9 @@
 					{"id": "directive1", "parentId": "directive", "label": "그리드", "sequence": 0, "template": "contents/developer/api/directive/directive1.html", "hash": "#!/directive1" },
 					{"id": "directive2", "parentId": "directive", "label": "차트", "sequence": 1, "template": "contents/developer/api/directive/directive2.html", "hash": "#!/directive2" },
 					{"id": "directive3", "parentId": "directive", "label": "탭", "sequence": 2, "template": "contents/developer/api/directive/directive3.html", "hash": "#!/directive3" },
+					{"id": "directive4", "parentId": "directive", "label": "셀렉트 리스트", "sequence": 3, "template": "contents/developer/api/directive/directive4.html", "hash": "#!/directive4" },
+					{"id": "directive5", "parentId": "directive", "label": "체크박스 리스트", "sequence": 4, "template": "contents/developer/api/directive/directive5.html", "hash": "#!/directive5" },
+					{"id": "directive6", "parentId": "directive", "label": "라디오 리스트", "sequence": 5, "template": "contents/developer/api/directive/directive6.html", "hash": "#!/directive6" },
 
 				{"id": "service", "parentId": "api", "label": "Service", "sequence": 1, "template": "", "hash": "#!/service1" },
 					

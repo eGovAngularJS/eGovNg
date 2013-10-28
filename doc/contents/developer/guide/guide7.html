@@ -1,0 +1,30 @@
+<!-- 메인 컨텐츠 -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<!-- 여기 메뉴 -->
+			<div list-menu parent-node="guide"></div>
+			
+		</div>
+		<div class="col-md-9 ng-non-bindable">
+			<!-- 여기 내용 -->
+			<h2>SafeApply <small>SafeApply</small></h2>
+			<p class="grey">AngularJS 내부 구조적인 특징으로 인해 Jquery Event를 사용하여 DOM 값을 변경 할 경우 data-binding 이 바로 적용되지 않는습니다. 이 경우 AngularJS 내부에 알릴 수 있는 특별한 처리를 해야 하는데 이 때 사용하는 것이 $scope.apply() 입니다. 하지만 이 방법은 간혹 에러를 발생 시키기에 남용할 수 없어 문제가 되곤 합니다. 이런 문제를 안정적으로 처리 하기 위해 나온 방법이 SafeApply 입니다. 
+			<br>참조 : https://github.com/yearofmoo/AngularJS-Scope.SafeApply</p>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<script data-controller>
+(function ($scope) {
+	
+	//CSS 업데이트
+	$scope.$emit('updateCSS', []);
+
+});
+</script data-controller>

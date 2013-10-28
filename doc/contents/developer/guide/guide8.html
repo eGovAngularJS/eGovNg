@@ -1,0 +1,40 @@
+<!-- 메인 컨텐츠 -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<!-- 여기 메뉴 -->
+			<div list-menu parent-node="guide"></div>
+			
+		</div>
+		<div class="col-md-9 ng-non-bindable">
+			<!-- 여기 내용 -->
+			<h2>Internet Explorer 호환성 <small>Internet Explorer Compatibility</small></h2>
+			<p class="grey">표준웹 기반의 프론트엔드를 구축할 경우 인터넷익스플로러(Internet Explorer, IE)의 특이성으로 인해 많은 문제가 발생합니다. 이 문서는 IE8 버전 이상의 특이한 IE환경을 우회하여 개발 할 수 있는 방법들을 기술합니다.</p>
+
+			<h3>Directive</h3>
+			<p class="grey">준비중입니다..</p>
+
+			<!-- 템플릿 시작 -->
+			<pre class="prettyprint linenums" ng-set-text="example01"></pre>
+<script type="text/ng-template" id="example01">
+<html lang="ko" ng-app="todoApp">
+</script>
+			<!-- 템플릿 종료 -->
+
+
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<script data-controller>
+(function ($scope) {
+	
+	//CSS 업데이트
+	$scope.$emit('updateCSS', []);
+
+});
+</script data-controller>
