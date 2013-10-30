@@ -15,32 +15,32 @@
 			<p class="grey">그리드 컴포넌트는 기본적으로 아래와 같이 태그를 입력하여 적용합니다.</p>
 				<!-- 템플릿 시작 -->
 				<pre class="prettyprint linenums" ng-set-text="example01">
-&lt;div egov-grid name="문자열" dataset=&quot;{{표현식}}&quot; 
- [row-height="숫자"]
- [header-row-height="숫자"]
- [enable-column-reorder=&quot;true/false&quot;]
- [enable-async-post-render=&quot;true/false&quot;&gt;]
- &lt;table&gt;
-   &lt;thead&gt;
-    &lt;tr&gt;
-     &lt;th&gt;&#xd5e4;&#xb354; &#xd0c0;&#xc774;&#xd2c0;&lt;/th&gt;
-    &lt;/tr&gt;
-   &lt;/thead&gt;
-   &lt;tbody&gt;
-    &lt;tr&gt;
-     &lt;td [width=&quot;&#xc22b;&#xc790;&quot;] [resizable=&quot;true/false&quot;] 
-     [sortable=&quot;true/false&quot;] 
-     [formatter=&quot;&#xd568;&#xc218;&#xba85;&quot;]
-     [class=&quot;&#xd074;&#xb798;&#xc2a4;&#xba85;&quot;]
-     [async-post-render=&quot;&#xd568;&#xc218;&#xba85;&quot;]&gt;{{&#xceec;&#xb7fc;&#xba85;}}&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
- &lt;/table&gt;
-&lt;/div&gt;
+
 				</pre>
 
 <script type="text/ng-template" id="example01">
-<div data-grid></div>
+<div egov-grid name="문자열" dataset="{{표현식}}" 
+ [row-height="숫자"]
+ [header-row-height="숫자"]
+ [enable-column-reorder="true/false"]
+ [enable-async-post-render="true/false">]
+ <table>
+   <thead>
+    <tr>
+     <th>헤더 타이틀</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td [width="숫자"] [resizable="true/false"] 
+     [sortable="true/false"] 
+     [formatter="함수명"]
+     [class="클래스명"]
+     [async-post-render="함수명"]>{{컬럼명}}</td>
+    </tr>
+  </tbody>
+ </table>
+</div>
 </script>
 				<!-- 템플릿 종료 -->
 
