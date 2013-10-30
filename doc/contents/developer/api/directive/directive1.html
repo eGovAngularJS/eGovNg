@@ -9,13 +9,35 @@
 			<!-- 여기 내용 -->
 			
 			<h2>그리드 <small>Grid</small></h2>
-			<p class="grey">그리드는 가장 많이 사용되는 컴포넌트입니다. 매우 확장성 있게 적용 가능하도록 개발되었습니다.</p>
-
+			<p class="grey">그리드는 대량의 데이터를 표현하기 위해 가장 많이 사용되는 컴포넌트입니다. SlickGrid 기반하에 AngularJS의 데이터 바인딩과 지시자</p>
 
 			<h4>Usage</h4>
 			<p class="grey">그리드 컴포넌트는 기본적으로 아래와 같이 태그를 입력하여 적용합니다.</p>
 				<!-- 템플릿 시작 -->
-				<pre class="prettyprint linenums" ng-set-text="example01"></pre>
+				<pre class="prettyprint linenums" ng-set-text="example01">
+&lt;div egov-grid name="문자열" dataset=&quot;{{표현식}}&quot; 
+ [row-height="숫자"]
+ [header-row-height="숫자"]
+ [enable-column-reorder=&quot;true/false&quot;]
+ [enable-async-post-render=&quot;true/false&quot;&gt;]
+ &lt;table&gt;
+   &lt;thead&gt;
+    &lt;tr&gt;
+     &lt;th&gt;&#xd5e4;&#xb354; &#xd0c0;&#xc774;&#xd2c0;&lt;/th&gt;
+    &lt;/tr&gt;
+   &lt;/thead&gt;
+   &lt;tbody&gt;
+    &lt;tr&gt;
+     &lt;td [width=&quot;&#xc22b;&#xc790;&quot;] [resizable=&quot;true/false&quot;] 
+     [sortable=&quot;true/false&quot;] 
+     [formatter=&quot;&#xd568;&#xc218;&#xba85;&quot;]
+     [class=&quot;&#xd074;&#xb798;&#xc2a4;&#xba85;&quot;]
+     [async-post-render=&quot;&#xd568;&#xc218;&#xba85;&quot;]&gt;{{&#xceec;&#xb7fc;&#xba85;}}&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+ &lt;/table&gt;
+&lt;/div&gt;
+				</pre>
 
 <script type="text/ng-template" id="example01">
 <div data-grid></div>
@@ -26,71 +48,62 @@
 
 			<h4>parameter</h4>
 			<p class="grey">그리드 컴포넌트의 주요 파라메터는 아래와 같습니다.</p>
+			<h5>그리드 컨터에너 설정 정보(div)</h5>
 			<dl class="dl-horizontal">
-				<dt>aaa</dt>
-				<dd>div에 스타일을 통해 높이 등의 속성을 설정합니다.</dd>
+				<dt>egov-grid</dt>
+				<dd>그리드 컴포넌트를 명시합니다. 해당 속성이 적용된 요소는 꼭 Table을 포함하고 있어야 합니다. 이는 해당 요소가 그리드 컨터이너가 됨을 나타냅니다.</dd>
 				
-				<dt>bbb</dt>
-				<dd>bbb속성에 대한 설명. bbb속성에 대한 설명. bbb속성에 대한 설명. bbb속성에 대한 설명. bbb속성에 대한 설명. bbb속성에 대한 설명. bbb속성에 대한 설명. bbb속성에 대한 설명. bbb속성에 대한 설명. bbb속성에 대한 설명. bbb속성에 대한 설명. bbb속성에 대한 설명.</dd>
+				<dt>name</dt>
+				<dd>그리드 명을 나타냅니다. 해당 그리드 이름으로 컨트롤러에서 그리드 자바스크립트 인스턴스를 가지고 올 수 있습니다. 관련 내용은 그리드 서비스를 참고하세요.</dd>
 				
-				<dt>ccc</dt>
-				<dd>스크립트 상에서 높이 등의 속성을 설정합니다.</dd>
+				<dt>dataset</dt>
+				<dd>그리드와 연결될 데이타 셋을 정의합니다. 데이타 셋의 포멧을 아래와 같아야 합니다.<br><pre>
+[{
+  columnNm1 : "value",
+  columnNm2 : "value",
+  ...
+},{
+  columnNm 1: "value",
+  columnNm2 : "value",
+  ...
+},
+ ...]</pre></dd>	
+
+				<dt>row-height<br><small>optional</small></dt>
+				<dd>그리드 로우의 높이를 나타냅니다. 숫자를 입력해야 합니다.</dd>	
+
+				<dt>header-row-height<br><small>optional</small><br></dt>
+				<dd>그리드 해더 로우 높이를 명시합니다. 숫자를 입력해야 합니다.</dd>
+
+				<dt>enable-column-reorder<br><small>optional</small><br></dt>
+				<dd>컬럼을 정열 할 수 있는 여부를 명시합니다. boolean으로 입력해야 합니다.</dd>
+
+				<dt>enable-async-post-render<br><small>optional</small><br></dt>
+				<dd>비동기 컬럼 렌더링 여부를 명시합니다. boolean으로 입력해야 합니다.</dd>
 			</dl>
 
-			<h4>Source</h4>
-
-			<!-- 여기에 우리가 만든탭을 써야될거 같은데.. -->
-
-			<div>
-				<ul class="nav nav-tabs" id="myTab">
-					<li class="active"><a href="#result">Result</a></li>
-					<li><a href="#html">HTML</a></li>
-					<li><a href="#script">Script</a></li>
-				</ul>
-
-				<div class="tab-content">
-
-					<div class="tab-pane active" id="result">
-						<div class="bs-docs-example doc-example-live" ng-embed-app="" ng-set-html="index.html" ng-eval-javascript="script.js"></div>
-					</div>
-					<div class="tab-pane" id="html">
-
-						<!-- 템플릿 시작 -->
-						<pre class="prettyprint linenums" ng-set-text="index.html" ng-html-wrap="angular.js script.js"></pre>
-
-<script type="text/ng-template" id="index.html">
-<!-- HTML 템플릿은 탭보다는 더블스페이스를 권장 -->
-  <div data-ng-controller="Ctrl">
-    <input type="text" data-ng-model="test" />
-    <div>{{test}}</div>
-  </div>
-</script>
-						<!-- 템플릿 종료 -->
-
-					</div>	
-					<div class="tab-pane" id="script">
-
-						<!-- 스크립트 시작 -->
-						<pre class="prettyprint linenums" ng-set-text="script.js"></pre>
-
-<script type="text/ng-template" id="script.js">
-function Ctrl($scope) {
-  //초기화
-  $scope.test = "아무거나 입력하세요";
-}
-</script>
-						<!-- 스크립트 종료 -->
-
-					</div>
-				
-				</div>
-			</div>
+			<h5>그리드 셀 설정 정보(td)</h5>
 			
-		</div>
-	</div>
-</div>
+			<dl class="dl-horizontal">
+				<dt>width<br><small>optional</small></dt>
+				<dd>셀의 넓이를 명시합니다. 숫자를 입력해야 합니다.</dd>
 
+				<dt>resizable<br><small>optional</small></dt>
+				<dd>셀의 크기 변경 여부를 명시합니다. boolean으로 입력해야 합니다.</dd>
 
+				<dt>sortable<br><small>optional</small></dt>
+				<dd>셀의 정렬 여부를 명시합니다. boolean으로 입력해야 합니다.</dd>
+
+				<dt>formatter<br><small>optional</small></dt>
+				<dd>셀의 포멧팅을 담당하는 포멧터 함수의 이름을 명시합니다. 해당 포멧터는 gridProvider를 통하여 정의할 수 있습니다.(예제 참고)</dd>
+
+				<dt>class<br><small>optional</small></dt>
+				<dd>셀에 추가될 클래스를 정의합니다. 각 컬럼별로 해당 클래스가 들어가게 됩니다. css에 정의된 클래스 이름을 속성값으로 주어야 합니다.</dd>
+
+				<dt>async-post-render<br><small>optional</small></dt>
+				<dd>셀이 비동기로 그릴때 호출할 함수 이름을 명시합니다. 해당 함수는 $scope에 정의되어야 합니다. 또한 그리드 컨테이너에 enable-async-post-render가 true 되어있어야 작동합니다. (예제 참고)</dd>
+			</dl>
+			
 
 
 
