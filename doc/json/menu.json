@@ -38,8 +38,8 @@
 				{"id": "grid", "parentId": "example", "label": "그리드", "sequence": 0, "template": "", "hash": "#!/grid1" },
 					
 					{"id": "grid1", "parentId": "grid", "label": "그리드 기본", "sequence": 0, "template": "contents/developer/example/grid/grid1.html", "hash": "#!/grid1" },
-					{"id": "grid2", "parentId": "grid", "label": "행/열 고정", "sequence": 1, "template": "contents/developer/example/grid/grid2.html", "hash": "#!/grid2" },
-					{"id": "grid3", "parentId": "grid", "label": "데이터 10만건 테스트", "sequence": 2, "template": "contents/developer/example/grid/grid3.html", "hash": "#!/grid3" },
+					{"id": "grid2", "parentId": "grid", "label": "그리드 셀 포멧 변경", "sequence": 1, "template": "contents/developer/example/grid/grid2.html", "hash": "#!/grid2" },
+					{"id": "grid3", "parentId": "grid", "label": "그리드 셀 비동기 렌더링", "sequence": 2, "template": "contents/developer/example/grid/grid3.html", "hash": "#!/grid3" },
 
 				{"id": "chart", "parentId": "example", "label": "차트", "sequence": 1, "template": "", "hash": "#!/chart1" },
 					
