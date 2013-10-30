@@ -143,7 +143,7 @@ eGovInput
 		}
 		
 		// 속성 변경 감지 +","+attrs.checkboxValue+","+attrs.checkboxName+","+attrs.checkboxDirection
-		scope.$watch("["+attrs.egovCheckboxtList+","+attrs.ngModel+","+attrs.egovCheckboxDisabled+"]" , action, true);
+		scope.$watch("["+attrs.egovCheckboxList+","+attrs.ngModel+","+attrs.egovCheckboxDisabled+"]" , action, true);
 
 		function action(newObj, oldObj){
 			var list = newObj[0] || [];
@@ -161,13 +161,24 @@ eGovInput
 			var _obj;
 			var _direction;
 			var i;
+
+			var agent = navigator.userAgent.toLowerCase();
+            var browser = "webkit";
+             if( agent.indexOf('msie') != -1 ) {
+                browser = "ie";
+            }
 			
 			if(d == "v"){
 				_direction = " style=\"display:block;\"";
 				element.css({display: 'block'});
 			}else{
-				_direction = " style=\"display:inline;\"";
-				element.css({display: 'inline'});
+				if(browser == 'ie'){
+					_direction = " style=\"display:inline;\"";
+					element.css({display: 'inline'});
+				}else{
+					_direction = " style=\"display:-webkit-box;\"";
+					element.css({display: '-webkit-box'});
+				}
 			}
 			
 			if( val.indexOf(selectall) != -1 ) {
@@ -241,7 +252,7 @@ eGovInput
 		}
             }
         };
-    }]); // end of egovCheckboxtList
+    }]); // end of egovCheckboxList
 
 /*
 <div 
@@ -289,12 +300,23 @@ eGovInput
 			var _obj;
 			var _direction;
 			
+			var agent = navigator.userAgent.toLowerCase();
+            var browser = "webkit";
+             if( agent.indexOf('msie') != -1 ) {
+                browser = "ie";
+            }
+			
 			if(d == "v"){
 				_direction = " style=\"display:block;\"";
 				element.css({display: 'block'});
 			}else{
-				_direction = " style=\"display:inline;\"";
-				element.css({display: 'inline'});
+				if(browser == 'ie'){
+					_direction = " style=\"display:inline;\"";
+					element.css({display: 'inline'});
+				}else{
+					_direction = " style=\"display:-webkit-box;\"";
+					element.css({display: '-webkit-box'});
+				}
 			}
 			
 			for (var i=0; i < len; i++) {
