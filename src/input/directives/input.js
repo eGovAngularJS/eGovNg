@@ -118,9 +118,6 @@ eGovInput
     .directive('egovCheckboxList', ['$compile', '$rootScope', 'egovCommon', function($compile, $rootScope, egovCommon){
         return {
             restrict: 'A',
-            require: ['select', '?ngModel'],
-            transclude: true,
-            scope: false,//{ ngModel:'&', selectValue:'&', selectName:'&', egovSelectList: '&' },
             link: function(scope, element, attrs, ctrl){
 		var _defaultValue = [];
 							
