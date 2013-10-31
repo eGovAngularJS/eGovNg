@@ -1,0 +1,79 @@
+<!-- 메인 컨텐츠 -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<!-- 여기 메뉴 -->
+			<div accordion-menu parent-node="api"></div>
+		</div>
+		<div class="col-md-9">
+			<!-- 여기 내용 -->
+			
+			<h2>라디오 리스트 <small>egovRadioList</small></h2>
+			
+			<p class="grey"> 라디오 리스트를 보다 쉽게 사용하기 위해 개발되었습니다.</p>
+
+
+			<h4>Usage</h4>
+			<p class="grey">라디오 리스트 컴포넌트는 기본적으로 아래와 같이 태그를 입력하여 적용합니다.</p>
+				<!-- 템플릿 시작 -->
+				<pre class="prettyprint linenums" ng-set-text="example01"></pre>
+
+<script type="text/ng-template" id="example01">
+<div
+	data-egov-radio-list="라디오 리스트" 
+	data-ng-model="선택된 라디오 값"
+	>
+</div> 
+</script>
+				<!-- 템플릿 종료 -->
+
+
+			<h4>parameter</h4>
+			<p class="grey">라디오 리스트 컴포넌트의 주요 파라메터는 아래와 같습니다.</p>
+			<dl class="dl-horizontal">
+				<dt>egovRadioList(array)</dt>
+				<dd>라디오 리스트를 구성할 리스트 값입니다.</dd>
+
+				<dt>ngModel(string)</dt>
+				<dd>라디오 리스트의 선택된 값 입니다. 기본 값은 "" 입니다.</dd>
+				
+				<dt>egovRadioName(string) - optional</dt>
+				<dd>라디오 리스트의 옵션으로 실제 보여질 값의 필드명 입니다. 기본값은 "name" 입니다.</dd>
+
+				<dt>egovRadioValue(string) - optional</dt>
+				<dd>라디오 리스트의 옵션으로 실제 값의 필드명 입니다. 기본값은 "value" 입니다.</dd>
+
+				<dt>egovRadioDirection(string) - optional</dt>
+				<dd>라디오 리스트의 옵션으로 라디오 구성시 구성 방향입니다. 수평 방향으로 진행 시 "h", 수직 방향으로 진행시 "v" 값을 사용합니다. 기본값은 "h" 입니다.</dd>
+			</dl>
+
+			<h4>Source</h4>
+
+			<!-- 여기에 우리가 만든탭을 써야될거 같은데.. -->
+			<iframe width="100%" height="500" src="http://jsfiddle.net/jh2as/CjeQh/embedded/result,html,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+		</div>
+	</div>
+</div>
+
+
+<script data-controller>
+(function ($scope) {
+	
+	//CSS 업데이트
+	$scope.$emit('updateCSS', []);
+
+
+	/*
+	부트스트랩 탭 기능
+	*/
+	$('.nav-tabs a').unbind('click').bind('click', function(e) {
+		//이벤트 전파 방지
+		e.preventDefault();
+
+		//탭 전환
+		$(this).tab('show');
+	});
+
+});
+</script data-controller>

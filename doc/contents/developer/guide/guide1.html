@@ -11,34 +11,66 @@
 
 
 			<h2>시작하기 <small>Getting Started</small></h2>
-			<p class="grey">시작하는 방법 설명</p>
+			<p class="grey">eGov AngularJS를 처음 접하시나요? 아래의 단계를 따라가시다보면 자연스럽게 egov AngularJS를 활용하는 방법을 알 수 있습니다!</p>
 
 			<h3>1단계 – eGov AngularJS 다운로드하기</h3>
-			<p class="grey">1단계 설명. 다운로드 방법.</p>
-			<pre class="prettyprint linenums" ng-set-text="example01"></pre>
-<script type="text/ng-template" id="example01">
-<script src="aaa.js">
-</script>
+			<p class="grey">먼저, eGov AngularJS를 다운로드 받습니다.</p>
+			<p><a href="#!/minified" target="_blank"><button type="button" class="btn btn-primary btn-lg">eGov AngularJS 다운로드 받기</button></a></p>
+
 			<br /><br />
 
 			<h3>2단계 – eGov AngularJS 구성하기</h3>
-			<p class="grey">2단계 설명. 폴더 구조.</p>
-			<pre class="prettyprint linenums" ng-set-text="example01"></pre>
-<script type="text/ng-template" id="example01">
-여기엔 무엇을?
-</script>
+			<p class="grey">eGov AngularJS를 다운로드 받았다면, 권장 디렉토리 구조를 참고해서 전체 프론트엔드 디렉토리를 설정합니다.</p>
+			<p><a href="#!/guide03" target="_blank"><button type="button" class="btn btn-primary btn-lg">eGov AngularJS 권장 디렉토리 구조 보기</button></a></p>
+
 			<br /><br />
 
 			<h3>3단계 – 기초적인 eGov AngularJS Application 짜보기</h3>
-			<p class="grey">3단계 설명. 기본 템플릿. 헬로우 월드</p>
-			<pre class="prettyprint linenums" ng-set-text="example01"></pre>
+			<p class="grey">eGov AngularJS를 활용해서 간단한 어플리케이션을 짜보면 eGov AngularJS를 이해하는데 더 도움이 될 수 있습니다.</p>
+			<p class="grey">아래와 같이 소스를 작성해서 test.html 파일을 웹서버 상에서 구동하면 eGov AngularJS에서 기본적으로 제공하는 체크박스 리스트 예제를 확인해 볼 수 있습니다.</p>
+
+			<b>test.html 파일</b><br/>
+			<pre class="prettyprint linenums" ng-set-text="example01" ng-html-wrap="bootstrap.css slick.grid.css nv.d3.css jquery-ui-1.8.16.custom.css eGovNg.css font-awesome.min.css jquery.min.js jquery.event.drag.js holder.min.js angular.js slick.core.js slick.grid.js d3.js nv.d3.js jquery.sparkline.js eGovNg.js"></pre>
 <script type="text/ng-template" id="example01">
-여기엔 무엇을?
+<div ng-app="myApp" ng-controller="myController">
+  CheckBoxList = {{myData}}
+  <br>
+  <div data-egov-checkbox-list="myList" data-ng-model="myData"></div>
+  <br>
+</div>
 </script>
-			<br /><br />
+			<br />
+
+			<b>script.js 파일</b><br/>
+			<pre class="prettyprint linenums" ng-set-text="example02"></pre>
+<script type="text/ng-template" id="example02">
+(function(){
+    
+  //'egov.ui' 모듈을 인젝션
+  var myApp = angular.module('testApp', ['egov.ui']);
+  myApp.controller('testController', function($scope){
+    
+    // 초기값 설정
+    $scope.myData = [] ;
+    
+    //리스트 데이터 등록
+    $scope.myList = [
+      {"name": "전체", "value": ""},
+      {"name": "그리드", "value": "grid"},
+      {"name": "차트", "value": "chart"}
+    ];
+    
+  });
+  
+})();
+</script>
+
+
+			<br />
 
 			<h3>4단계 – eGov AngularJS 활용하기</h3>
-			<p class="grey">4단계 설명. 가이드 문서, 예제, API 설명, QnA 링크 걸고 알리기</p>
+			<p class="grey">이제 eGov AngularJS에 대한 어느정도의 감이 잡혔다면 개발 가이드와 API 설명, 예제 등을 참고해서 eGovAngularJS 웹 어플리케이션 개발을 시작해보세요!!</p>
+			<p class="grey">개발 과정에서 어려운 부분이나 개선했으면 하는 부분은 QnA를 통해 질문하실 수 있습니다.</p>
 		</div>
 	</div>
 </div>

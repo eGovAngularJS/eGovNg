@@ -1,3 +1,7 @@
+if (typeof jQuery === "undefined") {
+  throw "eGovAngularJS는 jquery를 필요로 합니다. (eGovAngularJS requires jquery module to be loaded)";
+}
+
 /**
  * egov.ui Module
  *

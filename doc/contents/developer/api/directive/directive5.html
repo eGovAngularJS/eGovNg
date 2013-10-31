@@ -1,0 +1,85 @@
+<!-- 메인 컨텐츠 -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<!-- 여기 메뉴 -->
+			<div accordion-menu parent-node="api"></div>
+		</div>
+		<div class="col-md-9">
+			<!-- 여기 내용 -->
+			
+			<h2>체크박스 리스트 <small>egovCheckboxList</small></h2>
+			
+			<p class="grey"> 체크박스 리스트를 보다 쉽게 사용하기 위해 개발되었습니다.</p>
+
+
+			<h4>Usage</h4>
+			<p class="grey">체크박스 리스트 컴포넌트는 기본적으로 아래와 같이 태그를 입력하여 적용합니다.</p>
+				<!-- 템플릿 시작 -->
+				<pre class="prettyprint linenums" ng-set-text="example01"></pre>
+
+<script type="text/ng-template" id="example01">
+<div
+	data-egov-checkbox-list="셀렉트 리스트" 
+	data-ng-model="선택된 셀렉트 값"
+	>
+</div> 
+</script>
+				<!-- 템플릿 종료 -->
+
+
+			<h4>parameter</h4>
+			<p class="grey">체크박스 리스트 컴포넌트의 주요 파라메터는 아래와 같습니다.</p>
+			<dl class="dl-horizontal">
+				<dt>egovCheckboxList(array)</dt>
+				<dd>체크박스 리스트를 구성할 리스트 값입니다.</dd>
+
+				<dt>ngModel(array)</dt>
+				<dd>체크박스 리스트의 선택된 값 입니다. 체크박스 리스트의 모델값은 여러 선택된 정보를 가지기 때문에 Array 형의 데이터를 사용합니다. 기본 값은  [ ] 입니다.</dd>
+				
+				<dt>egovCheckboxName(string) - optional</dt>
+				<dd>체크박스 리스트의 옵션으로 실제 보여질 값의 필드명 입니다. 기본값은 "name" 입니다.</dd>
+
+				<dt>egovCheckboxValue(string) - optional</dt>
+				<dd>체크박스 리스트의 옵션으로 실제 값의 필드명 입니다. 기본값은 "value" 입니다.</dd>
+
+				<dt>egovCheckboxDirection(string) - optional</dt>
+				<dd>체크박스 리스트의 옵션으로 체크박스 구성시 구성 방향입니다. 수평 방향으로 진행 시 "h", 수직 방향으로 진행시 "v" 값을 사용합니다. 기본값은 "h" 입니다.</dd>
+
+				<dt>egovCheckboxSelectall(string) - optional</dt>
+				<dd>체크박스 리스트의 옵션으로 "전체" 값입니다. 리스트에 "전체"에 해당되는 값이 존제 하는 경우 다음과 같은 동작을 합니다. "전체" 값에 해당되는 체크박스가 선택되면 기존의 선택된 모든 체크를 해지하고 "전체" 값만 선택이 됩니다. 반대로 "전체" 값이 선택이 되어있는데 다른 값을 선택하면 "전체" 값은 체크 해지가 됩니다. 기본 값은 "" 입니다.</dd>
+
+				<dt>egovCheckboxDisabled(boolean) - optional</dt>
+				<dd>체크박스 리스트의 옵션으로 체크박스 리스트의 비활성 여부입니다. 기본값은 false 입니다.</dd>
+			</dl>
+
+			<h4>Source</h4>
+
+			<!-- 여기에 우리가 만든탭을 써야될거 같은데.. -->
+			<iframe width="100%" height="500" src="http://jsfiddle.net/jh2as/PcXY7/embedded/result,html,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+		</div>
+	</div>
+</div>
+
+
+<script data-controller>
+(function ($scope) {
+	
+	//CSS 업데이트
+	$scope.$emit('updateCSS', []);
+
+
+	/*
+	부트스트랩 탭 기능
+	*/
+	$('.nav-tabs a').unbind('click').bind('click', function(e) {
+		//이벤트 전파 방지
+		e.preventDefault();
+
+		//탭 전환
+		$(this).tab('show');
+	});
+
+});
+</script data-controller>

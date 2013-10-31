@@ -7,6 +7,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-recess');
 
   grunt.initConfig({
@@ -32,9 +33,24 @@ module.exports = function(grunt) {
           'src/grid/libs/slick.core.js',
           'src/grid/libs/slick.grid.js'
         ]
+        bitwise: false,
+        sub: true
       },
       files: ['src/**/*.js']
 
+    },
+    compress: {
+      main :{
+        options: {
+          type: 'zip',
+          archive: 'build/eGovNg-1.0.0.zip'
+        },
+        files: [
+          { src : ['eGovNg.js','eGovNg.min.js'], dest :'eGovNg-1.0.0/', cwd: 'build/', expand: true},
+          { src : ['css/*'], dest :'eGovNg-1.0.0/css/', cwd: 'build/', expand: true },
+          { src : ['images/**/*'], dest :'eGovNg-1.0.0/images/', cwd: 'build/', expand: true}
+        ]
+      }
     },
     watch: {
       files: ['src/**/*.js','less/**/*.less'],

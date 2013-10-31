@@ -1,0 +1,44 @@
+<!-- 메인 컨텐츠 -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<!-- 여기 메뉴 -->
+			<div accordion-menu parent-node="api"></div>
+			
+		</div>
+		<div class="col-md-9">
+			<!-- 여기 내용 -->
+
+
+			<h2>$safeApply <small>$safeApply</small></h2>
+			<p class="grey">AngularJS 내부 구조적인 특징으로 인해 jQuery 를 사용하여 DOM 을 변경할 경우 데이터 바인딩이 바로 적용되지 않습니다. 이 경우 AngularJS 내부에 알릴 수 있는 특별한 처리를 해야 하는데 이 때 사용하는 것이 $apply 입니다. 하지만 $apply는 중복 실행되지 않도록 주의해야하는데, 이러한 중복 실행에 대한 고민없이 $apply를 적용하기 위한 방법이 $safeApply 입니다. </p>
+
+			<h6><span class="label label-default">Method</span>　$scope.$safeApply()</h6>
+			<dl class="dl-horizontal">
+				<dt>메서드 설명</dt>
+				<dd>다시 양방향 데이터 바인딩이 적용되도록 안전하게 $apply 를 수행합니다.
+					<pre class="prettyprint linenums" ng-set-text="example01"></pre>
+<script type="text/ng-template" id="example01">
+$scope.$safeApply();
+</script>
+				</dd>
+				
+				<dt>파라메터</dt>
+				<dd>파라메터가 없는 경우 $scope을 업데이트하고, 특정 scope를 파라메터로 넣을 경우 해당 scope를 업데이트하게 됩니다.</dd>
+			</dl>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<script data-controller>
+(function ($scope) {
+	
+	//CSS 업데이트
+	$scope.$emit('updateCSS', []);
+
+});
+</script data-controller>
