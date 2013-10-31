@@ -32,7 +32,7 @@ module.exports = function(grunt) {
           'src/grid/libs/jquery.event.drag.js',
           'src/grid/libs/slick.core.js',
           'src/grid/libs/slick.grid.js'
-        ]
+        ],
         bitwise: false,
         sub: true
       },
