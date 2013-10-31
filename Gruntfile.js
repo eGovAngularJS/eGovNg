@@ -99,7 +99,6 @@ module.exports = function(grunt) {
           'build/<%= pkg.name %>.js' : ['src/module.js',
               'src/**/libs/*.js',
               'src/**/directives/**/*.js',
-              'src/**/directives/**/*.js',
               'src/**/services/*.js',
               'src/**/filters/**/*.js'
             ]
