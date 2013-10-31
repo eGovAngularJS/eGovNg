@@ -24,12 +24,17 @@ module.exports = function(grunt) {
     jshint: {
       options: {
         multistr: true,
-        smarttabs: true
+        smarttabs: true,
+        '-W061': true,
+        '-W082' : true,
+        ignores: [
+          'src/grid/libs/jquery.event.drag.js',
+          'src/grid/libs/slick.core.js',
+          'src/grid/libs/slick.grid.js'
+        ]
       },
-      src: ['src/**/*.js'],
-      exclude: [
-        'src/chart/directives/chart.js'
-      ]
+      files: ['src/**/*.js']
+
     },
     watch: {
       files: ['src/**/*.js','less/**/*.less'],
@@ -75,7 +80,13 @@ module.exports = function(grunt) {
           banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
         },
         files: {
-          'build/<%= pkg.name %>.js' : ['src/module.js','src/**/directives/**/*.js','src/**/services/*.js','src/**/filters/**/*.js']
+          'build/<%= pkg.name %>.js' : ['src/module.js',
+              'src/**/libs/*.js',
+              'src/**/directives/**/*.js',
+              'src/**/directives/**/*.js',
+              'src/**/services/*.js',
+              'src/**/filters/**/*.js'
+            ]
         }
       }
     }
