@@ -14,34 +14,32 @@
 
 <body>
     <div ng-app="egovTest" ng-controller="testController">
-        SelectList = {{testData}}
+        CheckboxList = {{testData}}
         <br>
         {{testList}}
         <br><br>
-        <select
+        <div
             ng-model="testData"
-            egov-select-list="testList" 
-            egov-select-name = "nm"
-            egov-select-value = "code"
-            ></select>
+            egov-checkbox-list="testList" 
+            ></div>
     </div>
 </body>
 <script type="text/javascript">
 (function(){
-    // 셀렉트 리스트 옵션 변경(egovSelectName, egovSelectValue) 테스트
-
+    // 체크박스 리스트 기본 바인딩 테스트
+    
     //'egov.ui' 모듈을 인젝션
     var testApp = angular.module('egovTest', ['egov.ui']);
     testApp.controller('testController', function($scope){
         
         // 바인딩 초기값 설정
-        $scope.testData = "grid" ;
+        $scope.testData = ["grid"];
         
         // 리스트 데이터 등록
         $scope.testList = [
-            {"nm": "전체", "code": ""},
-            {"nm": "그리드", "code": "grid"},
-            {"nm": "차트", "code": "chart"}
+            {"name": "전체", "value": ""},
+            {"name": "그리드", "value": "grid"},
+            {"name": "차트", "value": "chart"}
         ];
 
     });

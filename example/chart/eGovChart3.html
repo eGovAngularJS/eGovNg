@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <title>eGovNg-Example</title>
+    <script src="/vendor/jQuery/jquery.js"></script>
+    <script src="/vendor/jquery.threedubmedia/event.drag/jquery.event.drag.js"></script>
+    <script src="/vendor/slickGrid/slick.core.js"></script>
+    <script src="/vendor/slickGrid/slick.grid.js"></script>
+    <script src="/vendor/d3/d3.js"></script>
+    <script src="/vendor/nvd3/nv.d3.js"></script>
+    <script src="/vendor/angular/angular.min.js"></script>
+    <script src="/build/eGovNg.js"></script>
+    <link rel="stylesheet" href="/vendor/angularjs-nvd3-directives/examples/stylesheets/nv.d3.css"/>
+</head>
+
+<body>
+    <div ng-app="egovTest" ng-controller="testController">
+        Multi Bar Chart
+        <egov-multi-bar-chart
+            data="testData"
+            id="testData"
+            margin="{left:50,top:20,bottom:50,right:50}"
+            height="280"
+            width="600"
+            showXAxis="true"
+            showYAxis="true"
+            showLegend="true"
+            >
+                <svg></svg>
+        </egov-multi-bar-chart>
+    </div>
+</body>
+<script type="text/javascript">
+(function(){
+    // 차트 - Multi Bar Chart 테스트
+    
+    //'egov.ui' 모듈을 인젝션
+    var testApp = angular.module('egovTest', ['egov.ui']);
+    testApp.controller('testController', function($scope){
+        
+        // 차트 데이터 생성
+        function getData(){
+            var _list = [], _pushObj;
+            for(var i = 0, len = 10; i < len; i++){
+                _pushObj = [];
+                _pushObj.push(i);
+                _pushObj.push(Math.round(Math.random()*100));
+                _list.push(_pushObj);
+            }
+            return _list;
+        };
+        
+        //차트 데이터 등록
+        $scope.testData = [
+            {"key": "data_1", "values": getData()},
+            {"key": "data_2", "values": getData()}
+        ];     
+
+    });
+})();
+</script>
+</html>

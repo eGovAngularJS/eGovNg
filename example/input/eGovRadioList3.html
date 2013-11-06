@@ -14,22 +14,23 @@
 
 <body>
     <div ng-app="egovTest" ng-controller="testController">
-        SelectList = {{testData}}
+        RadioList = {{testData}}
         <br>
         {{testList}}
         <br><br>
-        <select
+        <div
             ng-model="testData"
-            egov-select-list="testList" 
-            egov-select-name = "nm"
-            egov-select-value = "code"
-            ></select>
+            egov-radio-list="testList" 
+            egov-radio-name = "nm"
+            egov-radio-value = "code"
+            egov-radio-direction = "v"
+            ></div>
     </div>
 </body>
 <script type="text/javascript">
 (function(){
-    // 셀렉트 리스트 옵션 변경(egovSelectName, egovSelectValue) 테스트
-
+    // 라디오 리스트 방향 변경 테스트
+    
     //'egov.ui' 모듈을 인젝션
     var testApp = angular.module('egovTest', ['egov.ui']);
     testApp.controller('testController', function($scope){
