@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <title>eGovNg-Example</title>
+    <script src="/vendor/jQuery/jquery.js"></script>
+    <script src="/vendor/jquery.threedubmedia/event.drag/jquery.event.drag.js"></script>
+    <script src="/vendor/slickGrid/slick.core.js"></script>
+    <script src="/vendor/slickGrid/slick.grid.js"></script>
+    <script src="/vendor/d3/d3.js"></script>
+    <script src="/vendor/nvd3/nv.d3.js"></script>
+    <script src="/vendor/angular/angular.min.js"></script>
+    <script src="/build/eGovNg.js"></script>
+</head>
+
+<body>
+    <div ng-app="egovTest" ng-controller="testController">
+        CheckboxList = {{testData}}
+        <br>
+        {{testList}}
+        <br><br>
+        <div
+            ng-model="testData"
+            egov-checkbox-list="testList" 
+            egov-checkbox-name = "nm"
+            egov-checkbox-value = "code"
+            egov-checkbox-selectall = ""
+            ></div>
+    </div>
+</body>
+<script type="text/javascript">
+(function(){
+    // 체크박스 리스트 전체 선택 테스트
+    
+    //'egov.ui' 모듈을 인젝션
+    var testApp = angular.module('egovTest', ['egov.ui']);
+    testApp.controller('testController', function($scope){
+        
+        // 바인딩 초기값 설정
+        $scope.testData = ["grid"];
+        
+        // 리스트 데이터 등록
+        $scope.testList = [
+            {"nm": "전체", "code": ""},
+            {"nm": "그리드", "code": "grid"},
+            {"nm": "차트", "code": "chart"}
+        ];
+
+    });
+})();
+</script>
+</html>
