@@ -11,15 +11,55 @@
 
 
 			<h2>탭 <small>Tab</small></h2>
-			<p class="grey">작성중...</p>
+			<p class="grey">탭 컴포넌트는 bootstrap3 css를 이용하여 탭 기능을 제공하는 지시자입니다.</p>
 
+			<h4>Usage</h4>
+						<p class="grey">텝 컴포넌트는 기본적으로 아래와 같이 태그를 입력하여 적용합니다.</p>
+							<!-- 템플릿 시작 -->
+							<pre class="prettyprint linenums" ng-set-text="example01">
 
+							</pre>
+
+			<script type="text/ng-template" id="example01">
+			<div egov-tab [direction="right/left/below"]>
+			  <div egov-panel heading="문자열" [active="true/false"] [disabled="true/false"] [select="함수명()"]>
+			    [<egov-tab-heading>헤딩 내용</egov-tab-heading>]
+			    페널 내용
+			  </div>
+			 </div>
+			</script>
+							<!-- 템플릿 종료 -->
+			<h4>parameter</h4>
+			<p class="grey">텝 컴포넌트의 주요 파라메터는 아래와 같습니다.</p>
+			<h5>텝 설정 정보(상위 div)</h5>
+			<dl class="dl-horizontal">
+				<dt>egov-tab</dt>
+				<dd>텝 컴포넌트를 명시합니다.</dd>
+				
+				<dt>direction</dt>
+				<dd>텝 페널이 렌더링 되는 방향을 설정합니다. "right","left","below"중 하나를 설정해야 합니다.</dd>
+			</dl>
+
+			<h5>텝 페널 설정(하위 div)</h5>
+			
+			<dl class="dl-horizontal">
+				<dt>heading</dt>
+				<dd>텝 패널의 타이틀 문자열이다. 별도의 egov-panel 지시자를 사용하지 않으면 필수적으로 입력해야 한다.</dd>
+
+				<dt>active<br><small>optional</small></dt>
+				<dd>페널의 활성화 여부</dd>
+
+				<dt>disabled<br><small>optional</small></dt>
+				<dd>페널의 비활성화 여부</dd>
+
+				<dt>select<br><small>optional</small></dt>
+				<dd>페널을 선택할 경우 호출되는 함수명</dd>
+
+			</dl>
 
 		</div>
 	</div>
 </div>
-
-
 
 
 <script data-controller>
