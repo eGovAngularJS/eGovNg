@@ -1,4 +1,3 @@
-
 define(['angular'], function (angular) {
 
 		//LazyLoading을 위한 컨트롤러 프로바이더
@@ -110,7 +109,10 @@ define(['angular'], function (angular) {
 										
 										//컨텐츠 로드 완료 콜백 실행
 										scope.$eval(onloadExp);
-
+										
+										//스크롤 초기화
+										$window.scrollTo(0, 0);
+										
 										//화면 다시 보이기
 										element.show();
 									}
