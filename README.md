@@ -15,8 +15,6 @@ grunt build
 ### 필수 자바스크립트 라이브러리
 1. jQuery
 2. jQuery-ui
-3. d3
-4. nvd3
 
 (vender폴더 참고)
 
